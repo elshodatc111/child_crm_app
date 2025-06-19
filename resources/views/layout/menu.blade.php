@@ -17,60 +17,67 @@
             </div>
         </div>
         <div class="sidebar-menu">
-            <ul class="menu">
-                <li class="sidebar-item  {{ request()->routeIs(['dashboard']) ? 'active' : '' }}">
-                    <a href="{{ route('dashboard') }}" class='sidebar-link'><i class="bi bi-grid-fill"></i><span>Dashboard</span></a>
-                </li>
+<ul class="menu">
+    <li class="sidebar-item {{ request()->routeIs(['dashboard']) ? 'active' : '' }}">
+        <a href="{{ route('dashboard') }}" class='sidebar-link'>
+            <i class="bi bi-speedometer2"></i><span>Dashboard</span>
+        </a>
+    </li>
+    <li class="sidebar-item">
+        <a href="#" class='sidebar-link'>
+            <i class="bi bi-people-fill"></i><span>Bolalar</span>
+        </a>
+    </li>
+    <li class="sidebar-item">
+        <a href="#" class='sidebar-link'>
+            <i class="bi bi-diagram-3-fill"></i><span>Guruhlar</span>
+        </a>
+    </li>
+    <li class="sidebar-item">
+        <a href="#" class='sidebar-link'>
+            <i class="bi bi-calendar-check-fill"></i><span>Hodimlar Davomadi</span>
+        </a>
+    </li>
+    <li class="sidebar-item">
+        <a href="#" class='sidebar-link'>
+            <i class="bi bi-cash-stack"></i><span>Kassa</span>
+        </a>
+    </li>
+    <li class="sidebar-item">
+        <a href="#" class='sidebar-link'>
+            <i class="bi bi-bar-chart-line-fill"></i><span>Moliya</span>
+        </a>
+    </li>
+    <li class="sidebar-item">
+        <a href="#" class='sidebar-link'>
+            <i class="bi bi-pie-chart-fill"></i><span>Statistika</span>
+        </a>
+    </li>
+    <li class="sidebar-item">
+        <a href="#" class='sidebar-link'>
+            <i class="bi bi-file-earmark-text-fill"></i><span>Hisobot</span>
+        </a>
+    </li>
+    <li class="sidebar-item {{ request()->routeIs(['hodim']) ? 'active' : '' }}">
+        <a href="{{ route('hodim') }}" class='sidebar-link'>
+            <i class="bi bi-person-badge-fill"></i><span>Hodimlar</span>
+        </a>
+    </li>
+    <li class="sidebar-item {{ request()->routeIs(['profile']) ? 'active' : '' }}">
+        <a href="{{ route('profile') }}" class='sidebar-link'>
+            <i class="bi bi-person-circle"></i><span>Profil</span>
+        </a>
+    </li>
+    <li class="sidebar-item">
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class='sidebar-link text-danger'>
+            <i class="bi bi-box-arrow-right text-danger"></i><span>Chiqish</span>
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+    </li>
+</ul>
 
-                <li class="sidebar-item ">
-                    <a href="index.html" class='sidebar-link'><i class="bi bi-grid-fill"></i><span>Dashboard</span></a>
-                </li>
-
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'><i class="bi bi-grid-fill"></i><span>Multi-level Menu</span></a>
-                    <ul class="submenu ">
-                        <li class="submenu-item  has-sub">
-                            <a href="#" class="submenu-link">First Level</a>
-                            <ul class="submenu submenu-level-2 ">
-                                <li class="submenu-item ">
-                                    <a href="ui-multi-level-menu.html" class="submenu-link">Second Level</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <a href="#" class="submenu-link">Second Level Menu</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="submenu-item  has-sub">
-                            <a href="#" class="submenu-link">Another Menu</a>
-                            <ul class="submenu submenu-level-2 ">
-                                <li class="submenu-item ">
-                                    <a href="#" class="submenu-link">Second Level Menu</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="sidebar-item  ">
-                    <a href="application-email.html" class='sidebar-link'><i class="bi bi-envelope-fill"></i><span>Email Application</span></a>
-                </li>
-
-                <li class="sidebar-item  {{ request()->routeIs(['hodim']) ? 'active' : '' }}">
-                    <a href="{{ route('hodim') }}" class='sidebar-link'><i class="bi bi-people"></i><span>Hodimlar</span></a>
-                </li>
-
-                <li class="sidebar-item  {{ request()->routeIs(['profile']) ? 'active' : '' }}">
-                    <a href="{{ route('profile') }}" class='sidebar-link'><i class="bi bi-person"></i><span>Profil</span></a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class='sidebar-link text-danger'><i class="bi bi-lock text-danger"></i><span>Chiqish</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </li>
-
-            </ul>
         </div>
     </div>
 </div>
