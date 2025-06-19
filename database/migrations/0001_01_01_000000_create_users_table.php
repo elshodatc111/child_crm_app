@@ -25,8 +25,10 @@ return new class extends Migration
                 'tarbiyachi',
                 'kichik_tarbiyachi',
                 'oshpaz',
+                'techer',
                 'hodim'
-            ])->default('menejer');
+                ])->default('menejer');
+            $table->string('tkun')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();

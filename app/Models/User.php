@@ -18,6 +18,7 @@ class User extends Authenticatable{
         'commit',
         'type',
         'status',
+        'tkun',
         'email',
         'password',
     ];
@@ -30,4 +31,14 @@ class User extends Authenticatable{
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function vacancies(){
+        return $this->hasMany(Vacancy::class, 'user_id');
+    }
+
+    public function managedVacancies(){
+        return $this->hasMany(Vacancy::class, 'menejer_id');
+    }
+
+    
 }
