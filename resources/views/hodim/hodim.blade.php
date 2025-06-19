@@ -223,7 +223,7 @@
                                             <td class="text-center">
                                                 <span class="badge bg-success">new</span>
                                             </td>
-                                        </tr>
+                                        </tr>   
                                     </tbody>
                                 </table>
                             </div>
@@ -346,7 +346,7 @@
                                 </div>
                             </form>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
