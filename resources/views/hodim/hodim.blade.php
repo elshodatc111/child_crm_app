@@ -15,7 +15,6 @@
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
                         <h3>Hodimlar</h3>
-                        <p class="text-subtitle text-muted">...</p>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -28,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <section class="section">  
+        <section class="section">
 
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -80,29 +79,42 @@
                                         <tr class="text-center">
                                             <th class="text-white">#</th>
                                             <th class="text-white">FIO</th>
-                                            <th class="text-white">Login</th>
-                                            <th class="text-white">Lavozimi</th>
+                                            <th class="text-white">Menejer haqida</th>
                                             <th class="text-white">Holati</th>
+                                            <th class="text-white">Lavozimi</th>
+                                            <th class="text-white">Login</th>
+                                            <th class="text-white">Ishga olindi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse($res['meneger'] as $item)
                                         <tr>
-                                            <td class="text-center">1</td>
+                                            <td class="text-center">{{ $loop->index+1 }}</td>
                                             <td>
-                                                <a href="#">Alisher Usmonov</a>
+                                                <a href="">{{ $item['fio'] }}</a>
                                             </td>
-                                            <td class="text-center">14-05-2025</td>
+                                            <td class="text-center">{{ $item['commit'] }}</td>
                                             <td class="text-center">
-                                                <span class="badge bg-success">Bog'bon</span>
+                                                @if($item['status']=='active')
+                                                    Aktiv
+                                                @else
+                                                    Block
+                                                @endif
                                             </td>
-                                            <td class="text-center">
-                                                <span class="badge bg-success">new</span>
-                                            </td>
+                                            <td class="text-center">{{ $item['type'] }}</td>
+                                            <td class="text-center">{{ $item['email'] }}</td>
+                                            <td class="text-center">{{ $item['created_at'] }}</td>
                                         </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan=7 class="text-center">Tarbiyachilar mavjud emas.</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        <!-- Tarbiyachilar -->
                         <div class="tab-pane fade" id="tarbiyachi" role="tabpanel" aria-labelledby="tarbiyachi-tab">
                             <h4 class="card-title">Tarbiyachilar</h4>
                             <div class="table-responsive datatable-minimal">
@@ -111,30 +123,42 @@
                                         <tr class="text-center">
                                             <th class="text-white">#</th>
                                             <th class="text-white">FIO</th>
-                                            <th class="text-white">Login</th>
-                                            <th class="text-white">Lavozimi</th>
+                                            <th class="text-white">Tarbiyachi haqida</th>
                                             <th class="text-white">Holati</th>
+                                            <th class="text-white">Lavozimi</th>
+                                            <th class="text-white">Login</th>
+                                            <th class="text-white">Ishga olindi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse($res['tarbiyachi'] as $item)
                                         <tr>
-                                            <td class="text-center">1</td>
+                                            <td class="text-center">{{ $loop->index+1 }}</td>
                                             <td>
-                                                <a href="#">Alisher Usmonov</a>
+                                                <a href="">{{ $item['fio'] }}</a>
                                             </td>
-                                            <td class="text-center">14-05-2025</td>
+                                            <td class="text-center">{{ $item['commit'] }}</td>
                                             <td class="text-center">
-                                                <span class="badge bg-success">Bog'bon</span>
+                                                @if($item['status']=='active')
+                                                    Aktiv
+                                                @else
+                                                    Block
+                                                @endif
                                             </td>
-                                            <td class="text-center">
-                                                <span class="badge bg-success">new</span>
-                                            </td>
+                                            <td class="text-center">{{ $item['type'] }}</td>
+                                            <td class="text-center">{{ $item['email'] }}</td>
+                                            <td class="text-center">{{ $item['created_at'] }}</td>
                                         </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan=7 class="text-center">Tarbiyachilar mavjud emas.</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
+                        <!-- Oshpazlar -->
                         <div class="tab-pane fade" id="oshpazlar" role="tabpanel" aria-labelledby="oshpazlar-tab">
                             <h4 class="card-title">Oshpazlar</h4>
                             <div class="table-responsive datatable-minimal">
@@ -143,29 +167,40 @@
                                         <tr class="text-center">
                                             <th class="text-white">#</th>
                                             <th class="text-white">FIO</th>
-                                            <th class="text-white">Login</th>
-                                            <th class="text-white">Lavozimi</th>
+                                            <th class="text-white">Oshpaz haqida</th>
                                             <th class="text-white">Holati</th>
+                                            <th class="text-white">Ishga olindi</th>
+                                            <th class="text-white">Ishga bo'shatildi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse($res['oshpaz'] as $item)
                                         <tr>
-                                            <td class="text-center">1</td>
+                                            <td class="text-center">{{ $loop->index+1 }}</td>
                                             <td>
-                                                <a href="#">Alisher Usmonov</a>
+                                                <a href="">{{ $item['fio'] }}</a>
                                             </td>
-                                            <td class="text-center">14-05-2025</td>
+                                            <td class="text-center">{{ $item['commit'] }}</td>
                                             <td class="text-center">
-                                                <span class="badge bg-success">Bog'bon</span>
+                                                @if($item['status']=='active')
+                                                    Aktiv
+                                                @else
+                                                    Block
+                                                @endif
                                             </td>
-                                            <td class="text-center">
-                                                <span class="badge bg-success">new</span>
-                                            </td>
+                                            <td class="text-center">{{ $item['created_at'] }}</td>
+                                            <td class="text-center">{{ $item['updated_at'] }}</td>
                                         </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan=6 class="text-center">Oshpazlar mavjud emas.</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        <!-- Hodimlar -->
                         <div class="tab-pane fade" id="hodimlar" role="tabpanel" aria-labelledby="hodimlar-tab">
                             <h4 class="card-title">Hodimlar</h4>
                             <div class="table-responsive datatable-minimal">
@@ -174,29 +209,40 @@
                                         <tr class="text-center">
                                             <th class="text-white">#</th>
                                             <th class="text-white">FIO</th>
-                                            <th class="text-white">Login</th>
-                                            <th class="text-white">Lavozimi</th>
+                                            <th class="text-white">Hodim haqida</th>
                                             <th class="text-white">Holati</th>
+                                            <th class="text-white">Ishga olindi</th>
+                                            <th class="text-white">Ishga bo'shatildi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse($res['hodim'] as $item)
                                         <tr>
-                                            <td class="text-center">1</td>
+                                            <td class="text-center">{{ $loop->index+1 }}</td>
                                             <td>
-                                                <a href="#">Alisher Usmonov</a>
+                                                <a href="">{{ $item['fio'] }}</a>
                                             </td>
-                                            <td class="text-center">14-05-2025</td>
+                                            <td class="text-center">{{ $item['commit'] }}</td>
                                             <td class="text-center">
-                                                <span class="badge bg-success">Bog'bon</span>
+                                                @if($item['status']=='active')
+                                                    Aktiv
+                                                @else
+                                                    Block
+                                                @endif
                                             </td>
-                                            <td class="text-center">
-                                                <span class="badge bg-success">new</span>
-                                            </td>
+                                            <td class="text-center">{{ $item['created_at'] }}</td>
+                                            <td class="text-center">{{ $item['updated_at'] }}</td>
                                         </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan=6 class="text-center">Hodimlar mavjud emas.</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        <!-- ARXIV HODIMLAR -->
                         <div class="tab-pane fade" id="arxiv" role="tabpanel" aria-labelledby="arxiv-tab">
                             <h4 class="card-title">Arxiv Hodimlar</h4>
                             <div class="table-responsive datatable-minimal">
@@ -205,25 +251,29 @@
                                         <tr class="text-center">
                                             <th class="text-white">#</th>
                                             <th class="text-white">FIO</th>
-                                            <th class="text-white">Login</th>
                                             <th class="text-white">Lavozimi</th>
-                                            <th class="text-white">Holati</th>
+                                            <th class="text-white">Login</th>
+                                            <th class="text-white">Ishga olindi</th>
+                                            <th class="text-white">Ishga bo'shatildi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse($res['arxiv'] as $item)
                                         <tr>
-                                            <td class="text-center">1</td>
+                                            <td class="text-center">{{ $loop->index+1 }}</td>
                                             <td>
-                                                <a href="#">Alisher Usmonov</a>
+                                                {{ $item['fio'] }}
                                             </td>
-                                            <td class="text-center">14-05-2025</td>
-                                            <td class="text-center">
-                                                <span class="badge bg-success">Bog'bon</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <span class="badge bg-success">new</span>
-                                            </td>
-                                        </tr>   
+                                            <td class="text-center">{{ $item['type'] }}</td>
+                                            <td class="text-center">{{ $item['email'] }}</td>
+                                            <td class="text-center">{{ $item['created_at'] }}</td>
+                                            <td class="text-center">{{ $item['updated_at'] }}</td>
+                                        </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan=6 class="text-center">Arxiv hodimlar mavjud emas.</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -232,7 +282,7 @@
                         <div class="tab-pane fade" id="vakansiya" role="tabpanel" aria-labelledby="vakansiya-tab">
                             <h4 class="card-title">Vakansiyalar</h4>
                             <div class="table-responsive datatable-minimal">
-                                <table class="table table-bordered" id="table2">
+                                <table class="table table-bordered">
                                     <thead class="bg-primary">
                                         <tr class="text-center">
                                             <th class="text-white">#</th>
@@ -240,15 +290,14 @@
                                             <th class="text-white">Tug'ilgan kuni</th>
                                             <th class="text-white">Lavozimi</th>
                                             <th class="text-white">Holati</th>
+                                            <th class="text-white">Royhatga olindi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($vacancy as $item)
+                                        @forelse($res['vacancy'] as $item)
                                         <tr>
                                             <td class="text-center">{{ $loop->index+1 }}</td>
-                                            <td>
-                                                <a href="#">{{ $item->fio }}</a>
-                                            </td>
+                                            <td><a href="#">{{ $item->fio }}</a></td>
                                             <td class="text-center">{{ $item->tkun }}</td>
                                             <td class="text-center">
                                                 @if($item->type == 'bogbon')
@@ -278,9 +327,12 @@
                                                     <span class="badge bg-success">Ro'yhatga olindi</span>
                                                 @endif
                                             </td>
+                                            <td class="text-center">{{ $item['created_at'] }}</td>
                                         </tr>
                                         @empty
-
+                                        <tr>
+                                            <td colspan="6" class="text-center">Vakansiyalar mavjud emas.</td>
+                                        </tr>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -290,7 +342,7 @@
                         <div class="tab-pane fade" id="new-vakansiya" role="tabpanel" aria-labelledby="new-vakansiya-tab">
                             <h4 class="card-title">Yangi Vakansiya</h4>
                             <form action="{{ route('vacancy_story') }}" method="POST" class="form form-vertical">
-                                @csrf 
+                                @csrf
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-12">
