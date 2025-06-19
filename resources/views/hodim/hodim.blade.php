@@ -37,7 +37,35 @@
                     <hr class="m-0 p-0">
                     <div class="tab-content mt-3" id="myTabContent">
                         <div class="tab-pane fade show active" id="admin" role="tabpanel" aria-labelledby="admin-tab">
-                            <p>1Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h4 class="card-title">Vakansiyalar</h4>
+                            <div class="table-responsive datatable-minimal">
+                                <table class="table table-bordered" id="table2">
+                                    <thead class="bg-primary">
+                                        <tr class="text-center">
+                                            <th class="text-white">#</th>
+                                            <th class="text-white">FIO</th>
+                                            <th class="text-white">Tug'ilgan kuni</th>
+                                            <th class="text-white">Lavozimi</th>
+                                            <th class="text-white">Holati</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td>
+                                                <a href="#">Alisher Usmonov</a>
+                                            </td>
+                                            <td class="text-center">14-05-2025</td>
+                                            <td class="text-center">
+                                                <span class="badge bg-success">Bog'bon</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge bg-success">new</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="tarbiyachi" role="tabpanel" aria-labelledby="tarbiyachi-tab">
                             <p>2Integer interdum diam eleifend metus lacinia.</p>
@@ -52,10 +80,93 @@
                             <p>5Arxiv Hodimlar ro'yxati yoki ma'lumotlari shu yerda.</p>
                         </div>
                         <div class="tab-pane fade" id="vakansiya" role="tabpanel" aria-labelledby="vakansiya-tab">
-                            <p>6Vakansiya haqida ma'lumotlar shu yerda.</p>
+                            <h4 class="card-title">Vakansiyalar</h4>
+                            <div class="table-responsive datatable-minimal">
+                                <table class="table table-bordered" id="table2">
+                                    <thead class="bg-primary">
+                                        <tr class="text-center">
+                                            <th class="text-white">#</th>
+                                            <th class="text-white">FIO</th>
+                                            <th class="text-white">Tug'ilgan kuni</th>
+                                            <th class="text-white">Lavozimi</th>
+                                            <th class="text-white">Holati</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td>
+                                                <a href="#">Alisher Usmonov</a>
+                                            </td>
+                                            <td class="text-center">14-05-2025</td>
+                                            <td class="text-center">
+                                                <span class="badge bg-success">Bog'bon</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="badge bg-success">new</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="new-vakansiya" role="tabpanel" aria-labelledby="new-vakansiya-tab">
-                            <p>7Yangi vakansiya qo'shish uchun forma yoki ma'lumotlar.</p>
+                            <h4 class="card-title">Yangi vakansiya</h4>
+                            <form class="form form-vertical">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="fio">FIO</label>
+                                                <input type="text" required class="form-control" name="fio" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="phone">Telefon raqam</label>
+                                                <input type="text" required class="form-control phone" value="+998" name="phone">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="address">Yashash manzil</label>
+                                                <input type="text" required class="form-control" name="address">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="tkun">Tug'ilgan kun</label>
+                                                <input type="date" required class="form-control" name="tkun">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="type">Lavozim</label>
+                                                <select name="type" require class="form-select">
+                                                    <option value="">Tanlang</option>
+                                                    <option value="meneger">Meneger</option>
+                                                    <option value="tarbiyachi">Tarbiyachi</option>
+                                                    <option value="techer">O'qituvchi</option>
+                                                    <option value="bogbon">Bog'bon</option>
+                                                    <option value="oshpaz">Oshpaz</option>
+                                                    <option value="qarovul">Qarovul</option>
+                                                    <option value="farrosh">Farrosh</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class='form-group'>
+                                                <label for="description">Vakansiya haqida</label>
+                                                <textarea name="description" required class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">Saqlash</button>
+                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Tozalash</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

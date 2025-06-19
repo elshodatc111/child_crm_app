@@ -25,6 +25,9 @@
     <script src="./assets/js/table2excel.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script>
+    <script src="./assets/extensions/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="./assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="./assets/static/js/pages/datatables.js"></script>
     <script>
         $(".phone").inputmask("+998 99 999 9999");
     </script>
