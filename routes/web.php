@@ -6,6 +6,7 @@ use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\hodim\ProfileController;
 use App\Http\Controllers\hodim\HodimController;
 use App\Http\Controllers\hodim\VacancyController;
+use App\Http\Controllers\setting\SettingController;
 
 // Login ko'rinishi
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -17,4 +18,8 @@ Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard'
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->middleware(['auth']);
 Route::get('/hodim', [HodimController::class, 'index'])->name('hodim')->middleware(['auth']);
 Route::post('/vacancy/story', [VacancyController::class, 'story'])->name('vacancy_story')->middleware(['auth']);
+
+
+Route::get('/setting', [SettingController::class, 'setting'])->name('setting')->middleware(['auth']);
+Route::post('/setting/update', [SettingController::class, 'update'])->name('setting_update')->middleware(['auth']);
 

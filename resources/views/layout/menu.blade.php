@@ -68,6 +68,11 @@
             <i class="bi bi-person-circle"></i><span>Profil</span>
         </a>
     </li>
+    <li class="sidebar-item {{ request()->routeIs(['setting']) ? 'active' : '' }}">
+        <a href="{{ route('setting')  }}" class='sidebar-link'>
+            <i class="bi bi-gear-fill"></i><span>Sozlamalar</span>
+        </a>
+    </li>
     <li class="sidebar-item">
         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class='sidebar-link text-danger'>
             <i class="bi bi-box-arrow-right text-danger"></i><span>Chiqish</span>
