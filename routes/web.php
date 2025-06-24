@@ -7,6 +7,7 @@ use App\Http\Controllers\hodim\ProfileController;
 use App\Http\Controllers\hodim\HodimController;
 use App\Http\Controllers\hodim\VacancyController;
 use App\Http\Controllers\setting\SettingController;
+use App\Http\Controllers\child\CildController;
 
 // Login ko'rinishi
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -23,3 +24,5 @@ Route::post('/vacancy/story', [VacancyController::class, 'story'])->name('vacanc
 Route::get('/setting', [SettingController::class, 'setting'])->name('setting')->middleware(['auth']);
 Route::post('/setting/update', [SettingController::class, 'update'])->name('setting_update')->middleware(['auth']);
 
+
+Route::get('/child', [CildController::class, 'index'])->name('child')->middleware(['auth']);
