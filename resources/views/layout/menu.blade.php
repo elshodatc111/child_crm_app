@@ -38,13 +38,13 @@
             <i class="bi bi-calendar-check-fill"></i><span>Hodimlar Davomadi</span>
         </a>
     </li>
-    <li class="sidebar-item">
-        <a href="#" class='sidebar-link'>
+    <li class="sidebar-item {{ request()->routeIs(['kassa']) ? 'active' : '' }}">
+        <a href="{{ route('kassa') }}" class='sidebar-link'>
             <i class="bi bi-cash-stack"></i><span>Kassa</span>
         </a>
     </li>
-    <li class="sidebar-item">
-        <a href="#" class='sidebar-link'>
+    <li class="sidebar-item {{ request()->routeIs(['moliya']) ? 'active' : '' }}">
+        <a href="{{ route('moliya') }}" class='sidebar-link'>
             <i class="bi bi-bar-chart-line-fill"></i><span>Moliya</span>
         </a>
     </li>

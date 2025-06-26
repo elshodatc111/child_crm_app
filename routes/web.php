@@ -8,6 +8,8 @@ use App\Http\Controllers\hodim\HodimController;
 use App\Http\Controllers\hodim\VacancyController;
 use App\Http\Controllers\setting\SettingController;
 use App\Http\Controllers\child\CildController;
+use App\Http\Controllers\moliya\MoliyaController;
+use App\Http\Controllers\moliya\KassaController;
 
 // Login ko'rinishi
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -26,3 +28,8 @@ Route::post('/setting/update', [SettingController::class, 'update'])->name('sett
 
 
 Route::get('/child', [CildController::class, 'index'])->name('child')->middleware(['auth']);
+
+Route::get('/moliya', [MoliyaController::class, 'index'])->name('moliya')->middleware(['auth']);
+Route::post('/moliya/chiqim', [MoliyaController::class, 'store'])->name('moliya_chiqim')->middleware(['auth']);
+
+Route::get('/kassa', [KassaController::class, 'index'])->name('kassa')->middleware(['auth']);
