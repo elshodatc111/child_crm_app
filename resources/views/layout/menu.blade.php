@@ -28,6 +28,11 @@
             <i class="bi bi-people-fill"></i><span>Bolalar</span>
         </a>
     </li>
+    <li class="sidebar-item {{ request()->routeIs(['child_vakancy']) ? 'active' : '' }}">
+        <a href="{{ route('child_vakancy') }}" class='sidebar-link'>
+            <i class="bi bi-people-fill"></i><span>Tashriflar</span>
+        </a>
+    </li>
     <li class="sidebar-item">
         <a href="#" class='sidebar-link'>
             <i class="bi bi-diagram-3-fill"></i><span>Guruhlar</span>

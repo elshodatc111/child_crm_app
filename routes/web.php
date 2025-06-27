@@ -8,6 +8,7 @@ use App\Http\Controllers\hodim\HodimController;
 use App\Http\Controllers\hodim\VacancyController;
 use App\Http\Controllers\setting\SettingController;
 use App\Http\Controllers\child\CildController;
+use App\Http\Controllers\child\VacancyChildController;
 use App\Http\Controllers\moliya\MoliyaController;
 use App\Http\Controllers\moliya\KassaController;
 
@@ -29,6 +30,9 @@ Route::post('/setting/exson/update', [SettingController::class, 'update_exson'])
 
 
 Route::get('/child', [CildController::class, 'index'])->name('child')->middleware(['auth']);
+
+Route::get('/childVakancy', [VacancyChildController::class, 'index'])->name('child_vakancy')->middleware(['auth']);
+Route::post('/childVacancy/store', [VacancyChildController::class, 'store'])->name('child_vakancy_store')->middleware(['auth']);
 
 Route::get('/moliya', [MoliyaController::class, 'index'])->name('moliya')->middleware(['auth']);
 Route::post('/moliya/chiqim', [MoliyaController::class, 'store'])->name('moliya_chiqim')->middleware(['auth']);
