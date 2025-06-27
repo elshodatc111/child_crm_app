@@ -5,11 +5,14 @@ namespace App\Http\Controllers\setting;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Setting;
+use App\Models\Balans;
+
 class SettingController extends Controller
 {
     public function setting(){
         $Setting = Setting::first();
-        return view('setting.setting',compact('Setting'));
+        $Balans = Balans::first();
+        return view('setting.setting',compact('Setting','Balans'));
     }
     public function update(Request $request){
         $message_send = $request->has('message_send');
@@ -27,6 +30,13 @@ class SettingController extends Controller
             $Setting->exson_type_plastik = $exson_type_plastik?'true':'false';
         }
         $Setting->save();
-        return redirect()->back()->with('success', 'Saqlandi');
+        return redirect()->back()->with('success', 'O\'zgarishlar saqlandi');
+    }
+    public function update_exson(Request $request){
+        $exson_foiz = $request->exson_foiz;
+        $Setting = Balans::first();
+        $Setting->exson_foiz =  $exson_foiz;
+        $Setting->save();
+        return redirect()->back()->with('success', 'O\'zgarishlar saqlandi');
     }
 }

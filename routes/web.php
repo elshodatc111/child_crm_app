@@ -25,6 +25,7 @@ Route::post('/vacancy/story', [VacancyController::class, 'story'])->name('vacanc
 
 Route::get('/setting', [SettingController::class, 'setting'])->name('setting')->middleware(['auth']);
 Route::post('/setting/update', [SettingController::class, 'update'])->name('setting_update')->middleware(['auth']);
+Route::post('/setting/exson/update', [SettingController::class, 'update_exson'])->name('setting_exson_update')->middleware(['auth']);
 
 
 Route::get('/child', [CildController::class, 'index'])->name('child')->middleware(['auth']);
