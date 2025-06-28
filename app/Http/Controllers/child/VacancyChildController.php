@@ -49,4 +49,17 @@ class VacancyChildController extends Controller
         ]);
         return redirect()->back();
     }
+
+    public function cancel(Request $request){
+        $child = VacancyChild::find($request->vacancy_child_id);
+        $child->status = 'cancel';
+        $child->save();
+        VacancyChildComment::create([
+            'vacancy_child_id' => $request->vacancy_child_id,
+            'description' => $request->description,
+            'meneger' => auth()->user()->fio,
+        ]);
+        return redirect()->back();
+    }
+
 }

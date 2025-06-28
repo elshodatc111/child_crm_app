@@ -80,18 +80,19 @@
                                 <span class="badge {{ $badgeClass }}">{{ $statusText }}</span>
                             </td></tr>
                         </table>
-                        <div class="row">
-                            <div class="col-6">
-                                <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#blockModal">
-                                    Bloklash
-                                </button>
+                            <div class="row" style="display:@if($child['status']=='success' OR $child['status']=='cancel') none @endif">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#blockModal">
+                                        Yakunlash
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#acceptModal">
+                                        Qabul qilish
+                                    </button>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#acceptModal">
-                                    Qabul qilish
-                                </button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -129,19 +130,21 @@
 
     <div class="modal fade" id="blockModal" tabindex="-1" aria-labelledby="blockModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="#" method="POST">
+            <form action="{{ route('child_vakancy_show_cancel_post') }}" method="POST">
                 @csrf
                 <div class="modal-content">
-                    <div class="modal-header bg-danger text-white">
-                        <h5 class="modal-title" id="blockModalLabel">Tashrifni bloklash</h5>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="blockModalLabel">Tashrifni yakunlash</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
                     </div>
                     <div class="modal-body">
-                        Siz rostdan ham ushbu tashrifni <strong>bloklamoqchimisiz</strong>?
+                        <input type="hidden" name="vacancy_child_id" value="{{ $child['id'] }}">
+                        <label for="description">Tashrifni yakunlash uchun izoh qoldiring</label>
+                        <textarea name="description" class="form-control mt-2" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
-                        <button type="submit" class="btn btn-danger">Tasdiqlash</button>
+                        <button type="submit" class="btn btn-danger">Yakunlash</button>
                     </div>
                 </div>
             </form>

@@ -23,7 +23,7 @@
             <i class="bi bi-speedometer2"></i><span>Dashboard</span>
         </a>
     </li>
-    <li class="sidebar-item {{ request()->routeIs(['child']) ? 'active' : '' }}">
+    <li class="sidebar-item {{ request()->routeIs(['child'],['child_debit'],['child_end']) ? 'active' : '' }}">
         <a href="{{ route('child') }}" class='sidebar-link'>
             <i class="bi bi-people-fill"></i><span>Bolalar</span>
         </a>

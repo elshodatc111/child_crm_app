@@ -1,5 +1,5 @@
 @extends('layout.cdn1')
-@section('title','Bolalar')
+@section('title','Tark etganlar')
 @section('content')
 
 <style>
@@ -48,13 +48,13 @@
             <div class="page-title">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        <h3>Bolalar</h3>
+                        <h3>Tark etganlar</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Bolalar</li>
+                                <li class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                <li class="breadcrumb-item " aria-current="page">Tark etganlar</li>
                             </ol>
                         </nav>
                     </div>
@@ -65,8 +65,8 @@
         <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="list-group list-group-horizontal mb-4" id="inbox-menu">
-                    <a href="{{ route('child') }}" class="list-group-item list-group-item-action active">Aktiv bolalar</a>
-                    <a href="{{ route('child_end') }}" class="list-group-item list-group-item-action">Tark etgan bolalar</a>
+                    <a href="{{ route('child') }}" class="list-group-item list-group-item-action ">Aktiv bolalar</a>
+                    <a href="{{ route('child_end') }}" class="list-group-item list-group-item-action active">Tark etgan bolalar</a>
                     <a href="{{ route('child_debit') }}" class="list-group-item list-group-item-action">Qarzdorlar</a>
                 </div>
                 <form action="" method="get">

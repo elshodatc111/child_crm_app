@@ -30,11 +30,14 @@ Route::post('/setting/exson/update', [SettingController::class, 'update_exson'])
 
 
 Route::get('/child', [CildController::class, 'index'])->name('child')->middleware(['auth']);
+Route::get('/child-end', [CildController::class, 'index_end'])->name('child_end')->middleware(['auth']);
+Route::get('/child-debit', [CildController::class, 'index_debit'])->name('child_debit')->middleware(['auth']);
 
 Route::get('/childVakancy', [VacancyChildController::class, 'index'])->name('child_vakancy')->middleware(['auth']);
 Route::post('/childVacancy/store', [VacancyChildController::class, 'store'])->name('child_vakancy_store')->middleware(['auth']);
 Route::get('/childVacancy_show/{id}', [VacancyChildController::class, 'show'])->name('child_vakancy_show')->middleware(['auth']);
 Route::post('/childVacancy_show/pedding/post', [VacancyChildController::class, 'create_comment'])->name('child_vakancy_show_pedding_post')->middleware(['auth']);
+Route::post('/childVacancy_show/cancel/post', [VacancyChildController::class, 'cancel'])->name('child_vakancy_show_cancel_post')->middleware(['auth']);
 
 Route::get('/moliya', [MoliyaController::class, 'index'])->name('moliya')->middleware(['auth']);
 Route::post('/moliya/chiqim', [MoliyaController::class, 'store'])->name('moliya_chiqim')->middleware(['auth']);
