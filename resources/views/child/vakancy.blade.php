@@ -76,7 +76,7 @@
                                     @forelse ($VacancyChild as $item)
                                         <tr>
                                             <td>{{ $loop->index+1 }}</td>
-                                            <td style="text-align:left"><a href="#">{{ $item['name'] }}</a></td>
+                                            <td style="text-align:left"><a href="{{ route('child_vakancy_show',$item['id']) }}">{{ $item['name'] }}</a></td>
                                             <td>{{ $item['birthday'] }}</td>
                                             <td>{{ $item['created_at'] }}</td>
                                             <td>{{ $item['fio'] }}</td>
@@ -101,9 +101,7 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <tr>
-                                            <td colspan=6 class="text-center">Tashriflar mavjud emas.</td>
-                                        </tr>
+
                                     @endforelse
                                 </tbody>
                             </table>

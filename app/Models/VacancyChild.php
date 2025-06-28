@@ -16,4 +16,7 @@ class VacancyChild extends Model
         'status',
         'menejer_id'
     ];
+    public function comments(){
+        return $this->hasMany(VacancyChildComment::class);
+    }
 }
