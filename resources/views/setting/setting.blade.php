@@ -29,10 +29,10 @@
         </div>
 
         @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
+            </div>
         @endif
 
         <div class="row g-4">
@@ -109,30 +109,76 @@
                 <div class="card shadow-lg border-0 rounded-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Qo'shimcha dam olish kunlari</h5>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addHolidayModal">
+                            <i class="bi bi-plus-circle me-1"></i> Yangi qo‘shish
+                        </button>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
-                            <thead>
+                        <table class="table table-bordered table-striped align-middle text-center" style="font-size: 14px;">
+                            <thead class="table-light">
                                 <tr>
                                     <th>#</th>
-                                    <th>Dam olish kuni</th>
-                                    <th>Dam olish kuni haqida</th>
+                                    <th>Dam olish kuni nomi</th>
+                                    <th>Sana</th>
+                                    <th>Meneger</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Yangi yil</td>
-                                    <td>2025-yil 1-yanvar</td>
-                                    <td>Aktiv</td>
-                                </tr>
+                                @foreach ($kun as $item)
+                                    <tr>
+                                        <td>{{ $loop->index+1 }}</td>
+                                        <td>{{ $item['comment'] }}</td>
+                                        <td>{{ $item['data'] }}</td>
+                                        <td>{{ $item['user'] }}</td>
+                                        <td>
+                                            <form action="{{ route('setting_delete_day') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item['id'] }}">
+                                                <button class="btn btn-danger p-1" type="submit"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
+
+<!-- Modal: Yangi dam olish kuni qo‘shish -->
+<div class="modal fade" id="addHolidayModal" tabindex="-1" aria-labelledby="addHolidayModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow rounded-4">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addHolidayModalLabel">Yangi dam olish kuni qo‘shish</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+            </div>
+            <form action="{{ route('setting_create_day') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Dam olish kuni nomi</label>
+                        <input type="text" name="comment" id="comment" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="data" class="form-label">Sana</label>
+                        <input type="date" name="data" id="data" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-end">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save me-1"></i> Saqlash
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection

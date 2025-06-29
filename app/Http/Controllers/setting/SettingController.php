@@ -6,14 +6,25 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Setting;
 use App\Models\Balans;
+use App\Models\User;
+use App\Models\DamKunlar;
 
-class SettingController extends Controller
-{
+class SettingController extends Controller{
+
     public function setting(){
         $Setting = Setting::first();
         $Balans = Balans::first();
-        return view('setting.setting',compact('Setting','Balans'));
+        $DamKunlar = DamKunlar::orderby('data', 'asc')->get();
+        $kun = [];
+        foreach ($DamKunlar as $key => $value) {
+            $kun[$key]['id'] = $value->id;
+            $kun[$key]['comment'] = $value->comment;
+            $kun[$key]['user'] = User::find($value->user_id)->fio;
+            $kun[$key]['data'] = $value->data;
+        }
+        return view('setting.setting',compact('Setting','Balans','kun'));
     }
+
     public function update(Request $request){
         $message_send = $request->has('message_send');
         $exson_type_naqt = $request->has('exson_type_naqt');
@@ -32,6 +43,7 @@ class SettingController extends Controller
         $Setting->save();
         return redirect()->back()->with('success', 'O\'zgarishlar saqlandi');
     }
+
     public function update_exson(Request $request){
         $exson_foiz = $request->exson_foiz;
         $Setting = Balans::first();
@@ -39,4 +51,23 @@ class SettingController extends Controller
         $Setting->save();
         return redirect()->back()->with('success', 'O\'zgarishlar saqlandi');
     }
+
+    public function create_day(Request $request){
+        $comment = $request->comment;
+        $data = $request->data;
+        DamKunlar::create([
+            'comment' => $comment,
+            'data' => $data,
+            'user_id' => auth()->user()->id
+        ]);
+        return redirect()->back()->with('success', 'Yangi dam olish kuni qo\'shildi!');
+    }
+
+    public function delete_day(Request $request){
+        $id = $request->id;
+        $DamKunlar = DamKunlar::find($id);
+        $DamKunlar->delete();
+        return redirect()->back()->with('success', 'Dam olish kuni o\'chirildi!');
+    }
+
 }
