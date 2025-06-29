@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Group;
 use App\Models\GroupsTarbiyachi;
 use App\Models\GroupChild;
+use App\Models\DamKunlar;
 use App\Http\Requests\StoreGroupRequest;
 use App\Http\Requests\EditGroupRequest;
 
@@ -149,11 +150,50 @@ class GroupsController extends Controller{
         }
         return $res;
     }
+    protected function ishKunlar($group_id){
+        $Group = Group::find($group_id);
+        if($Group['group_type']=='besh'){
+            $number = 5;
+        }else{
+            $number = 6;
+        }
+        $year = date('Y');
+        $month = date('m');
+        $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        $hafta_kunlari = [
+            1 => 'Dushanba',
+            2 => 'Seshanba',
+            3 => 'Chorshanba',
+            4 => 'Payshanba',
+            5 => 'Juma',
+            6 => 'Shanba',
+            7 => 'Yakshanba',
+        ];
+        $ruxsat_kunlar = range(1, $number);
+        $dam_olish_kunlari = DamKunlar::whereMonth('data', $month)
+            ->whereYear('data', $year)
+            ->pluck('data')
+            ->toArray();
+        $ish_kunlari = [];
+        for ($day = 1; $day <= $daysInMonth; $day++) {
+            $date = "$year-$month-" . str_pad($day, 2, '0', STR_PAD_LEFT);
+            $weekday_number = date('N', strtotime($date));
+            if (in_array($weekday_number, $ruxsat_kunlar) && !in_array($date, $dam_olish_kunlari)) {
+                $ish_kunlari[] = [
+                    'sanasi' => $date,
+                    'hafta_kuni' => $hafta_kunlari[$weekday_number],
+                ];
+            }
+        }
+        return $ish_kunlari;
+    }
     public function groups_show($id){
         $about = $this->group_about($id);
         $tarbiyachilar = $this->group_tarbiyachi($about['tarbiyachi_id']);
         $yordamchilar = $this->group_yordamchi($about['yordamchi_id']);
-        return view('groups.index_show', compact('id','about','tarbiyachilar','yordamchilar'));
+        $ishKunlar = $this->ishKunlar($id);
+        $ishKunlarSoni = count($this->ishKunlar($id));
+        return view('groups.index_show', compact('id','about','tarbiyachilar','yordamchilar','ishKunlar','ishKunlarSoni'));
     }
     public function group_update(EditGroupRequest $request){
         $data = $request->validated();

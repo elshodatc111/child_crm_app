@@ -166,10 +166,10 @@
             <div class="col-lg-6 mx-auto">
                 <div class="card shadow-sm border-0 rounded-4">
                     <div class="card-header text-center rounded-top-4">
-                        <h5 class="mb-0">Joriy oy ish kunlari (15)</h5>
+                        <h5 class="mb-0">Joriy oy ish kunlari ({{ $ishKunlarSoni }} kun)</h5>
                     </div>
                     <div class="card-body">
-                        <table class="table text-center table-bordered">
+                        <table class="table text-center table-bordered" style="font-size:14px">
                             <thead>
                                 <tr>
                                     <th class="text-center px-3">#</th>
@@ -178,11 +178,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="">asa</td>
-                                    <td class="">asa</td>
-                                    <td class="">as</td>
-                                </tr>
+                                @php
+                                    $today = \Carbon\Carbon::today();
+                                @endphp
+                                @foreach ($ishKunlar as $item)
+                                    @php
+                                        $sana = \Carbon\Carbon::parse($item['sanasi']);
+                                        $badgeClass = '';
+
+                                        if ($sana->isToday()) {
+                                            $badgeClass = 'text-warning'; // bugungi kun: sariq
+                                        } elseif ($sana->isPast()) {
+                                            $badgeClass = 'text-success'; // o‘tib ketgan: qizil
+                                        } else {
+                                            $badgeClass = 'text-secondary'; // kelajak: ko‘k
+                                        }
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $loop->index + 1 }}</td>
+                                        <td>
+                                            <span class="badge p-0 m-0 {{ $badgeClass }} px-3 py-2 rounded-pill">
+                                                {{ $item['hafta_kuni'] }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge p-0 m-0 {{ $badgeClass }} px-3 py-2 rounded-pill">
+                                                {{ $item['sanasi'] }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
