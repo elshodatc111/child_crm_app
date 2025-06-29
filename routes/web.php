@@ -24,10 +24,14 @@ Route::get('/drektor', [HodimController::class, 'index'])->name('hodim')->middle
 Route::get('/tarbiyachi', [HodimController::class, 'hodim_tarbiyachi'])->name('hodim_tarbiyachi')->middleware(['auth']);
 Route::get('/oshpazlar', [HodimController::class, 'hodim_oshpazlar'])->name('hodim_oshpazlar')->middleware(['auth']);
 Route::get('/hodimlar', [HodimController::class, 'hodim_boshqalar'])->name('hodim_boshqalar')->middleware(['auth']);
-Route::get('/hodim_vakancy', [HodimController::class, 'hodim_vacancy'])->name('hodim_vacancy')->middleware(['auth']);
-Route::get('/hodim_vakancy_show/{id}', [HodimController::class, 'hodim_vacancy_show'])->name('hodim_vacancy_show')->middleware(['auth']);
-Route::get('/hodim_vakancy_create', [HodimController::class, 'hodim_vakancy_create'])->name('hodim_vacancy_create')->middleware(['auth']);
+
+Route::get('/hodim_vakancy', [VacancyController::class, 'hodim_vacancy'])->name('hodim_vacancy')->middleware(['auth']);
+Route::get('/hodim_vakancy_show/{id}', [VacancyController::class, 'hodim_vacancy_show'])->name('hodim_vacancy_show')->middleware(['auth']);
+Route::get('/hodim_vakancy_create', [VacancyController::class, 'hodim_vakancy_create'])->name('hodim_vacancy_create')->middleware(['auth']);
 Route::post('/vacancy/story', [VacancyController::class, 'story'])->name('vacancy_story')->middleware(['auth']);
+Route::post('/vacancy/comment', [VacancyController::class, 'story_comment'])->name('vacancy_story_comment')->middleware(['auth']);
+Route::post('/vacancy/cancel', [VacancyController::class, 'story_cancel'])->name('vacancy_story_cancel')->middleware(['auth']);
+Route::post('/vacancy/success', [VacancyController::class, 'story_success'])->name('vacancy_story_success')->middleware(['auth']);
 
 
 Route::get('/setting', [SettingController::class, 'setting'])->name('setting')->middleware(['auth']);

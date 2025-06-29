@@ -2,6 +2,11 @@
 @section('title','Vakansiya')
 
 @section('content')
+<style>
+    div.dataTables_filter {
+        text-align: right !important;
+    }
+</style>
 <div id="app">
     @include('layout.menu')
     <div id="main">
@@ -45,7 +50,7 @@
                         </div>
                     @endif
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered align-middle text-center">
+                        <table class="table table-hover table-bordered align-middle text-center"  id="table1">
                             <thead class="bg-primary">
                                 <tr class="text-center">
                                     <th class="text-white">#</th>
@@ -87,7 +92,7 @@
                                         @elseif($item->status == 'cancel')
                                             <span class="badge bg-danger">Bekor qilindi</span>
                                         @else
-                                            <span class="badge bg-success">Ro'yhatga olindi</span>
+                                            <span class="badge bg-success">Qabul qilindi</span>
                                         @endif
                                     </td>
                                     <td class="text-center">{{ $item['created_at'] }}</td>

@@ -68,11 +68,37 @@
                             </tr>
                             <tr>
                                 <th>Lavozim:</th>
-                                <td class="text-end">{{ $about['type'] }}</td>
+                                <td class="text-end">
+                                    @if ($about['type']=='bogbon')
+                                        Bog'bon
+                                    @elseif ($about['type']=='oshpaz')
+                                        Oshpaz
+                                    @elseif ($about['type']=='qarovul')
+                                        Qarovul
+                                    @elseif ($about['type']=='farrosh')
+                                        Farrosh
+                                    @elseif ($about['type']=='techer')
+                                        O'qituvchi
+                                    @elseif ($about['type']=='tarbiyachi')
+                                        Tarbiyachi
+                                    @else
+                                        Menejer
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <th>Holati:</th>
-                                <td class="text-end">{{ $about['status'] }}</td>
+                                <td class="text-end">
+                                    @if ($about['status']=='new')
+                                        Yangi
+                                    @elseif ($about['status']=='pending')
+                                        Jaroyonda
+                                    @elseif ($about['status']=='cancel')
+                                        Bekor qilindi
+                                    @else
+                                        Qabul qilindi
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <th>Vakansiya haqida:</th>
@@ -83,10 +109,10 @@
                                 <td class="text-end">{{ $about['menejer'] }}</td>
                             </tr>
                         </table>
-                        <div class="row" style="display:">
+                        <div class="row" style="display: {{ ($about['status'] == 'cancel' || $about['status'] == 'success') ? 'none' : 'flex' }};">
                             <div class="col-6">
                                 <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#blockModal">
-                                    Yakunlash
+                                    Bekor qilish
                                 </button>
                             </div>
                             <div class="col-6">
@@ -101,21 +127,23 @@
             <div class="col-12 col-md-8">
                 <div class="card shadow-sm">
                     <div class="card-header">
-                        <h5 class="mb-0">Menejer eslatmalari</h5>
+                        <h5 class="mb-0">Vakansiya eslatmalari</h5>
                     </div>
                     <div class="card-body pt-4 bg-light notes-area mx-4">
-                        <div class="note-box mb-3">
+                        @foreach ($comment as $item)
+                            <div class="note-box mb-3">
                                 <div class="note-meta mb-1 text-muted small">
-                                    <strong>$
+                                    <strong>{{ $item['meneger'] }} </strong> ({{ $item['created_at'] }})
                                 </div>
-                                <div class="note-message">$</div>
+                                <div class="note-message">{{ $item['description'] }}</div>
                             </div>
+                        @endforeach
                     </div>
                     <div class="card-footer bg-white border-top">
-                        <form action="$" method="post">
+                        <form action="{{ route('vacancy_story_comment') }}" method="post">
                             @csrf
                             <div class="message-form d-flex align-items-center">
-                                <input type="hidden" name="vacancy_child_id" value="$">
+                                <input type="hidden" name="vacancy_id" value="{{ $about['id'] }}">
                                 <div class="d-flex flex-grow-1 ms-3">
                                     <input type="text" name="description" class="form-control rounded-pill px-4 py-2" placeholder="Yangi eslatma yozing...">
                                 </div>
@@ -130,21 +158,21 @@
 
     <div class="modal fade" id="blockModal" tabindex="-1" aria-labelledby="blockModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="#" method="POST">
+            <form action="{{ route('vacancy_story_cancel') }}" method="POST">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="blockModalLabel">Tashrifni yakunlash</h5>
+                        <h5 class="modal-title" id="blockModalLabel">Vakansiyani bekor qilish</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" name="vacancy_child_id" value="#">
-                        <label for="description">Tashrifni yakunlash uchun izoh qoldiring</label>
+                        <input type="hidden" name="vacancy_id" value="{{ $about['id'] }}">
+                        <label for="description">Bekor qilish uchun izoh qoldiring</label>
                         <textarea name="description" class="form-control mt-2" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
-                        <button type="submit" class="btn btn-danger">Yakunlash</button>
+                        <button type="submit" class="btn btn-danger">Saqlash</button>
                     </div>
                 </div>
             </form>
@@ -153,31 +181,32 @@
 
     <div class="modal fade" id="acceptModal" tabindex="-1" aria-labelledby="acceptModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="#" method="POST">
+            <form action="{{ route('vacancy_story_success') }}" method="POST">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="acceptModalLabel">Tashrifni qabul qilish</h5>
+                        <h5 class="modal-title" id="acceptModalLabel">Vakansiyani qabul qilish</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" name="child_id" value="$">
-                        <label for="group_id" class="my-2">Guruhni tanlang</label>
-                        <select name="group_id" class="form-select" required>
+                        <input type="hidden" name="vacancy_id" value="{{ $about['id'] }}">
+                        <label for="type" class="my-2">Lavozimni tanlang</label>
+                        <select name="type" class="form-select" required>
                             <option value="">Tanlang</option>
+                            <option value="direktor">Drektor</option>
+                            <option value="menejer">Meneger</option>
+                            <option value="tarbiyachi">Tarbiyachi</option>
+                            <option value="kichik_tarbiyachi">Yordamchi tarbiyachi</option>
+                            <option value="oshpaz">Oshpaz</option>
+                            <option value="techer">O'qituvchi</option>
+                            <option value="hodim">Hodim</option>
                         </select>
-                        <label for="start_comment" class="my-2">Qabul qilish uchun izoh</label>
-                        <textarea name="start_comment" class="form-control" required></textarea>
-                        <label for="paymart_type" class="my-2">To'lov turi</label>
-                        <select name="paymart_type" class="form-select" required>
-                            <option value="">Tanlang</option>
-                            <option value="day">Kunlik to'lov</option>
-                            <option value="monch">Oylik to'lov</option>
-                        </select>
+                        <label for="description" class="my-2">Qabul qilish uchun izoh</label>
+                        <textarea name="description" class="form-control" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
-                        <button type="submit" class="btn btn-success">Tasdiqlash</button>
+                        <button type="submit" class="btn btn-success">Qabul qilish</button>
                     </div>
                 </div>
             </form>

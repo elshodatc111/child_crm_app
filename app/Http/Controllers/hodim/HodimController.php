@@ -11,7 +11,7 @@ class HodimController extends Controller{
 
     public function index(){
         $res = [];
-        $res['meneger'] = User::whereIn('type', ['direktor', 'meneger'])->whereIn('status', ['active','block'])->get();
+        $res['meneger'] = User::whereIn('type', ['direktor', 'menejer'])->whereIn('status', ['active','block'])->get();
         return view('hodim.index',compact('res'));
     }
 
@@ -33,30 +33,6 @@ class HodimController extends Controller{
         return view('hodim.boshqa_hosimlar',compact('res'));
     }
 
-    public function hodim_vacancy(){
-        $res = [];
-        $res['vacancy'] = Vacancy::orderBy('id', 'desc')->get();
-        return view('hodim.hodim_vacancy',compact('res'));
-    }
 
-    public function hodim_vacancy_show($id){
-        $Vacancy = Vacancy::find($id);
-        $about = [
-            'id' => $Vacancy->id,
-            'name' => $Vacancy->fio,
-            'phone' => $Vacancy->phone,
-            'address' => $Vacancy->address,
-            'tkun' => $Vacancy->tkun,
-            'type' => $Vacancy->type,
-            'status' => $Vacancy->status,
-            'description' => $Vacancy->description,
-            'menejer' => User::find($Vacancy->menejer_id)->fio,
-        ];
-        return view('hodim.hodim_vacancy_show',compact('about'));
-    }
-
-    public function hodim_vakancy_create(){
-        return view('hodim.create_vacancy');
-    }
 
 }
