@@ -36,6 +36,11 @@
             <div class="card shadow-sm rounded">
                 <div class="card-body">
                     <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="list-group">
+                                <a href="{{ route('hodim_techer') }}" class="list-group-item list-group-item-action text-center">O'qituvchilar</a>
+                            </div>
+                        </div>
                         <div class="col-lg-6">
                             <div class="list-group">
                                 <a href="{{ route('hodim') }}" class="list-group-item list-group-item-action text-center">Drektor & Meneger</a>
@@ -51,6 +56,7 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
 
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">

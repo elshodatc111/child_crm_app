@@ -27,11 +27,7 @@ class HodimController extends Controller{
         return view('hodim.oshpaz',compact('res'));
     }
 
-    public function hodim_boshqalar(){
-        $res = [];
-        $res['hodim'] = User::whereNotIn('type', ['tarbiyachi', 'kichik_tarbiyachi', 'direktor', 'meneger', 'oshpaz'])->whereIn('status', ['active','block'])->get();
-        return view('hodim.boshqa_hosimlar',compact('res'));
-    }
+
 
 
 

@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\AuthenticatedSessionController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\hodim\ProfileController;
+use App\Http\Controllers\hodim\TecherHodimController;
 use App\Http\Controllers\hodim\HodimController;
+use App\Http\Controllers\hodim\BoshqaHodimController;
 use App\Http\Controllers\hodim\VacancyController;
 use App\Http\Controllers\setting\SettingController;
 use App\Http\Controllers\child\CildController;
@@ -23,7 +25,8 @@ Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->
 Route::get('/drektor', [HodimController::class, 'index'])->name('hodim')->middleware(['auth']);
 Route::get('/tarbiyachi', [HodimController::class, 'hodim_tarbiyachi'])->name('hodim_tarbiyachi')->middleware(['auth']);
 Route::get('/oshpazlar', [HodimController::class, 'hodim_oshpazlar'])->name('hodim_oshpazlar')->middleware(['auth']);
-Route::get('/hodimlar', [HodimController::class, 'hodim_boshqalar'])->name('hodim_boshqalar')->middleware(['auth']);
+Route::get('/hodimlar', [BoshqaHodimController::class, 'index'])->name('hodim_boshqalar')->middleware(['auth']);
+Route::get('/techer', [TecherHodimController::class, 'index'])->name('hodim_techer')->middleware(['auth']);
 
 Route::get('/hodim_vakancy', [VacancyController::class, 'hodim_vacancy'])->name('hodim_vacancy')->middleware(['auth']);
 Route::get('/hodim_vakancy_show/{id}', [VacancyController::class, 'hodim_vacancy_show'])->name('hodim_vacancy_show')->middleware(['auth']);
