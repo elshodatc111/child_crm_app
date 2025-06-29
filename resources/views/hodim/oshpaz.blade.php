@@ -30,13 +30,21 @@
         <section class="section">
         <div class="card shadow-sm rounded">
             <div class="card-body">
-                <div class="list-group list-group-horizontal mb-4" id="inbox-menu">
-                        <a href="{{ route('hodim') }}" class="list-group-item list-group-item-action text-center ">Drektor & Meneger</a>
-                        <a href="{{ route('hodim_tarbiyachi') }}" class="list-group-item list-group-item-action text-center ">Tarbiyachilar</a>
-                        <a href="{{ route('hodim_oshpazlar') }}" class="list-group-item list-group-item-action text-center active">Oshpazlar</a>
-                        <a href="{{ route('hodim_boshqalar') }}" class="list-group-item list-group-item-action text-center ">Hodimlar</a>
-                        <a href="{{ route('hodim_vacancy') }}" class="list-group-item list-group-item-action text-center ">Vakansiya</a>
-                        <a href="{{ route('hodim_vacancy_create') }}" class="list-group-item list-group-item-action text-center ">Yangi vakansiya</a>
+                <div class="row mb-4">
+                    <div class="col-lg-6">
+                        <div class="list-group">
+                            <a href="{{ route('hodim') }}" class="list-group-item list-group-item-action text-center ">Drektor & Meneger</a>
+                            <a href="{{ route('hodim_tarbiyachi') }}" class="list-group-item list-group-item-action text-center ">Tarbiyachilar</a>
+                            <a href="{{ route('hodim_oshpazlar') }}" class="list-group-item list-group-item-action text-center active">Oshpazlar</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="list-group">
+                            <a href="{{ route('hodim_boshqalar') }}" class="list-group-item list-group-item-action text-center ">Hodimlar</a>
+                            <a href="{{ route('hodim_vacancy') }}" class="list-group-item list-group-item-action text-center ">Vakansiya</a>
+                            <a href="{{ route('hodim_vacancy_create') }}" class="list-group-item list-group-item-action text-center ">Yangi vakansiya</a>
+                        </div>
+                    </div>
                 </div>
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
