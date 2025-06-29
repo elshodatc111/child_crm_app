@@ -9,6 +9,7 @@ use App\Models\Group;
 use App\Models\GroupsTarbiyachi;
 use App\Models\GroupChild;
 use App\Http\Requests\StoreGroupRequest;
+use App\Http\Requests\EditGroupRequest;
 
 class GroupsController extends Controller{
 
@@ -86,8 +87,53 @@ class GroupsController extends Controller{
         ]);
         return redirect()->route('groups_show',$Group->id);
     }
-
+    protected function group_about($id){
+        $Group = Group::find($id);
+        $tarbiyachi = GroupsTarbiyachi::where('groups_tarbiyachis.group_id',$id)
+            ->join('users','users.id','groups_tarbiyachis.user_id')
+            ->where('users.type','tarbiyachi')
+            ->where('users.status','active')
+            ->first();
+        $yordamchi = GroupsTarbiyachi::where('groups_tarbiyachis.group_id',$id)
+            ->join('users','users.id','groups_tarbiyachis.user_id')
+            ->where('users.type','kichik_tarbiyachi')
+            ->where('users.status','active')
+            ->first();
+        return [
+            'group_id' => $id,
+            'group_name' => $Group->group_name,
+            'price_month' => $Group->price_month,
+            'price_day' => $Group->price_day,
+            'status' => $Group->status,
+            'meneger' => User::find($Group->user_id)->fio,
+            'created_at' => $Group->created_at,
+            'tarbiyachi_id' => $tarbiyachi['id'],
+            'tarbiyachi' => $tarbiyachi['fio'],
+            'yordamchi_id' => $yordamchi['id'],
+            'yordamchi' => $yordamchi['fio'],
+        ];
+    }
     public function groups_show($id){
-        dd($id);
+        $about = $this->group_about($id);
+        return view('groups.index_show', compact('id','about'));
+    }
+    public function group_update(EditGroupRequest $request){
+        $data = $request->validated();
+        $Group = Group::find($data['id']);
+        $Group['group_name'] = $data['group_name'];
+        $Group['price_month'] = $data['price_month'];
+        $Group['price_day'] = $data['price_day'];
+        $Group['status'] = $data['status'];
+        $Group->save();
+        return redirect()->back()->with('success', 'Guruh malumotlari yangilandi!');
+    }
+    public function groups_show_child($id){
+        return view('groups.index_show_child', compact('id'));
+    }
+    public function groups_show_davomad($id){
+        return view('groups.index_show_davomad', compact('id'));
+    }
+    public function groups_show_history($id){
+        return view('groups.index_show_history', compact('id'));
     }
 }

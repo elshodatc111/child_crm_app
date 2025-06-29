@@ -47,9 +47,11 @@ Route::post('/moliya/chiqim', [MoliyaController::class, 'store'])->name('moliya_
 Route::get('/kassa', [KassaController::class, 'index'])->name('kassa')->middleware(['auth']);
 
 Route::get('/groups', [GroupsController::class, 'index'])->name('groups')->middleware(['auth']);
+Route::get('/groups-show/{id}', [GroupsController::class, 'groups_show'])->name('groups_show')->middleware(['auth']);
+Route::get('/groups-showchild/{id}', [GroupsController::class, 'groups_show_child'])->name('groups_show_child')->middleware(['auth']);
+Route::get('/groups-showdavomad/{id}', [GroupsController::class, 'groups_show_davomad'])->name('groups_show_davomad')->middleware(['auth']);
+Route::get('/groups-showhistory/{id}', [GroupsController::class, 'groups_show_history'])->name('groups_show_history')->middleware(['auth']);
+Route::post('/groups-update', [GroupsController::class, 'group_update'])->name('groups_updates')->middleware(['auth']);
+
 Route::get('/arxiv-groups', [GroupsController::class, 'arxiv_index'])->name('groups_arxiv')->middleware(['auth']);
 Route::get('/new-groups', [GroupsController::class, 'new_index'])->name('groups_new')->middleware(['auth']);
-Route::post('/create-groups', [GroupsController::class, 'create_group'])->name('groups_create')->middleware(['auth']);
-
-
-Route::get('/groups-show/{id}', [GroupsController::class, 'groups_show'])->name('groups_show')->middleware(['auth']);
