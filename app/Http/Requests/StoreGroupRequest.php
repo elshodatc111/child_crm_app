@@ -14,6 +14,7 @@ class StoreGroupRequest extends FormRequest{
             'group_name'   => 'required|string|max:255',
             'price_month'  => 'required|string',
             'price_day'    => 'required|string',
+            'group_type'    => 'required|string',
             'user_id1'     => 'required|exists:users,id',
             'user_id2'     => 'required|exists:users,id',
         ];
@@ -22,6 +23,7 @@ class StoreGroupRequest extends FormRequest{
     public function messages(): array{
         return [
             'group_name.required'  => 'Guruh nomi majburiy.',
+            'group_type.required'  => 'Guruh turi majburiy.',
             'price_month.required' => 'Oylik to‘lov kiritilishi shart.',
             'price_day.required'   => 'Kunlik to‘lov kiritilishi shart.',
             'user_id1.required'    => 'Katta tarbiyachini tanlang.',

@@ -8,7 +8,7 @@ class Group extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['group_name', 'price_month', 'price_day', 'status', 'user_id'];
+    protected $fillable = ['group_name', 'price_month', 'price_day', 'status', 'group_type', 'user_id'];
 
     public function user() { return $this->belongsTo(User::class); }
 }

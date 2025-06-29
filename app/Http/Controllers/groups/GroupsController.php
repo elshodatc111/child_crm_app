@@ -69,6 +69,7 @@ class GroupsController extends Controller{
             'price_month' => $request->price_month,
             'price_day' => $request->price_day,
             'status' => 'true',
+            'group_type' => $request->group_type,
             'user_id' => auth()->user()->id,
         ]);
         GroupsTarbiyachi::create([
@@ -92,12 +93,14 @@ class GroupsController extends Controller{
         $tarbiyachi = GroupsTarbiyachi::where('groups_tarbiyachis.group_id',$id)
             ->join('users','users.id','groups_tarbiyachis.user_id')
             ->where('users.type','tarbiyachi')
+            ->where('groups_tarbiyachis.status',1)
             ->where('users.status','active')
             ->first();
         $yordamchi = GroupsTarbiyachi::where('groups_tarbiyachis.group_id',$id)
             ->join('users','users.id','groups_tarbiyachis.user_id')
             ->where('users.type','kichik_tarbiyachi')
             ->where('users.status','active')
+            ->where('groups_tarbiyachis.status',1)
             ->first();
         return [
             'group_id' => $id,
@@ -105,6 +108,7 @@ class GroupsController extends Controller{
             'price_month' => $Group->price_month,
             'price_day' => $Group->price_day,
             'status' => $Group->status,
+            'group_type' => $Group->group_type,
             'meneger' => User::find($Group->user_id)->fio,
             'created_at' => $Group->created_at,
             'tarbiyachi_id' => $tarbiyachi['id'],
@@ -113,9 +117,43 @@ class GroupsController extends Controller{
             'yordamchi' => $yordamchi['fio'],
         ];
     }
+    protected function group_tarbiyachi($user_id){
+        $User = User::where('id', '!=', $user_id)
+            ->where('status', 'active')
+            ->where('type', 'tarbiyachi')
+            ->get();
+        $res = [];
+        foreach ($User as $key => $value) {
+            $faolGuruhlar = GroupsTarbiyachi::where('user_id', $value->id)->where('status', 1)->first();
+            if (!$faolGuruhlar) {
+                $res[$key]['user_id'] = $value->id;
+                $res[$key]['user_name'] = $value->fio;
+            }
+        }
+        return $res;
+    }
+    protected function group_yordamchi($user_id){
+        $User = User::where('id', '!=', $user_id)
+            ->where('status', 'active')
+            ->where('type', 'kichik_tarbiyachi')
+            ->get();
+        $res = [];
+        foreach ($User as $key => $value) {
+            $faolGuruhlar = GroupsTarbiyachi::where('user_id', $value->id)
+                ->where('status', 1)
+                ->count();
+            if ($faolGuruhlar == 0) {
+                $res[$key]['user_id'] = $value->id;
+                $res[$key]['user_name'] = $value->fio;
+            }
+        }
+        return $res;
+    }
     public function groups_show($id){
         $about = $this->group_about($id);
-        return view('groups.index_show', compact('id','about'));
+        $tarbiyachilar = $this->group_tarbiyachi($about['tarbiyachi_id']);
+        $yordamchilar = $this->group_yordamchi($about['yordamchi_id']);
+        return view('groups.index_show', compact('id','about','tarbiyachilar','yordamchilar'));
     }
     public function group_update(EditGroupRequest $request){
         $data = $request->validated();
@@ -126,6 +164,38 @@ class GroupsController extends Controller{
         $Group['status'] = $data['status'];
         $Group->save();
         return redirect()->back()->with('success', 'Guruh malumotlari yangilandi!');
+    }
+    public function groups_updates_tarbiyachi(Request $request){
+        $guruh_id = $request->id;
+        $user_id = $request->user_id;
+        $GroupsTarbiyachi = GroupsTarbiyachi::where('group_id',$guruh_id)->where('type','tarbiyachi')->where('status',1)->first();
+        $GroupsTarbiyachi->status = false;
+        $GroupsTarbiyachi->end_time = date("Y-m-d");
+        $GroupsTarbiyachi->save();
+        GroupsTarbiyachi::create([
+            'group_id' => $guruh_id,
+            'user_id' => $user_id,
+            'start_time' => date("Y-m-d"),
+            'type' => 'tarbiyachi',
+            'status' => true,
+        ]);
+        return redirect()->back()->with('success', 'Guruh tarbiyachisi yangilandi!');
+    }
+    public function groups_updates_yordamchi(Request $request){
+        $guruh_id = $request->id;
+        $user_id = $request->user_id;
+        $GroupsTarbiyachi = GroupsTarbiyachi::where('group_id',$guruh_id)->where('type','yordamchi')->where('status',1)->first();
+        $GroupsTarbiyachi->status = false;
+        $GroupsTarbiyachi->end_time = date("Y-m-d");
+        $GroupsTarbiyachi->save();
+        GroupsTarbiyachi::create([
+            'group_id' => $guruh_id,
+            'user_id' => $user_id,
+            'start_time' => date("Y-m-d"),
+            'type' => 'yordamchi',
+            'status' => true,
+        ]);
+        return redirect()->back()->with('success', 'Guruh yordamchisi yangilandi!');
     }
     public function groups_show_child($id){
         return view('groups.index_show_child', compact('id'));

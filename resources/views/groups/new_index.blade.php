@@ -73,6 +73,12 @@
                     @csrf
                     <label for="group_name">Guruh nomi</label>
                     <input type="text" class="form-control my-2" name="group_name" required>
+                    <label for="group_type">Guruh turi</label>
+                    <select name="group_type" id="" class="form-select my-2" required>
+                        <option value="">Tanlang</option>
+                        <option value="besh">Haftasiga besh ish kuni</option>
+                        <option value="olti">Haftasiga olti ish kuni</option>
+                    </select>
                     <label for="price_month">Guruh uchun oylik to'lov</label>
                     <input type="text" class="form-control my-2 price-format" name="price_month" required>
                     <label for="price_day">Guruh uchun kunlik to'lov</label>

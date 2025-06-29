@@ -119,6 +119,16 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th class="text-muted">Ish kunlari</th>
+                                    <td class="text-end">
+                                        @if($about['group_type']=='olti')
+                                            Haftasiga 6 kunlik
+                                        @else
+                                            Haftasiga 5 kunlik
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th class="text-muted">Meneger</th>
                                     <td class="text-end">{{ $about['meneger'] }}</td>
                                 </tr>
@@ -293,34 +303,56 @@
 
 
 <!-- Tarbiyachini almashtirish -->
-<div class="modal fade" id="changeMainModal" tabindex="-1" aria-labelledby="changeMainModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 shadow rounded-4">
-      <div class="modal-header bg-warning text-dark">
-        <h5 class="modal-title" id="changeMainModalLabel">Tarbiyachini almashtirish</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
-      </div>
-      <div class="modal-body">
-        <p>Bu yerga tarbiyachini almashtirish formi joylashtiriladi.</p>
-      </div>
+    <div class="modal fade" id="changeMainModal" tabindex="-1" aria-labelledby="changeMainModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow rounded-4">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changeMainModalLabel">Tarbiyachini almashtirish</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('groups_updates_tarbiyachi') }}" method="post">
+                    @csrf
+                    <label for="user_id">Yangi tarbiyachini tanlang</label>
+                    <input type="hidden" name="id" value="{{ $id }}">
+                    <select name="user_id" class="form-select my-2" required>
+                        <option value="">Tanlang...</option>
+                        @foreach ($tarbiyachilar as $item)
+                            <option value="{{ $item['user_id'] }}">{{ $item['user_name'] }}</option>
+                        @endforeach
+                    </select>
+                    <button class="btn btn-primary w-100 mt-2" type="submit">Saqlash</button>
+                </form>
+            </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 <!-- Yordamchini almashtirish -->
-<div class="modal fade" id="changeHelperModal" tabindex="-1" aria-labelledby="changeHelperModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content border-0 shadow rounded-4">
-      <div class="modal-header bg-secondary text-white">
-        <h5 class="modal-title" id="changeHelperModalLabel">Yordamchini almashtirish</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
-      </div>
-      <div class="modal-body">
-        <p>Bu yerga yordamchini almashtirish formi joylashtiriladi.</p>
-      </div>
+    <div class="modal fade" id="changeHelperModal" tabindex="-1" aria-labelledby="changeHelperModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="changeHelperModalLabel">Yordamchini almashtirish</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('groups_updates_yordamchi') }}" method="post">
+                        @csrf
+                        <label for="user_id">Yangi yordamchi tarbiyachini tanlang</label>
+                        <input type="hidden" name="id" value="{{ $id }}">
+                        <select name="user_id" class="form-select my-2" required>
+                            <option value="">Tanlang...</option>
+                            @foreach ($yordamchilar as $item)
+                                <option value="{{ $item['user_id'] }}">{{ $item['user_name'] }}</option>
+                            @endforeach
+                        </select>
+                        <button class="btn btn-primary w-100 mt-2" type="submit">Saqlash</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 <script>
     document.querySelectorAll('.price-format').forEach(function(input) {
         input.addEventListener('input', function(e) {
