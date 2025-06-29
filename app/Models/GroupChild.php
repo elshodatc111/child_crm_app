@@ -11,7 +11,7 @@ class GroupChild extends Model
     use HasFactory;
 
     protected $fillable = [
-        'group_id', 'child_id', 'start_time', 'end_time', 'start_comment', 'end_comment', 'start_manager_id', 'end_manager_id'
+        'group_id', 'child_id', 'start_time', 'end_time', 'start_comment', 'end_comment', 'paymart_type', 'start_manager_id', 'end_manager_id', 'status'
     ];
 
     public function group() { return $this->belongsTo(Group::class); }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Group;
 use App\Models\GroupsTarbiyachi;
+use App\Models\GroupChild;
 use App\Http\Requests\StoreGroupRequest;
 
 class GroupsController extends Controller{
@@ -19,7 +20,7 @@ class GroupsController extends Controller{
             $Group[$key]['name'] = $value->group_name;
             $Group[$key]['price_month'] = $value->price_month;
             $Group[$key]['price_day'] = $value->price_day;
-            $Group[$key]['child'] = 0;
+            $Group[$key]['child'] = count(GroupChild::where('group_id',$value->id)->where('status','true')->get());
         }
         return view('groups.index',compact('Group'));
     }

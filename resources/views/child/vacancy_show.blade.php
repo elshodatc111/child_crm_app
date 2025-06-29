@@ -80,19 +80,18 @@
                                 <span class="badge {{ $badgeClass }}">{{ $statusText }}</span>
                             </td></tr>
                         </table>
-                            <div class="row" style="display:@if($child['status']=='success' OR $child['status']=='cancel') none @endif">
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#blockModal">
-                                        Yakunlash
-                                    </button>
-                                </div>
-                                <div class="col-6">
-                                    <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#acceptModal">
-                                        Qabul qilish
-                                    </button>
-                                </div>
+                        <div class="row" style="display:@if($child['status']=='success' OR $child['status']=='cancel') none @endif">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#blockModal">
+                                    Yakunlash
+                                </button>
                             </div>
-
+                            <div class="col-6">
+                                <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#acceptModal">
+                                    Qabul qilish
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -150,17 +149,33 @@
             </form>
         </div>
     </div>
+
     <div class="modal fade" id="acceptModal" tabindex="-1" aria-labelledby="acceptModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="#" method="POST">
+            <form action="{{ route('child_vakancy_show_success_post') }}" method="POST">
                 @csrf
                 <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                    <div class="modal-header">
                         <h5 class="modal-title" id="acceptModalLabel">Tashrifni qabul qilish</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
                     </div>
                     <div class="modal-body">
-                        Siz rostdan ham ushbu tashrifni <strong>qabul qilmoqchimisiz</strong>?
+                        <input type="hidden" name="child_id" value="{{ $child['id'] }}">
+                        <label for="group_id" class="my-2">Guruhni tanlang</label>
+                        <select name="group_id" class="form-select" required>
+                            <option value="">Tanlang</option>
+                            @foreach ($Groups as $item)
+                                <option value="{{ $item['id'] }}">{{ $item['group_name'] }}</option>
+                            @endforeach
+                        </select>
+                        <label for="start_comment" class="my-2">Qabul qilish uchun izoh</label>
+                        <textarea name="start_comment" class="form-control" required></textarea>
+                        <label for="paymart_type" class="my-2">To'lov turi</label>
+                        <select name="paymart_type" class="form-select" required>
+                            <option value="">Tanlang</option>
+                            <option value="day">Kunlik to'lov</option>
+                            <option value="monch">Oylik to'lov</option>
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>

@@ -69,9 +69,7 @@
                     <a href="{{ route('groups_arxiv') }}" class="list-group-item list-group-item-action">Arxiv guruhlar</a>
                     <a href="{{ route('groups_new') }}" class="list-group-item list-group-item-action">Yangi guruh</a>
                 </div>
-                <form action="" method="get">
-                    <input type="text" placeholder="Qirduv.." class="form-control">
-                </form>
+
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered align-middle text-center">
                         <thead class="table-light">
