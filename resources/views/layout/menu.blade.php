@@ -33,8 +33,8 @@
             <i class="bi bi-people-fill"></i><span>Tashriflar</span>
         </a>
     </li>
-    <li class="sidebar-item">
-        <a href="#" class='sidebar-link'>
+    <li class="sidebar-item {{ request()->routeIs(['groups'],['groups_arxiv'],['groups_new'],['groups_show']) ? 'active' : '' }}">
+        <a href="{{ route('groups') }}" class='sidebar-link'>
             <i class="bi bi-diagram-3-fill"></i><span>Guruhlar</span>
         </a>
     </li>

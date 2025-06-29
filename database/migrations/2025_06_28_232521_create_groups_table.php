@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
             $table->string('group_name');
-            $table->decimal('price_month', 10, 2)->nullable();
+            $table->integer('price_month');
+            $table->integer('price_day');
+            $table->string('status');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });

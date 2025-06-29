@@ -11,6 +11,7 @@ use App\Http\Controllers\child\CildController;
 use App\Http\Controllers\child\VacancyChildController;
 use App\Http\Controllers\moliya\MoliyaController;
 use App\Http\Controllers\moliya\KassaController;
+use App\Http\Controllers\groups\GroupsController;
 
 // Login ko'rinishi
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -43,3 +44,11 @@ Route::get('/moliya', [MoliyaController::class, 'index'])->name('moliya')->middl
 Route::post('/moliya/chiqim', [MoliyaController::class, 'store'])->name('moliya_chiqim')->middleware(['auth']);
 
 Route::get('/kassa', [KassaController::class, 'index'])->name('kassa')->middleware(['auth']);
+
+Route::get('/groups', [GroupsController::class, 'index'])->name('groups')->middleware(['auth']);
+Route::get('/arxiv-groups', [GroupsController::class, 'arxiv_index'])->name('groups_arxiv')->middleware(['auth']);
+Route::get('/new-groups', [GroupsController::class, 'new_index'])->name('groups_new')->middleware(['auth']);
+Route::post('/create-groups', [GroupsController::class, 'create_group'])->name('groups_create')->middleware(['auth']);
+
+
+Route::get('/groups-show/{id}', [GroupsController::class, 'groups_show'])->name('groups_show')->middleware(['auth']);
