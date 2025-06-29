@@ -14,4 +14,8 @@ class BoshqaHodimController extends Controller{
         return view('hodim.boshqa_hosimlar',compact('res'));
     }
 
+    public function show($id){
+        return "show";
+    }
+
 }

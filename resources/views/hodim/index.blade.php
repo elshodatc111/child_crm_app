@@ -1,5 +1,5 @@
 @extends('layout.cdn1')
-@section('title','Drektor & Meneger')
+@section('title','Drektor & Menejer')
 
 @section('content')
 <div id="app">
@@ -14,13 +14,13 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Drektor & Meneger</h3>
+                        <h3>Drektor & Menejer</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Drektor & Meneger</li>
+                                <li class="breadcrumb-item active" aria-current="page">Drektor & Menejer</li>
                             </ol>
                         </nav>
                     </div>
@@ -32,13 +32,13 @@
                 <div class="card-body">
                     <div class="row mb-4">
                         <div class="col-12">
-                            <div class="list-group">
-                                <a href="{{ route('hodim_techer') }}" class="list-group-item list-group-item-action text-center">O'qituvchilar</a>
+                            <div class="list-group mb-2">
+                                <a href="{{ route('hodim') }}" class="list-group-item list-group-item-action text-center active">Drektor & Menejer</a>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="list-group">
-                                <a href="{{ route('hodim') }}" class="list-group-item list-group-item-action text-center active">Drektor & Meneger</a>
+                                <a href="{{ route('hodim_techer') }}" class="list-group-item list-group-item-action text-center">O'qituvchilar</a>
                                 <a href="{{ route('hodim_tarbiyachi') }}" class="list-group-item list-group-item-action text-center">Tarbiyachilar</a>
                                 <a href="{{ route('hodim_oshpazlar') }}" class="list-group-item list-group-item-action text-center">Oshpazlar</a>
                             </div>
@@ -51,7 +51,11 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
+                </div>
+            </div>
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <h5 class="card-title">Drektor & Menejer</h5>
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}

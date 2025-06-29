@@ -32,14 +32,14 @@
                 <div class="card-body">
                     <div class="row mb-4">
                         <div class="col-12">
-                            <div class="list-group">
-                                <a href="{{ route('hodim_techer') }}" class="list-group-item list-group-item-action text-center">O'qituvchilar</a>
+                            <div class="list-group mb-2">
+                                <a href="{{ route('hodim_tarbiyachi') }}" class="list-group-item list-group-item-action text-center active">Tarbiyachilar</a>
                             </div>
                         </div>
                         <div class="col-lg-6 ">
                             <div class="list-group">
                                 <a href="{{ route('hodim') }}" class="list-group-item list-group-item-action text-center ">Drektor & Meneger</a>
-                                <a href="{{ route('hodim_tarbiyachi') }}" class="list-group-item list-group-item-action text-center active">Tarbiyachilar</a>
+                                <a href="{{ route('hodim_techer') }}" class="list-group-item list-group-item-action text-center">O'qituvchilar</a>
                                 <a href="{{ route('hodim_oshpazlar') }}" class="list-group-item list-group-item-action text-center">Oshpazlar</a>
                             </div>
                         </div>
@@ -51,7 +51,11 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
+                </div>
+            </div>
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <h5 class="card-title">Tarbiyachilar</h5>
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}

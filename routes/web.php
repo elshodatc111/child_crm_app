@@ -27,6 +27,7 @@ Route::get('/tarbiyachi', [HodimController::class, 'hodim_tarbiyachi'])->name('h
 Route::get('/oshpazlar', [HodimController::class, 'hodim_oshpazlar'])->name('hodim_oshpazlar')->middleware(['auth']);
 Route::get('/hodimlar', [BoshqaHodimController::class, 'index'])->name('hodim_boshqalar')->middleware(['auth']);
 Route::get('/techer', [TecherHodimController::class, 'index'])->name('hodim_techer')->middleware(['auth']);
+Route::get('/techer-show/{id}', [TecherHodimController::class, 'show'])->name('hodim_techer_show')->middleware(['auth']);
 
 Route::get('/hodim_vakancy', [VacancyController::class, 'hodim_vacancy'])->name('hodim_vacancy')->middleware(['auth']);
 Route::get('/hodim_vakancy_show/{id}', [VacancyController::class, 'hodim_vacancy_show'])->name('hodim_vacancy_show')->middleware(['auth']);

@@ -32,32 +32,36 @@
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-12">
-                        <div class="list-group">
-                            <a href="{{ route('hodim_techer') }}" class="list-group-item list-group-item-action text-center">O'qituvchilar</a>
+                        <div class="list-group mb-2">
+                            <a href="{{ route('hodim_boshqalar') }}" class="list-group-item list-group-item-action text-center active">Hodimlar</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="list-group">
-                            <a href="{{ route('hodim') }}" class="list-group-item list-group-item-action text-center">Drektor & Meneger</a>
+                            <a href="{{ route('hodim') }}" class="list-group-item list-group-item-action text-center">Drektor & Menejer</a>
                             <a href="{{ route('hodim_tarbiyachi') }}" class="list-group-item list-group-item-action text-center">Tarbiyachilar</a>
                             <a href="{{ route('hodim_oshpazlar') }}" class="list-group-item list-group-item-action text-center">Oshpazlar</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="list-group">
-                            <a href="{{ route('hodim_boshqalar') }}" class="list-group-item list-group-item-action text-center active">Hodimlar</a>
+                            <a href="{{ route('hodim_techer') }}" class="list-group-item list-group-item-action text-center">O'qituvchilar</a>
                             <a href="{{ route('hodim_vacancy') }}" class="list-group-item list-group-item-action text-center ">Vakansiya</a>
                             <a href="{{ route('hodim_vacancy_create') }}" class="list-group-item list-group-item-action text-center ">Yangi vakansiya</a>
                         </div>
                     </div>
                 </div>
-                    <hr>
+            </div>
+        </div>
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
                     </div>
                 @endif
+                <h5 class="card-title">Hodimlar</h5>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered align-middle text-center">
                         <thead class="bg-primary">

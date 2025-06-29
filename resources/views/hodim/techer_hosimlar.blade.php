@@ -32,7 +32,7 @@
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-12">
-                        <div class="list-group">
+                        <div class="list-group mb-2">
                             <a href="{{ route('hodim_techer') }}" class="list-group-item list-group-item-action text-center active">O'qituvchilar</a>
                         </div>
                     </div>
@@ -51,7 +51,11 @@
                         </div>
                     </div>
                 </div>
-                    <hr>
+                </div>
+            </div>
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <h5 class="card-title">O'qituvchilar</h5>
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
