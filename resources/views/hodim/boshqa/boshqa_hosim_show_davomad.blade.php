@@ -1,5 +1,5 @@
-@extends('layout.cdn1')
-@section('title','Hodimlar')
+@extends('layout.cdn2')
+@section('title','Hodim haqida')
 
 @section('content')
 <div id="app">
@@ -14,13 +14,14 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Hodimlar</h3>
+                        <h3>Hodim haqida</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Hodimlar</li>
+                                <li class="breadcrumb-item"><a href="{{ route('hodim_boshqalar') }}">Hodimlar</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Hodim haqida</li>
                             </ol>
                         </nav>
                     </div>
@@ -31,23 +32,19 @@
         <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="row mb-4">
-                    <div class="col-12">
-                        <div class="list-group mb-2">
-                            <a href="{{ route('hodim_boshqalar') }}" class="list-group-item list-group-item-action text-center active">Hodimlar</a>
+                    <div class="col-lg-4">
+                        <div class="list-group">
+                            <a href="{{ route('hodim_boshqa_show',$id) }}" class="list-group-item list-group-item-action text-center ">Hodim haqida</a>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="list-group">
-                            <a href="{{ route('hodim') }}" class="list-group-item list-group-item-action text-center">Drektor & Menejer</a>
-                            <a href="{{ route('hodim_tarbiyachi') }}" class="list-group-item list-group-item-action text-center">Tarbiyachilar</a>
-                            <a href="{{ route('hodim_oshpazlar') }}" class="list-group-item list-group-item-action text-center">Oshpazlar</a>
+                            <a href="{{ route('hodim_boshqa_show_tulovlar',$id) }}" class="list-group-item list-group-item-action text-center">Ish haqi to'lovlari</a>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="list-group">
-                            <a href="{{ route('hodim_techer') }}" class="list-group-item list-group-item-action text-center">O'qituvchilar</a>
-                            <a href="{{ route('hodim_vacancy') }}" class="list-group-item list-group-item-action text-center ">Vakansiya</a>
-                            <a href="{{ route('hodim_vacancy_create') }}" class="list-group-item list-group-item-action text-center ">Yangi vakansiya</a>
+                            <a href="{{ route('hodim_boshqa_show_davomad',$id) }}" class="list-group-item list-group-item-action text-center active">Hodim davomadi</a>
                         </div>
                     </div>
                 </div>
@@ -75,28 +72,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($res as $item)
-                            <tr>
-                                <td class="text-center">{{ $loop->index+1 }}</td>
-                                <td>
-                                    <a href="{{ route('hodim_boshqa_show', $item['id']) }}">{{ $item['fio'] }}</a>
-                                </td>
-                                <td class="text-center">{{ $item['commit'] }}</td>
-                                <td class="text-center">
-                                    @if($item['status']=='active')
-                                        Aktiv
-                                    @else
-                                        Block
-                                    @endif
-                                </td>
-                                <td class="text-center">{{ $item['created_at'] }}</td>
-                                <td class="text-center">{{ $item['updated_at'] }}</td>
-                            </tr>
-                            @empty
-                                <tr>
-                                    <td colspan=6 class="text-center">Hodimlar mavjud emas.</td>
-                                </tr>
-                            @endforelse
+                            
                         </tbody>
                     </table>
                 </div>

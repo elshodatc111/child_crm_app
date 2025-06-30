@@ -13,9 +13,15 @@ class BoshqaHodimController extends Controller{
         $res = User::whereNotIn('type', ['tarbiyachi', 'kichik_tarbiyachi', 'direktor', 'menejer', 'oshpaz'])->whereIn('status', ['active','block'])->get();
         return view('hodim.boshqa_hosimlar',compact('res'));
     }
-
+    
     public function show($id){
-        return "show";
+        return view('hodim.boshqa.boshqa_hosim_show',compact('id')); 
+    }
+    public function davomad($id){
+        return view('hodim.boshqa.boshqa_hosim_show_davomad',compact('id')); 
+    }
+    public function tulovlar($id){
+        return view('hodim.boshqa.boshqa_hosim_show_tulovlar',compact('id')); 
     }
 
 }

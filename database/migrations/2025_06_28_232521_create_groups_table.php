@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('price_day');
             $table->string('status');
             $table->unsignedBigInteger('user_id');
-            $tabel->string('group_type');
+            $table->string('group_type');
             $table->timestamps();
         });
     }
