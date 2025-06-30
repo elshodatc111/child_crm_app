@@ -7,6 +7,7 @@ use App\Http\Controllers\hodim\ProfileController;
 use App\Http\Controllers\hodim\TecherHodimController;
 use App\Http\Controllers\hodim\HodimController;
 use App\Http\Controllers\hodim\BoshqaHodimController;
+use App\Http\Controllers\hodim\HodimDavomadController;
 use App\Http\Controllers\hodim\VacancyController;
 use App\Http\Controllers\setting\SettingController;
 use App\Http\Controllers\child\CildController;
@@ -39,6 +40,11 @@ Route::post('/vacancy/story', [VacancyController::class, 'story'])->name('vacanc
 Route::post('/vacancy/comment', [VacancyController::class, 'story_comment'])->name('vacancy_story_comment')->middleware(['auth']);
 Route::post('/vacancy/cancel', [VacancyController::class, 'story_cancel'])->name('vacancy_story_cancel')->middleware(['auth']);
 Route::post('/vacancy/success', [VacancyController::class, 'story_success'])->name('vacancy_story_success')->middleware(['auth']);
+
+Route::get('/davomad/meneger', [HodimDavomadController::class, 'meneger'])->name('hodim_davomad_meneger')->middleware(['auth']);
+Route::get('/davomad/tarbiyachi', [HodimDavomadController::class, 'tarbiyachi'])->name('hodim_davomad_tarbiyachi')->middleware(['auth']);
+Route::get('/davomad/oshpaz', [HodimDavomadController::class, 'oshpaz'])->name('hodim_davomad_techer')->middleware(['auth']);
+Route::get('/davomad/hodim', [HodimDavomadController::class, 'hodim'])->name('hodim_davomad_hodim')->middleware(['auth']);
 
 
 Route::get('/setting', [SettingController::class, 'setting'])->name('setting')->middleware(['auth']);

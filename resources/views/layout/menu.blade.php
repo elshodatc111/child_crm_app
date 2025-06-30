@@ -38,8 +38,8 @@
                         <i class="bi bi-diagram-3-fill"></i><span>Guruhlar</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs(['hodim_davomad_meneger'],['hodim_davomad_tarbiyachi'],['hodim_davomad_techer'],['hodim_davomad_hodim']) ? 'active' : '' }}">
+                    <a href="{{ route('hodim_davomad_meneger') }}" class='sidebar-link'>
                         <i class="bi bi-calendar-check-fill"></i><span>Hodimlar Davomadi</span>
                     </a>
                 </li>
