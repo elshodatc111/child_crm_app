@@ -62,23 +62,106 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
                     </div>
                 @endif
-                <h5 class="card-title">To'lovlar</h5>
+                <h5 class="card-title d-flex justify-content-between align-items-center">
+                    Menejerlar davomadi
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#davomadModal">
+                        <i class="bi bi-plus-circle me-1"></i> Davomad olish
+                    </button>
+                </h5>
+
                 <div class="table-responsive">
-                    <table class="table table-hover table-bordered align-middle text-center">
-                        <thead class="bg-primary">
-                            <tr class="text-center">
-                                <th class="text-white">#</th>
-                                <th class="text-white">FIO</th>
-                                <th class="text-white">Hodim haqida</th>
-                                <th class="text-white">Holati</th>
-                                <th class="text-white">Ishga olindi</th>
-                                <th class="text-white">Ishga bo'shatildi</th>
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th>#</th>
+                                <th>FIO</th>
+                                <th>26-06</th>
+                                <th>27-06</th>
+                                <th>28-06</th>
+                                <th>29-06</th>
+                                <th>30-06</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            <tr>
+                                <td class="text-center">1</td>
+                                <td class="text-center">FIO</td>
+                                <td class="text-center">
+                                    <span class="badge bg-success">
+                                        <i class="bi bi-check-circle me-1"></i> Keldi
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-danger">
+                                        <i class="bi bi-x-circle me-1"></i> Kelmagan
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="bi bi-clock me-1"></i> Kechikdi
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-info text-dark">
+                                        <i class="bi bi-person-x me-1"></i> Forma yo'q
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-secondary">
+                                        <i class="bi bi-calendar-x me-1"></i> Ish kuni emas
+                                    </span>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <div class="modal fade" id="davomadModal" tabindex="-1" aria-labelledby="davomadModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <form action="#" method="POST">
+                            @csrf
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="davomadModalLabel">Davomad olish</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered align-middle">
+                                            <thead class="table-light text-center">
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>F.I.O</th>
+                                                    <th>Holat</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                    <td class="text-center">1</td>
+                                                    <td>Meneger FIO</td>
+                                                    <td>
+                                                        <select name="statuses" class="form-select" required>
+                                                            <option value="present">✅ Keldi</option>
+                                                            <option value="absent">❌ Kelmagan</option>
+                                                            <option value="late">⏰ Kechikdi</option>
+                                                            <option value="no_uniform">👕 Forma yo‘q</option>
+                                                            <option value="off_day">📅 Ish kuni emas</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="bi bi-check2-circle me-1"></i> Saqlash
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

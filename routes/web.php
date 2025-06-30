@@ -42,6 +42,7 @@ Route::post('/vacancy/cancel', [VacancyController::class, 'story_cancel'])->name
 Route::post('/vacancy/success', [VacancyController::class, 'story_success'])->name('vacancy_story_success')->middleware(['auth']);
 
 Route::get('/davomad/meneger', [HodimDavomadController::class, 'meneger'])->name('hodim_davomad_meneger')->middleware(['auth']);
+Route::post('/davomad/meneger/store', [HodimDavomadController::class, 'meneger_davomad_store'])->name('meneger_davomad_store')->middleware(['auth']);
 Route::get('/davomad/tarbiyachi', [HodimDavomadController::class, 'tarbiyachi'])->name('hodim_davomad_tarbiyachi')->middleware(['auth']);
 Route::get('/davomad/oshpaz', [HodimDavomadController::class, 'oshpaz'])->name('hodim_davomad_techer')->middleware(['auth']);
 Route::get('/davomad/hodim', [HodimDavomadController::class, 'hodim'])->name('hodim_davomad_hodim')->middleware(['auth']);
