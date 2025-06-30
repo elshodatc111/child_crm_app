@@ -30,7 +30,6 @@ Route::get('/techer-show/{id}', [TecherHodimController::class, 'show'])->name('h
 
 Route::get('/hodimlar', [BoshqaHodimController::class, 'index'])->name('hodim_boshqalar')->middleware(['auth']);
 Route::get('/hodim_show/{id}', [BoshqaHodimController::class, 'show'])->name('hodim_boshqa_show')->middleware(['auth']);
-Route::get('/hodim_show_davomad/{id}', [BoshqaHodimController::class, 'davomad'])->name('hodim_boshqa_show_davomad')->middleware(['auth']);
 Route::get('/hodim_show_tulov/{id}', [BoshqaHodimController::class, 'tulovlar'])->name('hodim_boshqa_show_tulovlar')->middleware(['auth']);
 
 Route::get('/hodim_vakancy', [VacancyController::class, 'hodim_vacancy'])->name('hodim_vacancy')->middleware(['auth']);

@@ -1,5 +1,5 @@
 @extends('layout.cdn2')
-@section('title','Hodim haqida')
+@section('title','Hodim to\'langan ish haqi')
 
 @section('content')
 <div id="app">
@@ -14,14 +14,14 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Hodim haqida</h3>
+                        <h3>Hodim to'langan ish haqi</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="{{ route('hodim_boshqalar') }}">Hodimlar</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Hodim haqida</li>
+                                <li class="breadcrumb-item active" aria-current="page">Hodim to'langan ish haqi</li>
                             </ol>
                         </nav>
                     </div>
@@ -32,19 +32,14 @@
         <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="row mb-4">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="list-group">
                             <a href="{{ route('hodim_boshqa_show',$id) }}" class="list-group-item list-group-item-action text-center ">Hodim haqida</a>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="list-group">
                             <a href="{{ route('hodim_boshqa_show_tulovlar',$id) }}" class="list-group-item list-group-item-action text-center active">Ish haqi to'lovlari</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="list-group">
-                            <a href="{{ route('hodim_boshqa_show_davomad',$id) }}" class="list-group-item list-group-item-action text-center">Hodim davomadi</a>
                         </div>
                     </div>
                 </div>
@@ -58,7 +53,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
                     </div>
                 @endif
-                <h5 class="card-title">Hodimlar</h5>
+                <h5 class="card-title">To'lovlar</h5>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered align-middle text-center">
                         <thead class="bg-primary">
