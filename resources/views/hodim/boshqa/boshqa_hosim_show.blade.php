@@ -52,25 +52,76 @@
                 </div>
             @endif
             <div class="row">
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-4 mb-2">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title mb-4"></i>Hodim haqida</h5>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item bg-transparent"><strong>FIO:</strong> sssss </li>
-                                <li class="list-group-item bg-transparent"><strong>Telefon:</strong> sssss </li>
-                                <li class="list-group-item bg-transparent"><strong>Manzil:</strong> sssss </li>
-                                <li class="list-group-item bg-transparent"><strong>Lavozim:</strong> sssss </li>
-                                <li class="list-group-item bg-transparent"><strong>Holati:</strong> sssss </li>
-                                <li class="list-group-item bg-transparent"><strong>Ishga olindi:</strong> sssss </li>
-                            </ul>
+                        <div class="card-body pb-2">
+                            <h5 class="card-title mb-2"></i>Hodim haqida</h5>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>FIO:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                                <tr>
+                                    <th>Telefon:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                                <tr>
+                                    <th>Manzil:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                                <tr>
+                                    <th>Lavozim:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                                <tr>
+                                    <th>Holati:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                                <tr>
+                                    <th>Ishga olindi:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                            </table>
                             <div class="w-100 text-center">
                                 <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#salaryModal">Ish haqi to'lov</button>
                             </div>
                         </div>
                     </div>
+                </div>                
+                <div class="col-lg-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4 mt-1"></i>Hodimning joriy oydagi davomadi</h5>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Joriy oyda davomad soni:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                                <tr>
+                                    <th>Ishga keldi:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                                <tr>
+                                    <th>Ishga kelmagan:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                                <tr>
+                                    <th>Kechikib keldi:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                                <tr>
+                                    <th>Formada kelmadi:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                                <tr>
+                                    <th>Ish kuni emas:</th>
+                                    <td style="text-align:right">5</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-4 mb-4">
                     <div class="card shadow-sm rounded">
                         <div class="card-body">
                             <h5 class="card-title">Izohlar</h5>
@@ -112,13 +163,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr class="my-4">
+                            <hr class="my-3">
                             <form>
                                 <div class="row">
-                                    <div class="col-9">
+                                    <div class="col-7">
                                         <input type="text" class="form-control rounded" id="comment" placeholder="Hodim haqida fikringizni yozing...">
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-5">
                                         <button type="submit" class="btn btn-primary w-100">
                                             <i class="bi bi-send"></i> Saqlash
                                         </button>
