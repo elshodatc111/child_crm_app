@@ -76,7 +76,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($res['tarbiyachi'] as $item)
+                                @forelse($res as $item)
                                 <tr>
                                     <td class="text-center">{{ $loop->index+1 }}</td>
                                     <td>

@@ -10,22 +10,21 @@ use App\Models\User;
 class HodimController extends Controller{
 
     public function index(){
-        $res = [];
-        $res['meneger'] = User::whereIn('type', ['direktor', 'menejer'])->whereIn('status', ['active','block'])->get();
+        $res = User::whereIn('type', ['direktor', 'menejer'])->whereIn('status', ['active','block'])->get();
         return view('hodim.index',compact('res'));
     }
-
-    public function hodim_tarbiyachi(){
-        $res = [];
-        $res['tarbiyachi'] = User::whereIn('type', ['tarbiyachi', 'kichik_tarbiyachi'])->whereIn('status', ['active','block'])->get();
-        return view('hodim.tarbiyachi',compact('res'));
+    
+    public function meneger_show($id){
+        return view('hodim.meneger.meneger_show',compact('id'));
     }
 
-    public function hodim_oshpazlar(){
-        $res = [];
-        $res['oshpaz'] = User::where('type', 'oshpaz')->whereIn('status', ['active','block'])->get();
-        return view('hodim.oshpaz',compact('res'));
+    public function meneger_show_paymart($id){
+        return view('hodim.meneger.meneger_show_paymart',compact('id'));
     }
+
+
+
+
 
 
 

@@ -7,6 +7,8 @@ use App\Http\Controllers\hodim\ProfileController;
 use App\Http\Controllers\hodim\TecherHodimController;
 use App\Http\Controllers\hodim\HodimController;
 use App\Http\Controllers\hodim\BoshqaHodimController;
+use App\Http\Controllers\hodim\TarbiyachiController;
+use App\Http\Controllers\hodim\OshpazlarControllar;
 use App\Http\Controllers\hodim\HodimDavomadController;
 use App\Http\Controllers\hodim\VacancyController;
 use App\Http\Controllers\setting\SettingController;
@@ -24,8 +26,11 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard')->middleware(['auth']);
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->middleware(['auth']);
 Route::get('/drektor', [HodimController::class, 'index'])->name('hodim')->middleware(['auth']);
-Route::get('/tarbiyachi', [HodimController::class, 'hodim_tarbiyachi'])->name('hodim_tarbiyachi')->middleware(['auth']);
-Route::get('/oshpazlar', [HodimController::class, 'hodim_oshpazlar'])->name('hodim_oshpazlar')->middleware(['auth']);
+Route::get('/drektor_show/{id}', [HodimController::class, 'meneger_show'])->name('meneger_show')->middleware(['auth']);
+Route::get('/drektor_show_paymart/{id}', [HodimController::class, 'meneger_show_paymart'])->name('meneger_show_paymart')->middleware(['auth']);
+
+Route::get('/tarbiyachi', [TarbiyachiController::class, 'hodim_tarbiyachi'])->name('hodim_tarbiyachi')->middleware(['auth']);
+Route::get('/oshpazlar', [OshpazlarControllar::class, 'hodim_oshpazlar'])->name('hodim_oshpazlar')->middleware(['auth']);
 Route::get('/techer', [TecherHodimController::class, 'index'])->name('hodim_techer')->middleware(['auth']);
 Route::get('/techer-show/{id}', [TecherHodimController::class, 'show'])->name('hodim_techer_show')->middleware(['auth']);
 
