@@ -34,6 +34,29 @@
         vertical-align: middle;
     }
 </style>
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+    .pagination li {
+        margin: 0 3px;
+    }
+    .pagination li a,
+    .pagination li span {
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        color: #333;
+        text-decoration: none;
+    }
+    .pagination li.active span {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+</style>
 
 <div id="app">
     @extends('layout.menu')
@@ -61,7 +84,9 @@
                 </div>
             </div>
         </div>
-
+        @php
+            use Carbon\Carbon;
+        @endphp
         <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="list-group list-group-horizontal mb-4" id="inbox-menu">
@@ -69,8 +94,8 @@
                     <a href="{{ route('child_end') }}" class="list-group-item list-group-item-action">Tark etgan bolalar</a>
                     <a href="{{ route('child_debit') }}" class="list-group-item list-group-item-action">Qarzdorlar</a>
                 </div>
-                <form action="" method="get">
-                    <input type="text" placeholder="Qirduv.." class="form-control">
+                <form action="{{ route('child') }}" method="get" class="mb-3">
+                    <input type="text" name="search" placeholder="Qidiruv..." value="{{ request('search') }}" class="form-control">
                 </form>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered align-middle text-center">
@@ -84,32 +109,43 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Graiden</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>076 4820 8838</td>
-                                <td>Offenburg</td>
-                                <td><span class="badge bg-success">Faol</span></td>
-                            </tr>
-                            <tr>
-                                <td>Yusuf Karimov</td>
-                                <td>karimov@example.com</td>
-                                <td>+998 90 123 45 67</td>
-                                <td>Toshkent</td>
-                                <td><span class="badge bg-warning text-dark">Jarayonda</span></td>
-                            </tr>
-                            <tr>
-                                <td>Gulbahor Saidova</td>
-                                <td>gulbahor@example.com</td>
-                                <td>+998 91 876 54 32</td>
-                                <td>Andijon</td>
-                                <td><span class="badge bg-danger">Bekor qilingan</span></td>
-                            </tr>
+                            @forelse ($children as $key => $child)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td style="text-align:left"><a href="#">{{ $child->name }}</a></td>
+                                    <td>
+                                        @php
+                                            $age = \Carbon\Carbon::parse($child->birthday)->age;
+                                        @endphp
+                                        {{ $age }} yosh
+                                    </td>
+                                    <td>{{ $child->group_name }}</td>
+                                    <td>
+                                        @if($child->balans < 0)
+                                            <span class="badge bg-danger">{{ number_format($child->balans, 0, ',', ' ') }} so‘m</span>
+                                        @elseif($child->balans == 0)
+                                            <span class="badge bg-secondary">0 so‘m</span>
+                                        @else
+                                            <span class="badge bg-success">{{ number_format($child->balans, 0, ',', ' ') }} so‘m</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5">Ma'lumot topilmadi</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
+                </div>
+                <div class="w-100" style="text-align:right">
+                    <div class="">
+                        {{ $children->appends(request()->query())->links('vendor.pagination.custom') }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection

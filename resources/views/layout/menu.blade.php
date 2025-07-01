@@ -28,7 +28,7 @@
                         <i class="bi bi-people-fill"></i><span>Bolalar</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs(['child_vakancy','child_vakancy_show']) ? 'active' : '' }}">
+                <li class="sidebar-item {{ request()->routeIs(['child_vakancy','child_vakancy_show','child_vakancy_create']) ? 'active' : '' }}">
                     <a href="{{ route('child_vakancy') }}" class='sidebar-link'>
                         <i class="bi bi-people-fill"></i><span>Tashriflar</span>
                     </a>
