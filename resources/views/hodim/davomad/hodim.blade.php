@@ -3,7 +3,7 @@
 
 @section('content')
 <div id="app">
-    @include('layout.menu')
+@include('layout.menu')
     <div id="main">
         <header class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
@@ -75,50 +75,89 @@
                             <tr>
                                 <th>#</th>
                                 <th>FIO</th>
-                                <th>26-06</th>
-                                <th>27-06</th>
-                                <th>28-06</th>
-                                <th>29-06</th>
-                                <th>30-06</th>
+                                @foreach ($ishString as $item)
+                                    <th class="text-center">
+                                        <p class="vertical-text"
+                                            style = "font-size:12px;
+                                            font-weight:700;
+                                            padding:0;margin:0">{{ $item }}
+                                        </p>
+                                    </th>
+                                @endforeach
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">FIO</td>
-                                <td class="text-center">
-                                    <span class="badge bg-success">
-                                        <i class="bi bi-check-circle me-1"></i> Keldi
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-danger">
-                                        <i class="bi bi-x-circle me-1"></i> Kelmagan
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-warning text-dark">
-                                        <i class="bi bi-clock me-1"></i> Kechikdi
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-info text-dark">
-                                        <i class="bi bi-person-x me-1"></i> Forma yo'q
-                                    </span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="badge bg-secondary">
-                                        <i class="bi bi-calendar-x me-1"></i> Ish kuni emas
-                                    </span>
-                                </td>
-                            </tr>
+                            @foreach ($jadval as $item)
+                                <tr>
+                                    <td class="text-center">{{ $loop->index+1 }}</td>
+                                    <td>{{ $item['fio'] }}</td>
+                                    @foreach ($item['status'] as $status)
+                                        @if($status == 'present')
+                                            <td class="text-center">
+                                                <span class="badge bg-success badge-status">
+                                                    <i class="bi bi-check-circle"></i>
+                                                </span>
+                                            </td>
+                                        @elseif($status=='absent')
+                                            <td class="text-center">
+                                                <span class="badge bg-danger badge-status">
+                                                    <i class="bi bi-x-circle"></i>
+                                                </span>
+                                            </td>
+                                        @elseif($status=='late')
+                                            <td class="text-center">
+                                                <span class="badge bg-warning text-dark badge-status">
+                                                    <i class="bi bi-clock"></i>
+                                                </span>
+                                            </td>
+                                        @elseif($status=='no_uniform')
+                                            <td class="text-center">
+                                                <span class="badge bg-info text-dark badge-status">
+                                                    <i class="bi bi-person-x"></i>
+                                                </span>
+                                            </td>
+                                        @elseif($status=='off_day')
+                                            <td class="text-center">
+                                                <span class="badge bg-secondary badge-status">
+                                                    <i class="bi bi-calendar-x"></i>
+                                                </span>
+                                            </td>
+                                        @else
+                                            <td class="text-center">
+                                                <span class="badge bg-light text-dark">
+                                                    <i class="bi bi-question-circle"></i>
+                                                </span>
+                                            </td>
+                                        @endif
+                                    @endforeach
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
-
+                <div class="text-center mt-3">
+                    <span class="badge bg-success badge-status">
+                        <i class="bi bi-check-circle"></i> Keldi
+                    </span>
+                    <span class="badge bg-danger badge-status">
+                        <i class="bi bi-x-circle"></i> Ishga kelmadi
+                    </span>
+                    <span class="badge bg-warning text-dark badge-status">
+                        <i class="bi bi-clock"></i> Kechikdi
+                    </span>
+                    <span class="badge bg-info text-dark badge-status">
+                        <i class="bi bi-person-x"></i> Forma yo'q
+                    </span>
+                    <span class="badge bg-secondary badge-status">
+                        <i class="bi bi-calendar-x"></i> Ish kuni emas
+                    </span>
+                    <span class="badge bg-light text-dark border badge-status">
+                        <i class="bi bi-question-circle"></i> Davomad olinmadi
+                    </span>
+                </div>
                 <div class="modal fade" id="davomadModal" tabindex="-1" aria-labelledby="davomadModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
-                        <form action="#" method="POST">
+                        <form action="{{ route('meneger_davomad_store') }}" method="POST">
                             @csrf
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -136,19 +175,22 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($davomad as $item)
                                                     <tr>
-                                                    <td class="text-center">1</td>
-                                                    <td>Meneger FIO</td>
-                                                    <td>
-                                                        <select name="statuses" class="form-select" required>
-                                                            <option value="present">✅ Keldi</option>
-                                                            <option value="absent">❌ Kelmagan</option>
-                                                            <option value="late">⏰ Kechikdi</option>
-                                                            <option value="no_uniform">👕 Forma yo‘q</option>
-                                                            <option value="off_day">📅 Ish kuni emas</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
+                                                        <td class="text-center">{{ $loop->index+1 }}</td>
+                                                        <td>{{ $item['fio'] }}</td>
+                                                        <td>
+                                                            <select name="statuses[{{ $item['id'] }}]" class="form-select" required>
+                                                                <option value="">Tanlang</option>
+                                                                <option value="present" {{ $item['status'] === 'present' ? 'selected' : '' }}>Keldi</option>
+                                                                <option value="absent" {{ $item['status'] === 'absent' ? 'selected' : '' }}>Kelmadi</option>
+                                                                <option value="late" {{ $item['status'] === 'late' ? 'selected' : '' }}>Kechikdi</option>
+                                                                <option value="no_uniform" {{ $item['status'] === 'no_uniform' ? 'selected' : '' }}>Forma yo‘q</option>
+                                                                <option value="off_day" {{ $item['status'] === 'off_day' ? 'selected' : '' }}>Ish kuni emas</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -163,6 +205,7 @@
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
 

@@ -25,8 +25,8 @@ class HodimDavomadController extends Controller{
         }
         return $dates;
     }
-    protected function MenegerDavomadJadval($ishKunlar){
-        $User = User::where('type','menejer')->where('status','active')->select('id','fio')->get();
+    protected function DavomadJadval($ishKunlar, $type){
+        $User = User::where('type',$type)->where('status','active')->select('id','fio')->get();
         $jadval = [];
         foreach ($User as $key => $value) {
             $jadval[$key]['id'] = $value['id'];
@@ -44,8 +44,8 @@ class HodimDavomadController extends Controller{
         }
         return $jadval;
     }
-    protected function MenegerlarDavomadHolati(){
-        $User = User::where('type','menejer')->where('status','active')->select('id','fio')->get();
+    protected function DavomadHolati($type){
+        $User = User::where('type',$type)->where('status','active')->select('id','fio')->get();
         $jadval = [];
         foreach ($User as $key => $value) {
             $jadval[$key]['id'] = $value['id'];
@@ -62,8 +62,8 @@ class HodimDavomadController extends Controller{
     public function meneger(){
         $kunlar = $this->ish_kunlari();
         $ishString = array_reverse(array_column($kunlar, 'string'));
-        $jadval = $this->MenegerDavomadJadval(array_reverse(array_column($kunlar, 'data')));
-        $davomad = $this->MenegerlarDavomadHolati();
+        $jadval = $this->DavomadJadval(array_reverse(array_column($kunlar, 'data')),'menejer');
+        $davomad = $this->DavomadHolati('menejer');
         return view('hodim.davomad.menejer',compact('ishString','jadval','davomad'));
     }
     public function meneger_davomad_store(DavomadMenegerRequest $request){
@@ -82,17 +82,64 @@ class HodimDavomadController extends Controller{
         }
         return redirect()->back()->with('success', 'Davomad muvaffaqiyatli saqlandi!');
     }
-
+    protected function DavomadJadvalTarbiyachi($ishKunlar){
+        $types = ['tarbiyachi', 'kichik_tarbiyachi'];
+        $User = User::whereIn('type', $types)->where('status', 'active')->select('id', 'fio')->get();
+        $jadval = [];
+        foreach ($User as $key => $value) {
+            $jadval[$key]['id'] = $value['id'];
+            $jadval[$key]['fio'] = $value['fio'];
+            $status = [];
+            foreach ($ishKunlar as $key2 => $value2) {
+                $HodimDavomad = HodimDavomad::where('user_id',$value['id'])->where('date',$value2)->first();
+                if($HodimDavomad){
+                    $status[$key2] = $HodimDavomad->status;
+                }else{
+                    $status[$key2] = 'olinmadi';
+                }
+            }
+            $jadval[$key]['status'] = $status;
+        }
+        return $jadval;
+    }
+    protected function DavomadHolatiTarbiyachi(){
+        $types = ['tarbiyachi', 'kichik_tarbiyachi'];
+        $User = User::whereIn('type', $types)->where('status','active')->select('id','fio')->get();
+        $jadval = [];
+        foreach ($User as $key => $value) {
+            $jadval[$key]['id'] = $value['id'];
+            $jadval[$key]['fio'] = $value['fio'];
+            $HodimDavomad = HodimDavomad::where('user_id',$value['id'])->where('date',date('Y-m-d'))->first();
+            if($HodimDavomad){
+                $jadval[$key]['status'] = $HodimDavomad->status;
+            }else{
+                $jadval[$key]['status'] = '';
+            }
+        }
+        return $jadval;
+    }
     public function tarbiyachi(){
-        return view('hodim.davomad.tarbiyachi');
+        $kunlar = $this->ish_kunlari();
+        $ishString = array_reverse(array_column($kunlar, 'string'));
+        $jadval = $this->DavomadJadvalTarbiyachi(array_reverse(array_column($kunlar, 'data')));
+        $davomad = $this->DavomadHolatiTarbiyachi();
+        return view('hodim.davomad.tarbiyachi', compact('ishString','jadval','davomad'));
     }
 
     public function oshpaz(){
-        return view('hodim.davomad.oshpaz');
+        $kunlar = $this->ish_kunlari();
+        $ishString = array_reverse(array_column($kunlar, 'string'));
+        $jadval = $this->DavomadJadval(array_reverse(array_column($kunlar, 'data')),'oshpaz');
+        $davomad = $this->DavomadHolati('oshpaz');
+        return view('hodim.davomad.oshpaz', compact('ishString','jadval','davomad'));
     }
 
     public function hodim(){
-        return view('hodim.davomad.hodim');
+        $kunlar = $this->ish_kunlari();
+        $ishString = array_reverse(array_column($kunlar, 'string'));
+        $jadval = $this->DavomadJadval(array_reverse(array_column($kunlar, 'data')),'hodim');
+        $davomad = $this->DavomadHolati('hodim');
+        return view('hodim.davomad.hodim', compact('ishString','jadval','davomad'));
     }
 
 }
