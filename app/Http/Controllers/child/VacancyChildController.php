@@ -21,6 +21,10 @@ class VacancyChildController extends Controller{
         return view('child.vakancy',compact('VacancyChild'));
     }
 
+    public function index_create(){
+        return view('child.vakancy_create');
+    }
+
     public function store(VacancyChildRequest $request){
         $validates = $request->validated();
         $validates['menejer_id'] = intval(auth()->user()->id);
