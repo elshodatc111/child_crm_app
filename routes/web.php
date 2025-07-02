@@ -13,6 +13,8 @@ use App\Http\Controllers\hodim\HodimDavomadController;
 use App\Http\Controllers\hodim\VacancyController;
 use App\Http\Controllers\setting\SettingController;
 use App\Http\Controllers\child\CildController;
+use App\Http\Controllers\child\ChilDebitController;
+use App\Http\Controllers\child\ChildEndController;
 use App\Http\Controllers\child\VacancyChildController;
 use App\Http\Controllers\moliya\MoliyaController;
 use App\Http\Controllers\moliya\KassaController;
@@ -61,8 +63,14 @@ Route::post('/setting/day/delete', [SettingController::class, 'delete_day'])->na
 
 
 Route::get('/child', [CildController::class, 'index'])->name('child')->middleware(['auth']);
-Route::get('/child-end', [CildController::class, 'index_end'])->name('child_end')->middleware(['auth']);
-Route::get('/child-debit', [CildController::class, 'index_debit'])->name('child_debit')->middleware(['auth']);
+Route::get('/child-show/{id}', [CildController::class, 'show'])->name('child_show')->middleware(['auth']);
+Route::get('/child-show-group/{id}', [CildController::class, 'show_group'])->name('child_show_group')->middleware(['auth']);
+Route::get('/child-show-davomad/{id}', [CildController::class, 'show_davomad'])->name('child_show_davomad')->middleware(['auth']);
+Route::get('/child-show-paymart/{id}', [CildController::class, 'show_paymart'])->name('child_show_paymart')->middleware(['auth']);
+
+Route::get('/child-end', [ChildEndController::class, 'index_end'])->name('child_end')->middleware(['auth']);
+
+Route::get('/child-debit', [ChilDebitController::class, 'index_debit'])->name('child_debit')->middleware(['auth']);
 
 Route::get('/childVakancy', [VacancyChildController::class, 'index'])->name('child_vakancy')->middleware(['auth']);
 Route::get('/childVakancy_create', [VacancyChildController::class, 'index_create'])->name('child_vakancy_create')->middleware(['auth']);

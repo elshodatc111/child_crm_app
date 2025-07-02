@@ -10,12 +10,11 @@ use App\Models\Group;
 use App\Models\Child;
 use App\Models\GroupChild;
 
-class CildController extends Controller{
-
-    public function index(Request $request){
-        $query = Child::where('children.status', 'active')
+class ChilDebitController extends Controller
+{
+    public function index_debit(Request $request){
+        $query = Child::where('children.balans','<',0)
             ->join('group_children', 'group_children.child_id', '=', 'children.id')
-            ->where('group_children.status', 'true')
             ->join('groups', 'group_children.group_id', '=', 'groups.id');
         if ($request->filled('search')) {
             $search = $request->search;
@@ -31,22 +30,6 @@ class CildController extends Controller{
             'groups.group_name',
             'children.balans'
         )->paginate(10);
-        return view('child.index', compact('children'));
-    }
-
-    public function show($id){
-        return view('child.active.show',compact('id'));
-    }
-
-    public function show_group($id){
-        return view('child.active.group_show',compact('id'));
-    }
-
-    public function show_davomad($id){
-        return view('child.active.davomad_show',compact('id'));
-    }
-
-    public function show_paymart($id){
-        return view('child.active.paymart_show',compact('id'));
+        return view('child.index_debit', compact('children'));
     }
 }
