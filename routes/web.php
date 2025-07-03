@@ -64,6 +64,12 @@ Route::post('/setting/day/delete', [SettingController::class, 'delete_day'])->na
 
 Route::get('/child', [CildController::class, 'index'])->name('child')->middleware(['auth']);
 Route::get('/child-show/{id}', [CildController::class, 'show'])->name('child_show')->middleware(['auth']);
+Route::post('/child-update', [CildController::class, 'child_update'])->name('child_update')->middleware(['auth']);
+Route::post('/child-create-eslatma', [CildController::class, 'child_new_eslatma'])->name('child_new_eslatma')->middleware(['auth']);
+Route::post('/child-create-qarindosh', [CildController::class, 'child_new_qarindosh'])->name('child_new_qarindosh')->middleware(['auth']);
+Route::post('/child-delete-qarindosh', [CildController::class, 'child_delete_qarindosh'])->name('child_delete_qarindosh')->middleware(['auth']);
+Route::post('/child-create-paymart', [CildController::class, 'create_paymarts'])->name('create_paymarts')->middleware(['auth']);
+
 Route::get('/child-show-group/{id}', [CildController::class, 'show_group'])->name('child_show_group')->middleware(['auth']);
 Route::get('/child-show-davomad/{id}', [CildController::class, 'show_davomad'])->name('child_show_davomad')->middleware(['auth']);
 Route::get('/child-show-paymart/{id}', [CildController::class, 'show_paymart'])->name('child_show_paymart')->middleware(['auth']);

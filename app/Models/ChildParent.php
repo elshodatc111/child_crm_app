@@ -9,7 +9,7 @@ class ChildParent extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['child_id', 'name', 'phone', 'type'];
+    protected $fillable = ['child_id', 'name', 'phone'];
 
     public function child() { return $this->belongsTo(Child::class); }
 }

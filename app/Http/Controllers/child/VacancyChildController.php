@@ -105,7 +105,7 @@ class VacancyChildController extends Controller{
             'start_comment' => $start_comment,
             'paymart_type' => $paymart_type,
             'status' => 'true',
-            'start_manager_id' => auth()->user()->id,
+            'end_manager_id' => auth()->user()->id,
         ]);
         return redirect()->back()->with('success', 'Tashrif muvaffaqiyatli saqlandi!');
     }
