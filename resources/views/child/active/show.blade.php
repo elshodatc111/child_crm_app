@@ -62,9 +62,19 @@
                                 <h5 class="mb-0 text-primary">{{ $child['name'] }}</h5>
                             </div>
                             <div class="col-5 text-end">
-                                <h5 class="mb-0 text-success">
-                                    {{ number_format($child['balans'], 0, '', ' ') }} so'm
-                                </h5>
+                                @if ($child['balans']>0)
+                                    <h5 class="mb-0 text-success">
+                                        {{ number_format($child['balans'], 0, '', ' ') }} so'm
+                                    </h5>
+                                @elseif ($child['balans']==0)
+                                    <h5 class="mb-0 text-info">
+                                        {{ number_format($child['balans'], 0, '', ' ') }} so'm
+                                    </h5>
+                                @else
+                                    <h5 class="mb-0 text-danger">
+                                        {{ number_format($child['balans'], 0, '', ' ') }} so'm
+                                    </h5>
+                                @endif
                             </div>
                         </div>
                         <table class="table table-sm table-bordered mt-3 mb-0" style="font-size: 14px">

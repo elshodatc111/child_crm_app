@@ -185,7 +185,7 @@ class CildController extends Controller{
         $plastik = $Kassa->plastik;
         if($type == 'qaytar_naqt' AND $naqt>=$amount){
             return false;
-        }elseif($type == 'qaytar_plastik' AND $naqt>=$amount){
+        }elseif($type == 'qaytar_plastik' AND $plastik>=$amount){
             return false;
         }else{
             return true;
