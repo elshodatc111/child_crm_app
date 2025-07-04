@@ -20,6 +20,7 @@ use App\Http\Controllers\child\VacancyChildController;
 use App\Http\Controllers\moliya\MoliyaController;
 use App\Http\Controllers\moliya\KassaController;
 use App\Http\Controllers\groups\GroupsController;
+use App\Http\Controllers\groups\GroupDavomatController;
 
 // Login ko'rinishi
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -101,6 +102,7 @@ Route::post('/create-groups', [GroupsController::class, 'create_group'])->name('
 Route::post('/groups-update', [GroupsController::class, 'group_update'])->name('groups_updates')->middleware(['auth']);
 Route::post('/groups-update-tarbiyachi', [GroupsController::class, 'groups_updates_tarbiyachi'])->name('groups_updates_tarbiyachi')->middleware(['auth']);
 Route::post('/groups-update-yordamchi', [GroupsController::class, 'groups_updates_yordamchi'])->name('groups_updates_yordamchi')->middleware(['auth']);
+Route::post('/groups-create-davomat', [GroupDavomatController::class, 'groups_create_davomat'])->name('groups_create_davomat')->middleware(['auth']);
 
 Route::get('/arxiv-groups', [GroupsController::class, 'arxiv_index'])->name('groups_arxiv')->middleware(['auth']);
 Route::get('/new-groups', [GroupsController::class, 'new_index'])->name('groups_new')->middleware(['auth']);

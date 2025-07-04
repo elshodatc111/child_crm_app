@@ -9,11 +9,12 @@ use App\Models\Group;
 use App\Models\GroupsTarbiyachi;
 use App\Models\GroupChild;
 use App\Models\DamKunlar;
+use App\Models\Child;
+use App\Models\ChildDavomad;
 use App\Http\Requests\StoreGroupRequest;
 use App\Http\Requests\EditGroupRequest;
 
 class GroupsController extends Controller{
-
     public function index(){
         $Groups = Group::where('status','true')->get();
         $Group = [];
@@ -26,7 +27,6 @@ class GroupsController extends Controller{
         }
         return view('groups.index',compact('Group'));
     }
-
     public function arxiv_index(){
         $Groups = Group::where('status','false')->get();
         $Group = [];
@@ -38,7 +38,6 @@ class GroupsController extends Controller{
         }
         return view('groups.arxiv_index',compact('Group'));
     }
-
     public function new_index(){
         $Katta = User::where('type','tarbiyachi')->get();
         $katta = [];
@@ -62,7 +61,6 @@ class GroupsController extends Controller{
         }
         return view('groups.new_index',compact('katta','kichik'));
     }
-
     public function create_group(StoreGroupRequest $request){
         $data = $request->validated();
         $Group = Group::create([
@@ -187,13 +185,24 @@ class GroupsController extends Controller{
         }
         return $ish_kunlari;
     }
+    protected function childrenGroups($id){
+        $GroupChild = GroupChild::where('group_id',$id)->where('status','true')->get();
+        $child = [];
+        foreach ($GroupChild as $key => $value) {
+            $child[$key]['child_id'] = $value->child_id;
+            $child[$key]['child_name'] = Child::find($value->child_id)->name;
+            $child[$key]['paymart_type'] = $value->paymart_type;
+        }
+        return $child;
+    }
     public function groups_show($id){
         $about = $this->group_about($id);
         $tarbiyachilar = $this->group_tarbiyachi($about['tarbiyachi_id']);
         $yordamchilar = $this->group_yordamchi($about['yordamchi_id']);
         $ishKunlar = $this->ishKunlar($id);
         $ishKunlarSoni = count($this->ishKunlar($id));
-        return view('groups.index_show', compact('id','about','tarbiyachilar','yordamchilar','ishKunlar','ishKunlarSoni'));
+        $children = $this->childrenGroups($id);
+        return view('groups.index_show', compact('id','about','tarbiyachilar','yordamchilar','ishKunlar','ishKunlarSoni','children'));
     }
     public function group_update(EditGroupRequest $request){
         $data = $request->validated();

@@ -185,7 +185,6 @@
                                     @php
                                         $sana = \Carbon\Carbon::parse($item['sanasi']);
                                         $badgeClass = '';
-
                                         if ($sana->isToday()) {
                                             $badgeClass = 'text-warning'; // bugungi kun: sariq
                                         } elseif ($sana->isPast()) {
@@ -264,68 +263,65 @@
 
 
 <!-- Davomad olish -->
-<div class="modal fade" id="takeAttendanceModal" tabindex="-1" aria-labelledby="takeAttendanceModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content border-0 shadow rounded-4">
-            <div class="modal-header">
-                <h5 class="modal-title" id="takeAttendanceModalLabel">
-                    Davomad olish
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
-            </div>
-            <form action="#" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <p class="text-danger m-0 p-0">Davomad 1 ish kunida faqat 1 marta olish mumkun.</p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered align-middle text-center">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Bola ismi</th>
-                                    <th>Davomad holati</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td style="text-align:left">Bola fio</td>
-                                    <td>
-                                        <select name="attendance" class="form-select" required>
-                                            <option value="">Tanlang</option>
-                                            <option value="present">✅ Keldi</option>
-                                            <option value="absent">❌ Kelmadi</option>
-                                            <option value="late">⏱ Kech keldi</option>
-                                            <option value="excused">📄 Uzrli</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td style="text-align:left">Bola fio</td>
-                                    <td>
-                                        <select name="attendance" class="form-select" required>
-                                            <option value="">Tanlang</option>
-                                            <option value="present">✅ Keldi</option>
-                                            <option value="absent">❌ Kelmadi</option>
-                                            <option value="late">⏱ Kech keldi</option>
-                                            <option value="excused">📄 Uzrli</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+    <div class="modal fade" id="takeAttendanceModal" tabindex="-1" aria-labelledby="takeAttendanceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="takeAttendanceModalLabel">
+                        Davomad olish
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                </div>
+                <form action="{{ route('groups_create_davomat') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <p class="text-danger m-0 p-0">Davomad 1 ish kunida faqat 1 marta olish mumkun.</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle text-center">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Bola ismi</th>
+                                        <th>Davomad holati</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($children as $item)
+                                    <tr>
+                                        <td>{{ $loop->index+1 }}</td>
+                                        <td style="text-align:left">
+                                            {{ $item['child_name'] }}
+                                            (
+                                                @if($item['paymart_type'] == 'monch')
+                                                    Oylik to'lov
+                                                @else
+                                                    Kunlik to'lov
+                                                @endif
+                                            )
+                                        </td>
+                                        <td>
+                                            <select name="attendance" class="form-select" required>
+                                                <option value="">Tanlang</option>
+                                                <option value="keldi">✅ Keldi</option>
+                                                <option value="kelmadi">❌ Kelmadi</option>
+                                                <option value="sababli">📄 Sababli</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success w-100">
-                        <i class="bi bi-save me-1"></i> Davomadni saqlash
-                    </button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success w-100">
+                            <i class="bi bi-save me-1"></i> Davomadni saqlash
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 
 <!-- Tarbiyachini almashtirish -->
