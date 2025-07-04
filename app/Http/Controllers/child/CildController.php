@@ -209,15 +209,23 @@ class CildController extends Controller{
         return redirect()->back()->with('success', 'Yangi qarindosh o\'chirildi!');
     }
 
-    public function show_group($id){
-        return view('child.active.group_show',compact('id'));
+    public function show_paymart($id){
+        $PaymartChild = PaymartChild::where('child_id',$id)->get();
+        $paymart = [];
+        foreach ($PaymartChild as $key => $value) {
+            $paymart[$key]['type'] = $value->type;
+            $paymart[$key]['amount'] = $value->amount;
+            $paymart[$key]['status'] = $value->status;
+            $paymart[$key]['about'] = $value->description;
+            $paymart[$key]['qarindosh'] = ChildParent::find($value->child_parent_id)->name;
+            $paymart[$key]['vaqt'] = $value->created_at;
+            $paymart[$key]['meneger'] = User::find($value->user_id)->fio;
+        }
+        return view('child.active.paymart_show',compact('id','paymart'));
     }
 
     public function show_davomad($id){
         return view('child.active.davomad_show',compact('id'));
     }
 
-    public function show_paymart($id){
-        return view('child.active.paymart_show',compact('id'));
-    }
 }

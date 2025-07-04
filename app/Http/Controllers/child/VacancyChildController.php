@@ -81,6 +81,7 @@ class VacancyChildController extends Controller{
             'balans' => 0,
             'description' => $description,
             'status' => 'active',
+            'end_manager_id' => auth()->user()->id,
         ]);
         return $Child->id;
     }
@@ -105,7 +106,7 @@ class VacancyChildController extends Controller{
             'start_comment' => $start_comment,
             'paymart_type' => $paymart_type,
             'status' => 'true',
-            'end_manager_id' => auth()->user()->id,
+            'start_manager_id' => auth()->user()->id,
         ]);
         return redirect()->back()->with('success', 'Tashrif muvaffaqiyatli saqlandi!');
     }

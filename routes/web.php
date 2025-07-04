@@ -12,6 +12,7 @@ use App\Http\Controllers\hodim\OshpazlarControllar;
 use App\Http\Controllers\hodim\HodimDavomadController;
 use App\Http\Controllers\hodim\VacancyController;
 use App\Http\Controllers\setting\SettingController;
+use App\Http\Controllers\child\ChildGroupController;
 use App\Http\Controllers\child\CildController;
 use App\Http\Controllers\child\ChilDebitController;
 use App\Http\Controllers\child\ChildEndController;
@@ -70,7 +71,7 @@ Route::post('/child-create-qarindosh', [CildController::class, 'child_new_qarind
 Route::post('/child-delete-qarindosh', [CildController::class, 'child_delete_qarindosh'])->name('child_delete_qarindosh')->middleware(['auth']);
 Route::post('/child-create-paymart', [CildController::class, 'create_paymarts'])->name('create_paymarts')->middleware(['auth']);
 
-Route::get('/child-show-group/{id}', [CildController::class, 'show_group'])->name('child_show_group')->middleware(['auth']);
+Route::get('/child-show-group/{id}', [ChildGroupController::class, 'show_group'])->name('child_show_group')->middleware(['auth']);
 Route::get('/child-show-davomad/{id}', [CildController::class, 'show_davomad'])->name('child_show_davomad')->middleware(['auth']);
 Route::get('/child-show-paymart/{id}', [CildController::class, 'show_paymart'])->name('child_show_paymart')->middleware(['auth']);
 

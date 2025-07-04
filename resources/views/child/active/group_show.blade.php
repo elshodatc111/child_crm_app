@@ -41,160 +41,60 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card shadow-sm rounded">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-7">
-                                <h5 class="card-title">FIO</h5>
-                            </div>
-                            <div class="col-5" style="text-align:right">
-                                <h5 class="card-title">16 500 so'm</h5>
-                            </div>
-                        </div>
-                        <table class="table table-bordered" style="font-size:14px">
-                            <tbody>
-                                <tr>
-                                    <td>Manzil</td>
-                                    <td style="text-align:right">Alimov Salim</td>
-                                </tr>
-                                <tr>
-                                    <td>Tug'ilgan kun</td>
-                                    <td style="text-align:right">Alimov Salim</td>
-                                </tr>
-                                <tr>
-                                    <td>Telefon raqam</td>
-                                    <td style="text-align:right">Alimov Salim</td>
-                                </tr>
-                                <tr>
-                                    <td>Telefon raqam</td>
-                                    <td style="text-align:right">Alimov Salim</td>
-                                </tr>
-                                <tr>
-                                    <td>Holati</td>
-                                    <td style="text-align:right">Alimov Salim</td>
-                                </tr>
-                                <tr>
-                                    <td>Bola haqida</td>
-                                    <td style="text-align:right">Alimov Salim</td>
-                                </tr>
-                                <tr>
-                                    <td>Ro'yhatga olindi</td>
-                                    <td style="text-align:right">Alimov Salim</td>
-                                </tr>
-                                <tr>
-                                    <td>Ro'yhatga Oldi</td>
-                                    <td style="text-align:right">Alimov Salim</td>
-                                </tr>
-                                <tr>
-                                    <td>Guruh</td>
-                                    <td style="text-align:right">Alimov Salim</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Guruhlar tarixi</h5>
             </div>
-            <div class="col-lg-4">
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h5 class="mb-0">Yaqin qarindoshlari</h5>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered" style="font-size:14px">
-                            <thead>
-                                <tr class="text-center">
-                                    <th>FIO</th>
-                                    <th>Telefon raqam</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Elshod Musurmmonov</td>
-                                    <td style="text-align:right">+998 90 883 0450</td>
-                                </tr>
-                                <tr>
-                                    <td>Elshod Musurmmonov</td>
-                                    <td style="text-align:right">+998 90 883 0450</td>
-                                </tr>
-                                <tr>
-                                    <td>Elshod Musurmmonov</td>
-                                    <td style="text-align:right">+998 90 883 0450</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        <h5 class="mb-0">Eslatmalari</h5>
-                    </div>
-                    <div class="card-body pt-4 bg-light notes-area mx-4">
-                        <div class="note-box mb-3">
-                            <div class="note-meta mb-1 text-muted small">
-                                <strong>sas | </strong>sas
-                            </div>
-                            <div class="note-message">asas</div>
-                        </div>
-                        <div class="note-box mb-3">
-                            <div class="note-meta mb-1 text-muted small">
-                                <strong>sas | </strong>sas
-                            </div>
-                            <div class="note-message">asas</div>
-                        </div>
-                        <div class="note-box mb-3">
-                            <div class="note-meta mb-1 text-muted small">
-                                <strong>sas | </strong>sas
-                            </div>
-                            <div class="note-message">asas</div>
-                        </div>
-                        <div class="note-box mb-3">
-                            <div class="note-meta mb-1 text-muted small">
-                                <strong>sas | </strong>sas
-                            </div>
-                            <div class="note-message">asas</div>
-                        </div>
-                        <div class="note-box mb-3">
-                            <div class="note-meta mb-1 text-muted small">
-                                <strong>sas | </strong>sas
-                            </div>
-                            <div class="note-message">asas</div>
-                        </div>
-                        <div class="note-box mb-3">
-                            <div class="note-meta mb-1 text-muted small">
-                                <strong>sas | </strong>sas
-                            </div>
-                            <div class="note-message">asas</div>
-                        </div>
-                        <div class="note-box mb-3">
-                            <div class="note-meta mb-1 text-muted small">
-                                <strong>sas | </strong>sas
-                            </div>
-                            <div class="note-message">asas</div>
-                        </div>
-                        <div class="note-box mb-3">
-                            <div class="note-meta mb-1 text-muted small">
-                                <strong>sas | </strong>sas
-                            </div>
-                            <div class="note-message">asas</div>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-white border-top">
-                        <form action="#" method="post">
-                            @csrf
-                            <div class="message-form d-flex align-items-center">
-                                <input type="hidden" name="vacancy_child_id" value="#">
-                                <div class="d-flex flex-grow-1 ms-3">
-                                    <input type="text" name="description" class="form-control rounded-pill px-4 py-2" placeholder="Yangi eslatma yozing...">
-                                </div>
-                                <button type="submit" class="btn btn-success ms-3 rounded-pill px-4">Saqlash</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+            <div class="card-body">
+            <table class="table table-bordered table-hover align-middle text-center" style="font-size:14px;">
+    <thead class="table-light">
+        <tr>
+            <th rowspan="2" class="align-middle">#</th>
+            <th rowspan="2" class="align-middle">Guruh</th>
+            <th rowspan="2" class="align-middle">To'lov turi</th>
+            <th colspan="3">Guruhga olindi</th>
+            <th colspan="3">Guruhdan o'chirdi</th>
+            <th rowspan="2" class="align-middle">Guruh holati</th>
+        </tr>
+        <tr>
+            <th>Olingan vaqt</th>
+            <th>Meneger</th>
+            <th>Izoh</th>
+            <th>Olingan vaqt</th>
+            <th>Meneger</th>
+            <th>Izoh</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($groups as $item)
+        <tr>
+            <td>{{ $loop->index+1 }}</td>
+            <td>{{ $item['group_name'] }}</td>
+            <td>
+                @if($item['paymart_type']=='monch')
+                    Oylik
+                @else
+                    Kunlik
+                @endif
+            </td>
+            <td>{{ $item['start_time'] }}</td>
+            <td>{{ $item['start_manager_id'] }}</td>
+            <td>{{ $item['start_comment'] }}</td>
+            <td>{{ $item['end_time'] }}</td>
+            <td>{{ $item['end_manager_id'] }}</td>
+            <td>{{ $item['end_comment'] }}</td>
+            <td>
+                @if($item['status']=='true')
+                    Aktive
+                @else
+                    Block
+                @endif
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
             </div>
         </div>
 
