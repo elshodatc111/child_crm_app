@@ -274,8 +274,10 @@
                 </div>
                 <form action="{{ route('groups_create_davomat') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="group_id" value="{{ $id }}">
                     <div class="modal-body">
-                        <p class="text-danger m-0 p-0">Davomad 1 ish kunida faqat 1 marta olish mumkun.</p>
+                        @if($davomadDay=='false')
+                        <p class="text-danger m-0 p-0 w-100 text-center">Davomad 1 ish kunida faqat 1 marta olish mumkun.</p>
                         <div class="table-responsive">
                             <table class="table table-bordered align-middle text-center">
                                 <thead class="table-light">
@@ -287,36 +289,40 @@
                                 </thead>
                                 <tbody>
                                     @foreach($children as $item)
-                                    <tr>
-                                        <td>{{ $loop->index+1 }}</td>
-                                        <td style="text-align:left">
-                                            {{ $item['child_name'] }}
-                                            (
-                                                @if($item['paymart_type'] == 'monch')
-                                                    Oylik to'lov
-                                                @else
-                                                    Kunlik to'lov
-                                                @endif
-                                            )
-                                        </td>
-                                        <td>
-                                            <select name="attendance" class="form-select" required>
-                                                <option value="">Tanlang</option>
-                                                <option value="keldi">✅ Keldi</option>
-                                                <option value="kelmadi">❌ Kelmadi</option>
-                                                <option value="sababli">📄 Sababli</option>
-                                            </select>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{ $loop->index+1 }}</td>
+                                            <td style="text-align:left">
+                                                {{ $item['child_name'] }}
+                                                (
+                                                    @if($item['paymart_type'] == 'monch')
+                                                        Oylik to'lov
+                                                    @else
+                                                        Kunlik to'lov
+                                                    @endif
+                                                )
+                                            </td>
+                                            <td>
+                                                <select name="attendance[{{ $item['child_id'] }}]" class="form-select" required>
+                                                    <option value="">Tanlang</option>
+                                                    <option value="keldi">✅ Keldi</option>
+                                                    <option value="kelmadi">❌ Kelmadi</option>
+                                                </select>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
+                        @else
+                            <p class="text-success m-0 p-0 w-100 text-center">Bugungi kun uchun davomad olingan.</p>
+                        @endif
                     </div>
                     <div class="modal-footer">
+                        @if($davomadDay=='fasle')
                         <button type="submit" class="btn btn-success w-100">
                             <i class="bi bi-save me-1"></i> Davomadni saqlash
                         </button>
+                        @endif
                     </div>
                 </form>
             </div>

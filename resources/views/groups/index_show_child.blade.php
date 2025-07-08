@@ -86,9 +86,50 @@
                                 <th>To'lov turi</th>
                                 <th>Balansi</th>
                                 <th>Guruhdagi holati</th>
+                                <th>Guruhdaga qo'shildi</th>
+                                <th>Izoh</th>
+                                <th>Guruhdaga qo'shil</th>
+                                <th>Guruhdan o'chirildi</th>
+                                <th>Izoh</th>
+                                <th>Guruhdan o'chirdi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($child as $item)
+                                <tr>
+                                    <td>{{ $loop->index+1 }}</td>
+                                    <td><a href="{{ route('child_show',$item['id']) }}">{{ $item['child'] }}</a></td>
+                                    <td>
+                                        @if ($item['paymart_type']=='day')
+                                            Kunlik
+                                        @else
+                                            Oylik
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($item['balans']==0)
+                                            <span class="text-darck">{{ $item['balans'] }} so'm</span>
+                                        @elseif($item['balans']>0)
+                                            <span class="text-success">{{ number_format($item['balans'], 0, '.', ' ') }} so'm</span>
+                                        @else
+                                            <span class="text-danger">{{ number_format($item['balans'], 0, '.', ' ') }} so'm</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($item['status']=='true')
+                                            <span class="text-success">Aktiv</span>
+                                        @else
+                                            <span class="text-danger">O'chirildi</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $item['start_time'] }}</td>
+                                    <td>{{ $item['start_comment'] }}</td>
+                                    <td>{{ $item['start_manejer'] }}</td>
+                                    <td>{{ $item['end_time'] }}</td>
+                                    <td>{{ $item['end_comment'] }}</td>
+                                    <td>{{ $item['end_manejer'] }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

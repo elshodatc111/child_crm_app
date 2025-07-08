@@ -202,7 +202,8 @@ class GroupsController extends Controller{
         $ishKunlar = $this->ishKunlar($id);
         $ishKunlarSoni = count($this->ishKunlar($id));
         $children = $this->childrenGroups($id);
-        return view('groups.index_show', compact('id','about','tarbiyachilar','yordamchilar','ishKunlar','ishKunlarSoni','children'));
+        $davomadDay = ChildDavomad::where('group_id',$id)->where('data',date('Y-m-d'))->first() == null?'false':'true';
+        return view('groups.index_show', compact('id','about','tarbiyachilar','yordamchilar','ishKunlar','ishKunlarSoni','children','davomadDay'));
     }
     public function group_update(EditGroupRequest $request){
         $data = $request->validated();
@@ -246,9 +247,7 @@ class GroupsController extends Controller{
         ]);
         return redirect()->back()->with('success', 'Guruh yordamchisi yangilandi!');
     }
-    public function groups_show_child($id){
-        return view('groups.index_show_child', compact('id'));
-    }
+
     public function groups_show_davomad($id){
         return view('groups.index_show_davomad', compact('id'));
     }
