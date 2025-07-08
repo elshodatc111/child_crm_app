@@ -79,13 +79,57 @@ class GroupDavomatController extends Controller{
         return redirect()->back()->with('success', 'Guruh davomadi saqalndi!');
     }
 
+    protected function getWorkingDaysYMD($type){
+        $days = [];
+        $year = date('Y');
+        $month = date('m');
+        $startDate = strtotime("$year-$month-01");
+        $endDate = strtotime(date("Y-m-t", $startDate));
+        for ($date = $startDate; $date <= $endDate; $date = strtotime('+1 day', $date)) {
+            $dayOfWeek = date('N', $date);
+            if ($dayOfWeek >= 1 && $dayOfWeek <= $type) {
+                $days[] = date('m-d', $date);
+            }
+        }
+        $res = [];
+        $k = 0;
+        foreach ($days as $key => $value) {
+            $DamKunlar = DamKunlar::where('data',$value)->first();
+            if(!$DamKunlar){
+                $res[$k] = $value;
+                $k++;
+            }
+        }
+        return $res;
+    }
+
     public function groups_show_davomad($group_id){
+        $id = $group_id;
         $startDate = Date("Y-m")."-01";
         $endDate = date("Y-m-t", strtotime($startDate));
-        dd($startDate." ".$endDate);
-        $davomads = ChildDavomad::with('child')->where('group_id', $group_id)->whereBetween('data', [$startDate, $endDate])->get();
-
-        return view('groups.index_show_davomad', compact('id'));
+        $now = date('Y-m-d');
+        $days = $this->getWorkingDaysYMD(5);
+        $Child = GroupChild::where('group_id',$group_id)->get();
+        $childs = [];
+        foreach ($Child as $key => $value) {
+            $childs[$key]['child_id'] = $value->child_id;
+            $childs[$key]['child_name'] = Child::find($value->child_id)->name;
+            $natija = [];
+            foreach ($days as $key2 => $value2) {
+                if(date('Y')."-".$value2>$now){
+                    $natija[$key2] = 'kutilmoqda';
+                }else{
+                    $ChildDavomad = ChildDavomad::where('child_id',$value->child_id)->where('group_id',$group_id)->where('data',date('Y')."-".$value2)->first();
+                    if($ChildDavomad){
+                        $natija[$key2] = $ChildDavomad->status;
+                    }else{
+                        $natija[$key2] = 'Olinmadi';
+                    }
+                }
+            }
+            $childs[$key]['natija'] = $natija;
+        }
+        return view('groups.index_show_davomad', compact('id','days','childs') );
     }
 
 }

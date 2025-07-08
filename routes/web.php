@@ -96,7 +96,6 @@ Route::get('/kassa', [KassaController::class, 'index'])->name('kassa')->middlewa
 
 Route::get('/groups', [GroupsController::class, 'index'])->name('groups')->middleware(['auth']);
 Route::get('/groups-show/{id}', [GroupsController::class, 'groups_show'])->name('groups_show')->middleware(['auth']);
-Route::get('/groups-showhistory/{id}', [GroupsController::class, 'groups_show_history'])->name('groups_show_history')->middleware(['auth']);
 Route::post('/create-groups', [GroupsController::class, 'create_group'])->name('groups_create')->middleware(['auth']);
 Route::post('/groups-update', [GroupsController::class, 'group_update'])->name('groups_updates')->middleware(['auth']);
 Route::post('/groups-update-tarbiyachi', [GroupsController::class, 'groups_updates_tarbiyachi'])->name('groups_updates_tarbiyachi')->middleware(['auth']);

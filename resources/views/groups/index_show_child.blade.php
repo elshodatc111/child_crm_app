@@ -65,18 +65,16 @@
 
         <div class="card shadow-sm rounded">
             <div class="card-body">
-                <div class="list-group list-group-horizontal mb-4" id="inbox-menu">
+                <div class="list-group list-group-horizontal" id="inbox-menu">
                     <a href="{{ route('groups_show',$id) }}" class="list-group-item list-group-item-action">Guruh haqida</a>
                     <a href="{{ route('groups_show_child',$id) }}" class="list-group-item list-group-item-action active">Guruhdagi bolalar</a>
                     <a href="{{ route('groups_show_davomad',$id) }}" class="list-group-item list-group-item-action ">Guruh davomadi</a>
-                    <a href="{{ route('groups_show_history',$id) }}" class="list-group-item list-group-item-action">Davomadi tarixi</a>
                 </div>
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
-                    </div>
-                @endif
+            </div>
+        </div>
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <h5 class="card-title">Guruhdagi bolalar</h5>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered align-middle text-center">
                         <thead class="table-light">

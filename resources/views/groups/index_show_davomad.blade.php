@@ -65,38 +65,47 @@
 
         <div class="card shadow-sm rounded">
             <div class="card-body">
-                <div class="list-group list-group-horizontal mb-4" id="inbox-menu">
+                <div class="list-group list-group-horizontal" id="inbox-menu">
                     <a href="{{ route('groups_show',$id) }}" class="list-group-item list-group-item-action">Guruh haqida</a>
                     <a href="{{ route('groups_show_child',$id) }}" class="list-group-item list-group-item-action ">Guruhdagi bolalar</a>
                     <a href="{{ route('groups_show_davomad',$id) }}" class="list-group-item list-group-item-action active">Guruh davomadi</a>
-                    <a href="{{ route('groups_show_history',$id) }}" class="list-group-item list-group-item-action">Davomadi tarixi</a>
                 </div>
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
-                    </div>
-                @endif
-
+            </div>
+        </div>
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <h5 class="card-title">Joriy oy davomadi</h5>
                 <div class="table-responsive">
-                    <table class="table table-bordered text-center align-middle">
+                    <table class="table table-bordered text-center align-middle" style="font-size:14px;">
                         <thead class="table-light">
                             <tr>
+                                <th>#</th>
                                 <th>Bola ismi</th>
-                                <th>d-M</th>
-                                <th>d-M</th>
-                                <th>d-M</th>
-                                <th>d-M</th>
+                                @foreach ($days as $date)
+                                    <th>{{ $date }}</th>
+                                @endforeach
                             </tr>
                         </thead>
                         <tbody>
-                                <tr>
-                                    <td class="text-start">Child name</td>
-                                    <td>✅</td>
-                                    <td>❌</td>
-                                    <td>⏱</td>
-                                    <td>📄</td>
-                                </tr>
+                            @foreach ($childs as $child)
+                            <tr>
+                                <td>{{ $loop->index+1 }}</td>
+                                <td class="text-start"><a href="{{ route('child_show',$child['child_id']) }}">{{ $child['child_name'] }}</a></td>
+                                @foreach ($child['natija'] as $item)
+                                    <td>
+                                        @if($item == 'kutilmoqda')
+                                            ⏱
+                                        @elseif($item == 'Olinmadi')
+                                            ❓
+                                        @elseif($item == 'keldi')
+                                            ✅
+                                        @elseif($item == 'kelmadi')
+                                            ❌
+                                        @endif
+                                    </td>
+                                @endforeach
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

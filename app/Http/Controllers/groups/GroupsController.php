@@ -248,8 +248,4 @@ class GroupsController extends Controller{
         return redirect()->back()->with('success', 'Guruh yordamchisi yangilandi!');
     }
 
-
-    public function groups_show_history($id){
-        return view('groups.index_show_history', compact('id'));
-    }
 }

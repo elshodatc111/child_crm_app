@@ -69,7 +69,6 @@
                     <a href="{{ route('groups_show',$id) }}" class="list-group-item list-group-item-action active">Guruh haqida</a>
                     <a href="{{ route('groups_show_child',$id) }}" class="list-group-item list-group-item-action ">Guruhdagi bolalar</a>
                     <a href="{{ route('groups_show_davomad',$id) }}" class="list-group-item list-group-item-action ">Guruh davomadi</a>
-                    <a href="{{ route('groups_show_history',$id) }}" class="list-group-item list-group-item-action">Davomadi tarixi</a>
                 </div>
             </div>
         </div>
@@ -318,10 +317,10 @@
                         @endif
                     </div>
                     <div class="modal-footer">
-                        @if($davomadDay=='fasle')
-                        <button type="submit" class="btn btn-success w-100">
-                            <i class="bi bi-save me-1"></i> Davomadni saqlash
-                        </button>
+                        @if($davomadDay=='false')
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="bi bi-save me-1"></i> Davomadni saqlash
+                            </button>
                         @endif
                     </div>
                 </form>
