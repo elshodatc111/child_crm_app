@@ -79,4 +79,13 @@ class GroupDavomatController extends Controller{
         return redirect()->back()->with('success', 'Guruh davomadi saqalndi!');
     }
 
+    public function groups_show_davomad($group_id){
+        $startDate = Date("Y-m")."-01";
+        $endDate = date("Y-m-t", strtotime($startDate));
+        dd($startDate." ".$endDate);
+        $davomads = ChildDavomad::with('child')->where('group_id', $group_id)->whereBetween('data', [$startDate, $endDate])->get();
+
+        return view('groups.index_show_davomad', compact('id'));
+    }
+
 }

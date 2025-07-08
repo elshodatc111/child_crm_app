@@ -96,13 +96,13 @@ Route::get('/kassa', [KassaController::class, 'index'])->name('kassa')->middlewa
 
 Route::get('/groups', [GroupsController::class, 'index'])->name('groups')->middleware(['auth']);
 Route::get('/groups-show/{id}', [GroupsController::class, 'groups_show'])->name('groups_show')->middleware(['auth']);
-Route::get('/groups-showdavomad/{id}', [GroupsController::class, 'groups_show_davomad'])->name('groups_show_davomad')->middleware(['auth']);
 Route::get('/groups-showhistory/{id}', [GroupsController::class, 'groups_show_history'])->name('groups_show_history')->middleware(['auth']);
 Route::post('/create-groups', [GroupsController::class, 'create_group'])->name('groups_create')->middleware(['auth']);
 Route::post('/groups-update', [GroupsController::class, 'group_update'])->name('groups_updates')->middleware(['auth']);
 Route::post('/groups-update-tarbiyachi', [GroupsController::class, 'groups_updates_tarbiyachi'])->name('groups_updates_tarbiyachi')->middleware(['auth']);
 Route::post('/groups-update-yordamchi', [GroupsController::class, 'groups_updates_yordamchi'])->name('groups_updates_yordamchi')->middleware(['auth']);
 Route::post('/groups-create-davomat', [GroupDavomatController::class, 'groups_create_davomat'])->name('groups_create_davomat')->middleware(['auth']);
+Route::get('/groups-showdavomad/{id}', [GroupDavomatController::class, 'groups_show_davomad'])->name('groups_show_davomad')->middleware(['auth']);
 Route::get('/groups-showchild/{id}', [GroupsChildController::class, 'groups_show_child'])->name('groups_show_child')->middleware(['auth']);
 
 Route::get('/arxiv-groups', [GroupsController::class, 'arxiv_index'])->name('groups_arxiv')->middleware(['auth']);

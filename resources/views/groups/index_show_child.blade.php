@@ -88,10 +88,11 @@
                                 <th>Guruhdagi holati</th>
                                 <th>Guruhdaga qo'shildi</th>
                                 <th>Izoh</th>
-                                <th>Guruhdaga qo'shil</th>
+                                <th>Guruhdaga qo'shdi</th>
                                 <th>Guruhdan o'chirildi</th>
                                 <th>Izoh</th>
                                 <th>Guruhdan o'chirdi</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -128,6 +129,11 @@
                                     <td>{{ $item['end_time'] }}</td>
                                     <td>{{ $item['end_comment'] }}</td>
                                     <td>{{ $item['end_manejer'] }}</td>
+                                    <td>
+                                        @if ($item['status']=='true')
+                                            <a href="" class="btn btn-primary px-1 py-1"><i class="bi bi-pen"></i></a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
