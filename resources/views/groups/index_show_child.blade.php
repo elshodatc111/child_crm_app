@@ -90,14 +90,13 @@
                                 <th>Guruhdan o'chirildi</th>
                                 <th>Izoh</th>
                                 <th>Guruhdan o'chirdi</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($child as $item)
                                 <tr>
                                     <td>{{ $loop->index+1 }}</td>
-                                    <td><a href="{{ route('child_show',$item['id']) }}">{{ $item['child'] }}</a></td>
+                                    <td style="text-align:left"><a href="{{ route('child_show',$item['id']) }}">{{ $item['child'] }}</a></td>
                                     <td>
                                         @if ($item['paymart_type']=='day')
                                             Kunlik
@@ -126,10 +125,10 @@
                                     <td>{{ $item['start_manejer'] }}</td>
                                     <td>{{ $item['end_time'] }}</td>
                                     <td>{{ $item['end_comment'] }}</td>
-                                    <td>{{ $item['end_manejer'] }}</td>
                                     <td>
+                                        {{ $item['end_manejer'] }}
                                         @if ($item['status']=='true')
-                                            <a href="" class="btn btn-primary px-1 py-1"><i class="bi bi-pen"></i></a>
+                                            <a href="{{ route('groups_show_child_update', ['group_id' => $id,'child_id' => $item['id']]) }}" class="btn btn-primary px-1 py-1"><i class="bi bi-pen"></i></a>
                                         @endif
                                     </td>
                                 </tr>

@@ -103,12 +103,12 @@ class GroupDavomatController extends Controller{
         return $res;
     }
 
-    public function groups_show_davomad($group_id){
-        $id = $group_id;
+    protected function joriyOyDavomad($group_id){
         $startDate = Date("Y-m")."-01";
         $endDate = date("Y-m-t", strtotime($startDate));
         $now = date('Y-m-d');
-        $days = $this->getWorkingDaysYMD(5);
+        $Group_days = Group::find($group_id)->group_type=='besh'?5:6;
+        $days = $this->getWorkingDaysYMD($Group_days);
         $Child = GroupChild::where('group_id',$group_id)->get();
         $childs = [];
         foreach ($Child as $key => $value) {
@@ -129,7 +129,73 @@ class GroupDavomatController extends Controller{
             }
             $childs[$key]['natija'] = $natija;
         }
-        return view('groups.index_show_davomad', compact('id','days','childs') );
+        return [
+            'childs' => $childs,
+            'days' => $days,
+        ];
+    }
+
+    protected function getWorkingDaysOYMD($type){
+        $days = [];
+        $prevMonth = date('m', strtotime('first day of last month'));
+        $year = date('Y', strtotime('first day of last month'));
+        $startDate = strtotime("$year-$prevMonth-01");
+        $endDate = strtotime(date("Y-m-t", $startDate));
+        for ($date = $startDate; $date <= $endDate; $date = strtotime('+1 day', $date)) {
+            $dayOfWeek = date('N', $date);
+            if ($dayOfWeek >= 1 && $dayOfWeek <= $type) {
+                $days[] = date('m-d', $date);
+            }
+        }
+        $res = [];
+        $k = 0;
+        foreach ($days as $key => $value) {
+            $DamKunlar = DamKunlar::where('data', $value)->first();
+            if (!$DamKunlar) {
+                $res[$k] = $value;
+                $k++;
+            }
+        }
+        return $res;
+    }
+
+    protected function otganOyDavomad($group_id){
+        $now = date('Y-m-d');
+        $Group_days = Group::find($group_id)->group_type=='besh'?5:6;
+        $days = $this->getWorkingDaysOYMD($Group_days);
+        $Child = GroupChild::where('group_id',$group_id)->get();
+        $childs = [];
+        foreach ($Child as $key => $value) {
+            $childs[$key]['child_id'] = $value->child_id;
+            $childs[$key]['child_name'] = Child::find($value->child_id)->name;
+            $natija = [];
+            foreach ($days as $key2 => $value2) {
+                if(date('Y')."-".$value2>$now){
+                    $natija[$key2] = 'kutilmoqda';
+                }else{
+                    $ChildDavomad = ChildDavomad::where('child_id',$value->child_id)->where('group_id',$group_id)->where('data',date('Y')."-".$value2)->first();
+                    if($ChildDavomad){
+                        $natija[$key2] = $ChildDavomad->status;
+                    }else{
+                        $natija[$key2] = 'Olinmadi';
+                    }
+                }
+            }
+            $childs[$key]['natija'] = $natija;
+        }
+        return [
+            'childs' => $childs,
+            'days' => $days,
+        ];
+    }
+
+    public function groups_show_davomad($group_id){
+        $id = $group_id;
+        $child = $this->joriyOyDavomad($group_id);
+        $days = $child['days'];
+        $childs = $child['childs'];
+        $otganOy = $this->otganOyDavomad($group_id);
+        return view('groups.index_show_davomad', compact('id','days','childs','otganOy') );
     }
 
 }

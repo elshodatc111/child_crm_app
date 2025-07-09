@@ -103,6 +103,9 @@ Route::post('/groups-update-yordamchi', [GroupsController::class, 'groups_update
 Route::post('/groups-create-davomat', [GroupDavomatController::class, 'groups_create_davomat'])->name('groups_create_davomat')->middleware(['auth']);
 Route::get('/groups-showdavomad/{id}', [GroupDavomatController::class, 'groups_show_davomad'])->name('groups_show_davomad')->middleware(['auth']);
 Route::get('/groups-showchild/{id}', [GroupsChildController::class, 'groups_show_child'])->name('groups_show_child')->middleware(['auth']);
+Route::get('/groups-showchild-update/{group_id}/{child_id}', [GroupsChildController::class, 'groups_show_child_update'])->name('groups_show_child_update')->middleware(['auth']);
+Route::post('/groups-showchild-delete', [GroupsChildController::class, 'groups_show_child_delete'])->name('groups_show_child_delete')->middleware(['auth']);
+Route::post('/groups-showchild-paymar-update', [GroupsChildController::class, 'groups_show_child_paymart_update'])->name('groups_show_child_paymart_update')->middleware(['auth']);
 
 Route::get('/arxiv-groups', [GroupsController::class, 'arxiv_index'])->name('groups_arxiv')->middleware(['auth']);
 Route::get('/new-groups', [GroupsController::class, 'new_index'])->name('groups_new')->middleware(['auth']);

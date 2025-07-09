@@ -111,6 +111,46 @@
                 </div>
             </div>
         </div>
+
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <h5 class="card-title">O'tgan oy davomadi</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center align-middle" style="font-size:14px;">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Bola ismi</th>
+                                @foreach ($otganOy['days'] as $date)
+                                    <th>{{ $date }}</th>
+                                @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($otganOy['childs'] as $child)
+                            <tr>
+                                <td>{{ $loop->index+1 }}</td>
+                                <td class="text-start"><a href="{{ route('child_show',$child['child_id']) }}">{{ $child['child_name'] }}</a></td>
+                                @foreach ($child['natija'] as $item)
+                                    <td>
+                                        @if($item == 'kutilmoqda')
+                                            ⏱
+                                        @elseif($item == 'Olinmadi')
+                                            ❓
+                                        @elseif($item == 'keldi')
+                                            ✅
+                                        @elseif($item == 'kelmadi')
+                                            ❌
+                                        @endif
+                                    </td>
+                                @endforeach
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
