@@ -53,7 +53,13 @@ class CildController extends Controller{
         $child['status'] = $GroupChild->status;
         $child['created_at'] = $GroupChild->created_at;
         $child['meneger'] = User::find($GroupChild->end_manager_id)->fio;
-        $child['group'] = Group::find(GroupChild::where('child_id',$GroupChild->id)->first()->group_id)->group_name;
+        $Gur = GroupChild::where('child_id',$GroupChild->id)->where('status','true')->first();
+        if($Gur){
+            $Groups = Group::find($Gur->group_id)->group_name;
+        }else{
+            $Groups = " ";
+        }
+        $child['group'] = $Groups;
         return $child;
     }
 
@@ -74,12 +80,63 @@ class CildController extends Controller{
         return $commit;
     }
 
+    protected function newGroups($child_id){
+        $Group = Group::where('status','true')->get();
+        $GroupChild = GroupChild::where('child_id',$child_id)->where('status','true')->first();
+        $groups = [];
+        $i = 0;
+        foreach ($Group as $key => $value) {
+            if($GroupChild){
+                $group_id = $GroupChild->group_id;
+            }else{
+                $group_id = 0;
+            }
+            if($group_id == $value->id){
+
+            }else{
+                $groups[$i]['group_id'] = $value->id;
+                $groups[$i]['group_name'] = $value->group_name;
+                $i++;
+            }
+        }
+        return $groups;
+    }
+
     public function show($id){
         $child = $this->child_about($id);
         $parent = $this->childParents($id);
         $commit = $this->ChildComment($id);
         $kassa = Kassa::first();
-        return view('child.active.show',compact('id','child','parent','commit','kassa'));
+        $newGroups = $this->newGroups($id);
+        return view('child.active.show',compact('id','child','parent','commit','kassa','newGroups'));
+    }
+
+    public function child_update_group(Request $request){
+        $child_id = $request->child_id;
+        $group_id = $request->group_id;
+        $comment = $request->comment;
+        $paymart_type = $request->paymart_type;
+        $GroupChild = GroupChild::where("child_id",$child_id)->where('status','true')->first();
+        $GroupChild->end_time = date("Y-m-d");
+        $GroupChild->end_comment = $comment;
+        $GroupChild->status = 'false';
+        $GroupChild->end_manager_id = auth()->user()->id;
+        $GroupChild->save();
+        GroupChild::create([
+            'group_id' => $group_id,
+            'child_id' => $child_id,
+            'start_time' => date("Y-m-d"),
+            'start_comment' => $comment,
+            'paymart_type' => $paymart_type,
+            'status' => 'true',
+            'start_manager_id' => auth()->user()->id,
+        ]);
+        ChildComment::create([
+            'child_id' => $child_id,
+            'description' => "Guruh yangilandi: ".$comment,
+            'user_id' => auth()->user()->id,
+        ]);
+        return redirect()->back()->with('success', 'Guruh yangilandi!');
     }
 
     public function child_update(Request $request){

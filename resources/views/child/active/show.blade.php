@@ -107,7 +107,11 @@
                                             };
                                         @endphp
                                         <span class="badge bg-{{ $badgeClass }} text-uppercase">
-                                            {{ ucfirst($status) }}
+                                            @if(ucfirst($status)=='Inactive')
+                                                Guruh mavjud emas
+                                            @else
+                                                Guruh mavjud
+                                            @endif
                                         </span>
                                     </td>
                                 </tr>
@@ -316,23 +320,41 @@
     </div>
 
 <!-- Modal: Guruh yangilash -->
-<div class="modal fade" id="updateGroupModal" tabindex="-1" aria-labelledby="updateGroupModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
-        <h5 class="modal-title" id="updateGroupModalLabel"><i class="bi bi-arrow-repeat me-1"></i> Guruh yangilash</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        Guruhni yangilash bo‘yicha ma’lumotlar...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
-        <button type="submit" class="btn btn-primary">Yangilash</button>
-      </div>
+    <div class="modal fade" id="updateGroupModal" tabindex="-1" aria-labelledby="updateGroupModalLabel" aria-hidden="true">
+        <form action="{{ route('child_update_group') }}" method="post">
+            @csrf
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateGroupModalLabel"><i class="bi bi-arrow-repeat me-1"></i> Guruh yangilash</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="child_id" value="{{ $id }}">
+                        <label for="group_id" class="my-2">Yangi guruhni tanlang</label>
+                        <select name="group_id" required class="form-select">
+                            <option value="">Tanlang</option>
+                            @foreach ($newGroups as $item)
+                                <option value="{{ $item['group_id'] }}">{{ $item['group_name'] }}</option>
+                            @endforeach
+                        </select>
+                        <label for="paymart_type" class="my-2">To'lov turini tanlang</label>
+                        <select name="paymart_type" required class="form-select">
+                            <option value="">Tanlang</option>
+                            <option value="day">Kunlik to'lov</option>
+                            <option value="monch">Oylik to'lov</option>
+                        </select>
+                        <label for="comment" class="my-2">Guruhni almashtirish sababi</label>
+                        <textarea name="comment" required class="form-control"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+                        <button type="submit" class="btn btn-primary">Yangilash</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-  </div>
-</div>
 
     <!-- Modal: Yangi qarindosh -->
     <div class="modal fade" id="newRelativeModal" tabindex="-1" aria-labelledby="newRelativeModalLabel" aria-hidden="true">

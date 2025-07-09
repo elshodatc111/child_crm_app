@@ -24,10 +24,15 @@ class ChildGroupController extends Controller{
             $groups[$key]['paymart_type'] = $value->paymart_type;
             $groups[$key]['status'] = $value->status;
             $groups[$key]['start_manager_id'] = User::find($value->start_manager_id)->fio;
-            $groups[$key]['end_manager_id'] = $value->end_menager_id!=null?User::find($value->end_manager_id)->fio:"";
+            if($value->end_manager_id==null){
+                $end = "";
+            }else{
+                $end = User::find($value->end_manager_id)->fio;
+            }
+            $groups[$key]['end_manager_id'] = $end;
         }
         return view('child.active.group_show',compact('id','groups'));
     }
 
-    
+
 }
