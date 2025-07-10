@@ -142,10 +142,10 @@
                             <td>{{ $item['meneger'] }}</td>
                             <td>{{ $item['created_at'] }}</td>
                             <td>
-                                <form action="" method="post" class="d-inline">
+                                <form action="{{ route('kassa_chiqim_success') }}" method="post" class="d-inline">
                                     @csrf 
                                     <input type="hidden" name="id" value="{{ $item['id'] }}">
-                                    <button class="btn btn-primary px-1 py-1"><i class="bi bi-check"></i></button>
+                                    <button type="submit" class="btn btn-primary px-1 py-1"><i class="bi bi-check"></i></button>
                                 </form>
                                 <form action="{{ route('kassa_chiqim_delete') }}" method="post" class="d-inline">
                                     @csrf 

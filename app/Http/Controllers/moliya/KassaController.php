@@ -11,6 +11,7 @@ use App\Models\User;
 use Carbon\Carbon;
 
 class KassaController extends Controller{
+
     public function index(){
         $Kassa = Kassa::first();
         $history = BalansHistory::where('type','pedding')->get();
@@ -119,6 +120,31 @@ class KassaController extends Controller{
         return redirect()->back()->with('success', 'Chiqim bekor qilindi!');
     }
 
-
+    public function kassa_chiqim_success(Request $request){
+        $id = $request->id;
+        $BalansHistory = BalansHistory::find($id);
+        $BalansHistory->type = 'success';
+        $BalansHistory->end_comment = 'Tasdiqlandi';
+        $BalansHistory->end_user_id = auth()->user()->id;
+        $BalansHistory->save();
+        $amount = $BalansHistory->amount;
+        $Kassa = Kassa::first();
+        $Balans = Balans::first();
+        $status = $BalansHistory->status;
+        if($status == 'plastik_xarajat'){
+            $Kassa->plastik_xarajat = $Kassa->plastik_xarajat - $amount;
+        }elseif($status == 'plastik_chiqim'){
+            $Balans->plastik = $Balans->plastik + $amount;
+            $Kassa->plastik_chiqim = $Kassa->plastik_chiqim - $amount;
+        }elseif($status == 'naqt_xarajat'){
+            $Kassa->naqt_xarajat = $Kassa->naqt_xarajat - $amount;
+        }else{
+            $Balans->naqt = $Balans->naqt + $amount;
+            $Kassa->naqt_chiqim = $Kassa->naqt_chiqim - $amount;
+        }
+        $Kassa->save();
+        $Balans->save();
+        return redirect()->back()->with('success', 'Tasdiqlandi!');
+    }
 
 }
