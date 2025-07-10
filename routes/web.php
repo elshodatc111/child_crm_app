@@ -33,6 +33,11 @@ Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->
 Route::get('/drektor', [HodimController::class, 'index'])->name('hodim')->middleware(['auth']);
 Route::get('/drektor_show/{id}', [HodimController::class, 'meneger_show'])->name('meneger_show')->middleware(['auth']);
 Route::get('/drektor_show_paymart/{id}', [HodimController::class, 'meneger_show_paymart'])->name('meneger_show_paymart')->middleware(['auth']);
+Route::post('/hodim_show/updates', [HodimController::class, 'hodim_show_update_post'])->name('hodim_show_update_post')->middleware(['auth']);
+Route::post('/hodim_show/updates/status', [HodimController::class, 'hodim_show_update_post_status'])->name('hodim_show_update_post_status')->middleware(['auth']);
+Route::post('/hodim_show/create/comment', [HodimController::class, 'hodim_showcreate_commentss'])->name('hodim_showcreate_commentss')->middleware(['auth']);
+Route::post('/hodim_show/update/password', [HodimController::class, 'updatePassword'])->name('hodim_show_update_password')->middleware(['auth']);
+Route::post('/hodim_show/create/paymart', [HodimController::class, 'hodim_create_paymarts'])->name('hodim_create_paymarts')->middleware(['auth']);
 
 Route::get('/tarbiyachi', [TarbiyachiController::class, 'hodim_tarbiyachi'])->name('hodim_tarbiyachi')->middleware(['auth']);
 Route::get('/oshpazlar', [OshpazlarControllar::class, 'hodim_oshpazlar'])->name('hodim_oshpazlar')->middleware(['auth']);

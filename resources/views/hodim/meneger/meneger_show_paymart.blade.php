@@ -59,15 +59,24 @@
                             <thead class="bg-primary">
                                 <tr class="text-center">
                                     <th class="text-white">#</th>
-                                    <th class="text-white">FIO</th>
-                                    <th class="text-white">Hodim haqida</th>
-                                    <th class="text-white">Holati</th>
-                                    <th class="text-white">Ishga olindi</th>
-                                    <th class="text-white">Ishga bo'shatildi</th>
+                                    <th class="text-white">To'lov summasi</th>
+                                    <th class="text-white">To'lov turi</th>
+                                    <th class="text-white">To'lov haqida</th>
+                                    <th class="text-white">To'lov vaqti</th>
+                                    <th class="text-white">Meneger</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @foreach ($res as $item)
+                                    <tr>
+                                        <td>{{ $loop->index+1 }}</td>
+                                        <td>{{ number_format($item['amount'], 0, '', ' ') }} so'm</td>
+                                        <td>{{ $item['type'] }}</td>
+                                        <td>{{ $item['comment'] }}</td>
+                                        <td>{{ $item['created_at'] }}</td>
+                                        <td>{{ $item['meneger'] }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -75,7 +84,7 @@
             </div>
         </section>
     </div>
-    
+
 </div>
 
     <script>

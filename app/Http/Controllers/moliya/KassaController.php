@@ -76,7 +76,7 @@ class KassaController extends Controller{
 
     public function kassa_chiqim(Request $request){
         $expense_type = $request->expense_type;
-        $amount = (int) preg_replace('/\s+/u', '', $request->amount);
+        $amount = (int) str_replace(",","",$request->amount);
         $payment_type = $request->payment_type;
         $note = $request->note;
         if($this->checkAmount($payment_type, $amount)){
