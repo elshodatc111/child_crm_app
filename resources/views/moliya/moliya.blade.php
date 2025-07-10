@@ -29,7 +29,7 @@
         </div>
 
         <div class="row g-3">
-            <div class="col-12 col-sm-6 col-lg-3">
+            <div class="col-12 col-sm-6 col-lg-6">
                 <div class="card shadow-sm border-start border-4 border-primary">
                     <div class="card-body d-flex align-items-center">
                         <div class="me-3 text-primary">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-3">
+            <div class="col-12 col-sm-6 col-lg-6">
                 <div class="card shadow-sm border-start border-4 border-info">
                     <div class="card-body d-flex align-items-center">
                         <div class="me-3 text-info">
@@ -55,6 +55,7 @@
                     </div>
                 </div>
             </div>
+            <!--
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="card shadow-sm border-start border-4 border-success">
                     <div class="card-body d-flex align-items-center">
@@ -81,6 +82,7 @@
                     </div>
                 </div>
             </div>
+-->
         </div>
         @if ($errors->any())
             <div class="alert alert-danger">
