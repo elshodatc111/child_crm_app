@@ -14,6 +14,7 @@ use App\Models\GroupChild;
 use App\Models\ChildComment;
 use App\Models\ChildParent;
 use App\Models\PaymartChild;
+use App\Models\ChildDavomad;
 use App\Http\Requests\StorePaymentRequest;
 
 class CildController extends Controller{
@@ -282,7 +283,17 @@ class CildController extends Controller{
     }
 
     public function show_davomad($id){
-        return view('child.active.davomad_show',compact('id'));
+        $ChildDavomad = ChildDavomad::where('child_id',$id)->orderBy('id','desc')->get();
+        $davomad = [];
+        foreach ($ChildDavomad as $key => $value) {
+            $davomad[$key]['guruh'] = Group::find($value->group_id)->group_name;
+            $davomad[$key]['data'] = $value->data;
+            $davomad[$key]['amount'] = $value->amount;
+            $davomad[$key]['status'] = $value->status;
+            $davomad[$key]['meneger'] = User::find($value->user_id)->fio;
+            $davomad[$key]['created_at'] = $value->created_at;
+        }
+        return view('child.active.davomad_show',compact('id','davomad'));
     }
 
 }
