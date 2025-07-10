@@ -52,32 +52,7 @@
                                     <label for="message_send" class="form-check-label">SMS xabarlarni yuborishga ruxsat berilsin</label>
                                 </div>
                             </div>
-
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input type="checkbox" name="exson_type_naqt" class="form-check-input" id="exson_type_naqt"
-                                        @if($Setting['exson_type_naqt']=='true' && $Setting['exson_type_plastik']=='false') checked @endif>
-                                    <label for="exson_type_naqt" class="form-check-label">Exson uchun faqat naqd pul ajratish</label>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input type="checkbox" name="exson_type_plastik" class="form-check-input" id="exson_type_plastik"
-                                        @if($Setting['exson_type_naqt']=='false' && $Setting['exson_type_plastik']=='true') checked @endif>
-                                    <label for="exson_type_plastik" class="form-check-label">Exson uchun faqat plastik (karta) orqali ajratish</label>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input type="checkbox" name="exson_gibrid" class="form-check-input" id="exson_gibrid"
-                                        @if($Setting['exson_type_naqt']=='true' && $Setting['exson_type_plastik']=='true') checked @endif>
-                                    <label for="exson_gibrid" class="form-check-label">Exsonda naqd to‘lovdan faqat naqd, plastik to‘lovdan faqat plastik tarzda mablag‘ ajratilsin (belgilangan summadan)</label>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-success w-100 mt-4">
+                            <button type="submit" class="btn btn-success w-100 mt-4 mb-3">
                                 <i class="bi bi-save"></i> O'zgarishlarni saqlash
                             </button>
                         </form>
@@ -96,7 +71,7 @@
                             @csrf
                             <label for="exson_foiz" class="form-label">Exson foizi (%)</label>
                             <input type="number" name="exson_foiz" value="{{ $Balans['exson_foiz'] }}" required class="form-control" placeholder="Exson foizini kiriting">
-                            <button type="submit" class="btn btn-primary w-100 mt-3">
+                            <button type="submit" class="btn btn-primary w-100 mt-1">
                                 <i class="bi bi-save"></i> O'zgarishlarni saqlash
                             </button>
                         </form>
