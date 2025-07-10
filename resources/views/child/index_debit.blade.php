@@ -84,7 +84,7 @@
                             @forelse ($children as $key => $child)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td style="text-align:left"><a href="#">{{ $child->name }}</a></td>
+                                    <td style="text-align:left"><a href="{{ route('child_show',$child->id ) }}">{{ $child->name }}</a></td>
                                     <td>
                                         @php
                                             $age = \Carbon\Carbon::parse($child->birthday)->age;

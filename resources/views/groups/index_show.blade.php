@@ -168,7 +168,7 @@
                         <h5 class="mb-0">Joriy oy ish kunlari ({{ $ishKunlarSoni }} kun)</h5>
                     </div>
                     <div class="card-body">
-                        <table class="table text-center table-bordered" style="font-size:14px">
+                        <table class="table text-center table-bordered" style="font-size:12px">
                             <thead>
                                 <tr>
                                     <th class="text-center px-3">#</th>
@@ -192,14 +192,14 @@
                                             $badgeClass = 'text-secondary'; // kelajak: ko‘k
                                         }
                                     @endphp
-                                    <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>
+                                    <tr class="p-0 m-0">
+                                        <td class="p-0 m-0">{{ $loop->index + 1 }}</td>
+                                        <td class="p-0 m-0">
                                             <span class="badge p-0 m-0 {{ $badgeClass }} px-3 py-2 rounded-pill">
                                                 {{ $item['hafta_kuni'] }}
                                             </span>
                                         </td>
-                                        <td>
+                                        <td class="p-0 m-0">
                                             <span class="badge p-0 m-0 {{ $badgeClass }} px-3 py-2 rounded-pill">
                                                 {{ $item['sanasi'] }}
                                             </span>

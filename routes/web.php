@@ -94,6 +94,8 @@ Route::get('/moliya', [MoliyaController::class, 'index'])->name('moliya')->middl
 Route::post('/moliya/chiqim', [MoliyaController::class, 'store'])->name('moliya_chiqim')->middleware(['auth']);
 
 Route::get('/kassa', [KassaController::class, 'index'])->name('kassa')->middleware(['auth']);
+Route::post('/kassa/chiqim', [KassaController::class, 'kassa_chiqim'])->name('kassa_chiqim')->middleware(['auth']);
+Route::post('/kassa/chiqim/delete', [KassaController::class, 'kassa_chiqim_delete'])->name('kassa_chiqim_delete')->middleware(['auth']);
 
 Route::get('/groups', [GroupsController::class, 'index'])->name('groups')->middleware(['auth']);
 Route::get('/groups-show/{id}', [GroupsController::class, 'groups_show'])->name('groups_show')->middleware(['auth']);

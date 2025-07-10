@@ -85,6 +85,13 @@
             </div>
         </div>
 
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
+            </div>
+        @endif
+
         <div class="card mt-4">
             <div class="card-header">
                 <div class="row">
@@ -113,23 +120,41 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($res as $item)
                         <tr>
-                            <td>1</td>
-                            <td><span class="badge bg-success">Kirim</span></td>
-                            <td>50,000 so'm</td>
-                            <td>Naqt</td>
-                            <td>Ota-ona to‘lovi</td>
-                            <td>Islom Karimov</td>
-                            <td>2025-06-25 14:22</td>
+                            <td>{{ $loop->index+1 }}</td>
+                            <td>
+                                @if($item['status'] == 'naqt_xarajat' OR $item['status'] == 'plastik_xarajat')
+                                    <span class="badge bg-primary">Xarajat</span>
+                                @else
+                                    <span class="badge bg-success">Chiqim</span>
+                                @endif
+                            </td>
+                            <td>{{ number_format($item['amount'], 0, '.', ' ') }} so'm</td>
+                            <td>
+                                @if($item['status'] == 'naqt_xarajat' OR $item['status'] == 'naqt_chiqim')
+                                    Naqt
+                                @else
+                                    Plastik
+                                @endif
+                            </td>
+                            <td>{{ $item['start_comment'] }}</td>
+                            <td>{{ $item['meneger'] }}</td>
+                            <td>{{ $item['created_at'] }}</td>
                             <td>
                                 <form action="" method="post" class="d-inline">
-                                    <button class="btn btn-primary px-1"><i class="bi bi-check"></i></button>
+                                    @csrf 
+                                    <input type="hidden" name="id" value="{{ $item['id'] }}">
+                                    <button class="btn btn-primary px-1 py-1"><i class="bi bi-check"></i></button>
                                 </form>
-                                <form action="" method="post" class="d-inline">
-                                    <button class="btn btn-danger px-1"><i class="bi bi-trash"></i></button>
+                                <form action="{{ route('kassa_chiqim_delete') }}" method="post" class="d-inline">
+                                    @csrf 
+                                    <input type="hidden" name="id" value="{{ $item['id'] }}">
+                                    <button class="btn btn-danger px-1 py-1"><i class="bi bi-trash"></i></button>
                                 </form>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -139,7 +164,7 @@
         <div class="modal fade" id="chiqimModal" tabindex="-1" aria-labelledby="chiqimModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-md">
                 <div class="modal-content">
-                    <form action="#" method="POST">
+                    <form action="{{ route('kassa_chiqim') }}" method="POST">
                         @csrf
                         <div class="modal-header">
                             <h5 class="modal-title" id="chiqimModalLabel">Kassadn chiqim</h5>
@@ -163,7 +188,7 @@
                                 <select class="form-select" name="payment_type" id="payment_type" required>
                                     <option value="">Tanlang</option>
                                     <option value="Naqt">Naqt</option>
-                                    <option value="Plastik">Plastik</option>
+                                    <option value="Plastik">Plastik</option> 
                                 </select>
                             </div>
                             <div class="mb-3">
