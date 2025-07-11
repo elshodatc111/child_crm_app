@@ -39,14 +39,19 @@ Route::post('/hodim_show/create/comment', [HodimController::class, 'hodim_showcr
 Route::post('/hodim_show/update/password', [HodimController::class, 'updatePassword'])->name('hodim_show_update_password')->middleware(['auth']);
 Route::post('/hodim_show/create/paymart', [HodimController::class, 'hodim_create_paymarts'])->name('hodim_create_paymarts')->middleware(['auth']);
 
+Route::get('/hodimlar', [BoshqaHodimController::class, 'index'])->name('hodim_boshqalar')->middleware(['auth']);
+Route::get('/hodim_show/{id}', [BoshqaHodimController::class, 'show'])->name('hodim_boshqa_show')->middleware(['auth']);
+Route::get('/hodim_show_tulov/{id}', [BoshqaHodimController::class, 'tulovlar'])->name('hodim_boshqa_show_tulovlar')->middleware(['auth']);
+Route::post('/hodimlar/comments/create', [BoshqaHodimController::class, 'create_comments'])->name('hodim_boshqalar_create_comments')->middleware(['auth']);
+Route::post('/hodimlar/update/status', [BoshqaHodimController::class, 'update_status'])->name('hodim_boshqalar_update_status')->middleware(['auth']);
+Route::post('/hodimlar/tulov/ish\haqi', [BoshqaHodimController::class, 'paymart_post'])->name('hodim_boshqalar_paymart_post')->middleware(['auth']);
+
 Route::get('/tarbiyachi', [TarbiyachiController::class, 'hodim_tarbiyachi'])->name('hodim_tarbiyachi')->middleware(['auth']);
 Route::get('/oshpazlar', [OshpazlarControllar::class, 'hodim_oshpazlar'])->name('hodim_oshpazlar')->middleware(['auth']);
 Route::get('/techer', [TecherHodimController::class, 'index'])->name('hodim_techer')->middleware(['auth']);
 Route::get('/techer-show/{id}', [TecherHodimController::class, 'show'])->name('hodim_techer_show')->middleware(['auth']);
 
-Route::get('/hodimlar', [BoshqaHodimController::class, 'index'])->name('hodim_boshqalar')->middleware(['auth']);
-Route::get('/hodim_show/{id}', [BoshqaHodimController::class, 'show'])->name('hodim_boshqa_show')->middleware(['auth']);
-Route::get('/hodim_show_tulov/{id}', [BoshqaHodimController::class, 'tulovlar'])->name('hodim_boshqa_show_tulovlar')->middleware(['auth']);
+
 
 Route::get('/hodim_vakancy', [VacancyController::class, 'hodim_vacancy'])->name('hodim_vacancy')->middleware(['auth']);
 Route::get('/hodim_vakancy_show/{id}', [VacancyController::class, 'hodim_vacancy_show'])->name('hodim_vacancy_show')->middleware(['auth']);
