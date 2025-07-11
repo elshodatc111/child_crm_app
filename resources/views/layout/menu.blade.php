@@ -63,7 +63,7 @@
                         <i class="bi bi-file-earmark-text-fill"></i><span>Hisobot</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs(['meneger_show'],['oshpaz_show'],['oshpaz_paymart'],['hodim'],['hodim_tarbiyachi'],['meneger_show_paymart'],['hodim_boshqa_show'],['hodim_boshqa_show_tulovlar'],['hodim_vacancy_show'],['hodim_techer'],['hodim_techer_show'],['hodim_oshpazlar'],['hodim_boshqalar'],['hodim_vacancy'],['hodim_vacancy_create']) ? 'active' : '' }}">
+                <li class="sidebar-item {{ request()->routeIs(['meneger_show'],['oshpaz_show'],['oshpaz_paymart'],['hodim_techer_tarix'],['hodim_techer_paymart'],['hodim'],['hodim_tarbiyachi'],['meneger_show_paymart'],['hodim_boshqa_show'],['hodim_boshqa_show_tulovlar'],['hodim_vacancy_show'],['hodim_techer'],['hodim_techer_show'],['hodim_oshpazlar'],['hodim_boshqalar'],['hodim_vacancy'],['hodim_vacancy_create']) ? 'active' : '' }}">
                     <a href="{{ route('hodim') }}" class='sidebar-link'>
                         <i class="bi bi-person-badge-fill"></i><span>Hodimlar</span>
                     </a>

@@ -67,15 +67,22 @@
                         <thead class="bg-primary">
                             <tr class="text-center">
                                 <th class="text-white">#</th>
-                                <th class="text-white">FIO</th>
-                                <th class="text-white">Hodim haqida</th>
+                                <th class="text-white">O'qituvchi</th>
+                                <th class="text-white">O'qituvchi haqida</th>
                                 <th class="text-white">Holati</th>
                                 <th class="text-white">Ishga olindi</th>
-                                <th class="text-white">Ishga bo'shatildi</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($techer as $item)
+                                <tr>
+                                    <td>{{ $loop->index+1 }}</td>
+                                    <td><a href="{{ route('hodim_techer_show', $item['id'] ) }}">{{ $item['fio'] }}</a></td>
+                                    <td>{{ $item['commit'] }}</td>
+                                    <td>{{ $item['status'] }}</td>
+                                    <td>{{ $item['created_at'] }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -144,7 +144,7 @@
                                 @foreach ($comment as $item)
                                     <div class="comment-box d-flex align-items-start">
                                         <div>
-                                            <strong>{{ $item['meneger'] }}</strong> <small class="text-muted">– {{ $item['meneger'] }}</small><br>
+                                            <strong>{{ $item['meneger'] }}</strong> <small class="text-muted">– {{ $item['created_at'] }}</small><br>
                                             {{ $item['comment'] }}
                                         </div>
                                     </div>
