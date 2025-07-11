@@ -46,8 +46,11 @@ Route::post('/hodimlar/comments/create', [BoshqaHodimController::class, 'create_
 Route::post('/hodimlar/update/status', [BoshqaHodimController::class, 'update_status'])->name('hodim_boshqalar_update_status')->middleware(['auth']);
 Route::post('/hodimlar/tulov/ish\haqi', [BoshqaHodimController::class, 'paymart_post'])->name('hodim_boshqalar_paymart_post')->middleware(['auth']);
 
-Route::get('/tarbiyachi', [TarbiyachiController::class, 'hodim_tarbiyachi'])->name('hodim_tarbiyachi')->middleware(['auth']);
 Route::get('/oshpazlar', [OshpazlarControllar::class, 'hodim_oshpazlar'])->name('hodim_oshpazlar')->middleware(['auth']);
+Route::get('/oshpaz/{id}', [OshpazlarControllar::class, 'oshpaz_show'])->name('oshpaz_show')->middleware(['auth']);
+Route::get('/oshpaz_pay/{id}', [OshpazlarControllar::class, 'oshpaz_paymart'])->name('oshpaz_paymart')->middleware(['auth']);
+
+Route::get('/tarbiyachi', [TarbiyachiController::class, 'hodim_tarbiyachi'])->name('hodim_tarbiyachi')->middleware(['auth']);
 Route::get('/techer', [TecherHodimController::class, 'index'])->name('hodim_techer')->middleware(['auth']);
 Route::get('/techer-show/{id}', [TecherHodimController::class, 'show'])->name('hodim_techer_show')->middleware(['auth']);
 

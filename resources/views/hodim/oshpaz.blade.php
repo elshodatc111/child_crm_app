@@ -79,7 +79,7 @@
                             <tr>
                                 <td class="text-center">{{ $loop->index+1 }}</td>
                                 <td>
-                                    <a href="">{{ $item['fio'] }}</a>
+                                    <a href="{{ route('oshpaz_show',$item['id']) }}">{{ $item['fio'] }}</a>
                                 </td>
                                 <td class="text-center">{{ $item['commit'] }}</td>
                                 <td class="text-center">

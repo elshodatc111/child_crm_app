@@ -12,6 +12,7 @@ use App\Models\UserComment;
 use App\Models\Balans;
 use App\Models\BalansHistory;
 use App\Models\UserSalary;
+use Carbon\Carbon;
 
 class BoshqaHodimController extends Controller{
 
@@ -45,7 +46,9 @@ class BoshqaHodimController extends Controller{
     }
 
     protected function davomadCount($id){
-        $HodimDavomad = HodimDavomad::where('user_id',$id)->get();
+        $startOfMonth = Carbon::now()->startOfMonth()->toDateString();
+        $endOfMonth = Carbon::now()->endOfMonth()->toDateString();
+        $HodimDavomad = HodimDavomad::where('user_id', $id)->whereBetween('date', [$startOfMonth, $endOfMonth])->get();
         $keldi = 0;
         $kelmadi = 0;
         $kechikdi = 0;
@@ -116,6 +119,13 @@ class BoshqaHodimController extends Controller{
                     'type' => $request->payment_type,
                     'comment' => $request->comment,
                 ]);
+                BalansHistory::create([
+                    'status' => 'naqt_ish_haqi',
+                    'type' => 'success',
+                    'amount' => $amount,
+                    'start_comment' => $request->comment,
+                    'start_user_id' => auth()->user()->id,
+                ]);
             }
         }else{
             if($plastik<$amount){
@@ -128,6 +138,13 @@ class BoshqaHodimController extends Controller{
                     'amount' => $amount,
                     'type' => $request->payment_type,
                     'comment' => $request->comment,
+                ]);
+                BalansHistory::create([
+                    'status' => 'plastik_ish_haqi',
+                    'type' => 'success',
+                    'amount' => $amount,
+                    'start_comment' => $request->comment,
+                    'start_user_id' => auth()->user()->id,
                 ]);
             }
         }
