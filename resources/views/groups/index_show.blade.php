@@ -65,10 +65,19 @@
 
         <div class="card shadow-sm rounded">
             <div class="card-body">
-                <div class="list-group list-group-horizontal" id="inbox-menu">
-                    <a href="{{ route('groups_show',$id) }}" class="list-group-item list-group-item-action active">Guruh haqida</a>
-                    <a href="{{ route('groups_show_child',$id) }}" class="list-group-item list-group-item-action ">Guruhdagi bolalar</a>
-                    <a href="{{ route('groups_show_davomad',$id) }}" class="list-group-item list-group-item-action ">Guruh davomadi</a>
+                <div class="row text-center">
+                    <div class="col-lg-3 list-group mt-lg-0 mt-2">
+                        <a href="{{ route('groups_show',$id) }}" class="list-group-item list-group-item-action active">Guruh haqida</a>
+                    </div>
+                    <div class="col-lg-3 list-group mt-lg-0 mt-2">
+                        <a href="{{ route('groups_show_child',$id) }}" class="list-group-item list-group-item-action ">Bolalar && Tarbiyachilar</a>
+                    </div>
+                    <div class="col-lg-3 list-group mt-lg-0 mt-2">
+                        <a href="{{ route('groups_show_davomad',$id) }}" class="list-group-item list-group-item-action ">Guruh davomadi</a>
+                    </div>
+                    <div class="col-lg-3 list-group mt-lg-0 mt-2">
+                        <a href="{{ route('child_show_darslar',$id) }}" class="list-group-item list-group-item-action ">Qo'shimcha darslar</a>
+                    </div>
                 </div>
             </div>
         </div>

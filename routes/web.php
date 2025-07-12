@@ -22,6 +22,7 @@ use App\Http\Controllers\moliya\KassaController;
 use App\Http\Controllers\groups\GroupsController;
 use App\Http\Controllers\groups\GroupDavomatController;
 use App\Http\Controllers\groups\GroupsChildController;
+use App\Http\Controllers\groups\GroupsDarslarController;
 
 // Login ko'rinishi
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -121,6 +122,7 @@ Route::post('/kassa/chiqim/success', [KassaController::class, 'kassa_chiqim_succ
 
 Route::get('/groups', [GroupsController::class, 'index'])->name('groups')->middleware(['auth']);
 Route::get('/groups-show/{id}', [GroupsController::class, 'groups_show'])->name('groups_show')->middleware(['auth']);
+Route::get('/child-show-darslar/{id}', [GroupsDarslarController::class, 'index'])->name('child_show_darslar')->middleware(['auth']);
 Route::post('/create-groups', [GroupsController::class, 'create_group'])->name('groups_create')->middleware(['auth']);
 Route::post('/groups-update', [GroupsController::class, 'group_update'])->name('groups_updates')->middleware(['auth']);
 Route::post('/groups-update-tarbiyachi', [GroupsController::class, 'groups_updates_tarbiyachi'])->name('groups_updates_tarbiyachi')->middleware(['auth']);

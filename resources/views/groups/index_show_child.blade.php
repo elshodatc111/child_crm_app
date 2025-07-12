@@ -65,10 +65,19 @@
 
         <div class="card shadow-sm rounded">
             <div class="card-body">
-                <div class="list-group list-group-horizontal" id="inbox-menu">
-                    <a href="{{ route('groups_show',$id) }}" class="list-group-item list-group-item-action">Guruh haqida</a>
-                    <a href="{{ route('groups_show_child',$id) }}" class="list-group-item list-group-item-action active">Guruhdagi bolalar</a>
-                    <a href="{{ route('groups_show_davomad',$id) }}" class="list-group-item list-group-item-action ">Guruh davomadi</a>
+                <div class="row text-center">
+                    <div class="col-lg-3 list-group mt-lg-0 mt-2">
+                        <a href="{{ route('groups_show',$id) }}" class="list-group-item list-group-item-action ">Guruh haqida</a>
+                    </div>
+                    <div class="col-lg-3 list-group mt-lg-0 mt-2">
+                        <a href="{{ route('groups_show_child',$id) }}" class="list-group-item list-group-item-action active">Bolalar && Tarbiyachilar</a>
+                    </div>
+                    <div class="col-lg-3 list-group mt-lg-0 mt-2">
+                        <a href="{{ route('groups_show_davomad',$id) }}" class="list-group-item list-group-item-action ">Guruh davomadi</a>
+                    </div>
+                    <div class="col-lg-3 list-group mt-lg-0 mt-2">
+                        <a href="{{ route('child_show_darslar',$id) }}" class="list-group-item list-group-item-action ">Qo'shimcha darslar</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -129,6 +138,50 @@
                                         {{ $item['end_manejer'] }}
                                         @if ($item['status']=='true')
                                             <a href="{{ route('groups_show_child_update', ['group_id' => $id,'child_id' => $item['id']]) }}" class="btn btn-primary px-1 py-1"><i class="bi bi-pen"></i></a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <h5 class="card-title">Tarbiyachilar</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered align-middle text-center">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Tarbiyachi</th>
+                                <th>Guruhga biriktirildi</th>
+                                <th>Guruhdan olindi</th>
+                                <th>Status</th>
+                                <th>Lavozimi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($res as $item)
+                                <tr>
+                                    <td>{{ $loop->index+1 }}</td>
+                                    <td>{{ $item['tarbiyachi'] }}</td>
+                                    <td>{{ $item['start_time'] }}</td>
+                                    <td>{{ $item['end_time'] }}</td>
+                                    <td>
+                                        @if($item['type'] == 'tarbiyachi')
+                                            Tarbiyachi
+                                        @else
+                                            Yordamchi tarbiyachi
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($item['status']==1)
+                                            Aktiv
+                                        @else
+                                            Yakunlangan
                                         @endif
                                     </td>
                                 </tr>

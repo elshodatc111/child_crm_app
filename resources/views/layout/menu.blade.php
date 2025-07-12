@@ -17,70 +17,98 @@
             </div>
         </div>
         <div class="sidebar-menu">
-            <ul class="menu">
-                <li class="sidebar-item {{ request()->routeIs(['dashboard']) ? 'active' : '' }}">
-                    <a href="{{ route('dashboard') }}" class='sidebar-link'>
-                        <i class="bi bi-speedometer2"></i><span>Dashboard</span>
+            <ul class="menu list-unstyled">
+                <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}" class="sidebar-link">
+                        <i class="bi bi-speedometer2"></i> <span>Dashboard (Jarayonda)</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs(['child'],['child_debit'],['child_end'],['child_show'],['child_show_group'],['child_show_davomad'],['child_show_group']) ? 'active' : '' }}">
-                    <a href="{{ route('child') }}" class='sidebar-link'>
-                        <i class="bi bi-people-fill"></i><span>Bolalar</span>
+
+                <li class="sidebar-item {{ request()->routeIs([
+                    'child','child_debit','child_end','child_show','child_show_group','child_show_davomad'
+                ]) ? 'active' : '' }}">
+                    <a href="{{ route('child') }}" class="sidebar-link">
+                        <i class="bi bi-emoji-smile-fill"></i> <span>Bolalar</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs(['child_vakancy','child_vakancy_show','child_vakancy_create']) ? 'active' : '' }}">
-                    <a href="{{ route('child_vakancy') }}" class='sidebar-link'>
-                        <i class="bi bi-people-fill"></i><span>Tashriflar</span>
+
+                <li class="sidebar-item {{ request()->routeIs([
+                    'child_vakancy','child_vakancy_show','child_vakancy_create'
+                ]) ? 'active' : '' }}">
+                    <a href="{{ route('child_vakancy') }}" class="sidebar-link">
+                        <i class="bi bi-door-open-fill"></i> <span>Tashriflar</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs(['groups'],['groups_arxiv'],['groups_show_child'],['groups_show_child_update'],['groups_show_davomad'],['groups_new'],['groups_show']) ? 'active' : '' }}">
-                    <a href="{{ route('groups') }}" class='sidebar-link'>
-                        <i class="bi bi-diagram-3-fill"></i><span>Guruhlar</span>
+
+                <li class="sidebar-item {{ request()->routeIs([
+                    'groups','groups_arxiv','groups_show_child','child_show_darslar','groups_show_child_update','groups_show_davomad','groups_new','groups_show'
+                ]) ? 'active' : '' }}">
+                    <a href="{{ route('groups') }}" class="sidebar-link">
+                        <i class="bi bi-diagram-3-fill"></i> <span>Guruhlar</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs(['hodim_davomad_meneger'],['hodim_davomad_tarbiyachi'],['hodim_davomad_techer'],['hodim_davomad_hodim']) ? 'active' : '' }}">
-                    <a href="{{ route('hodim_davomad_meneger') }}" class='sidebar-link'>
-                        <i class="bi bi-calendar-check-fill"></i><span>Hodimlar Davomadi</span>
+
+                <li class="sidebar-item {{ request()->routeIs([
+                    'hodim_davomad_meneger','hodim_davomad_tarbiyachi','hodim_davomad_techer','hodim_davomad_hodim'
+                ]) ? 'active' : '' }}">
+                    <a href="{{ route('hodim_davomad_meneger') }}" class="sidebar-link">
+                        <i class="bi bi-calendar-check"></i> <span>Hodimlar Davomadi</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs(['kassa']) ? 'active' : '' }}">
-                    <a href="{{ route('kassa') }}" class='sidebar-link'>
-                        <i class="bi bi-cash-stack"></i><span>Kassa</span>
+
+                <li class="sidebar-item {{ request()->routeIs('kassa') ? 'active' : '' }}">
+                    <a href="{{ route('kassa') }}" class="sidebar-link">
+                        <i class="bi bi-cash-stack"></i> <span>Kassa</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ request()->routeIs(['moliya']) ? 'active' : '' }}">
-                    <a href="{{ route('moliya') }}" class='sidebar-link'>
-                        <i class="bi bi-bar-chart-line-fill"></i><span>Moliya</span>
+
+                <li class="sidebar-item {{ request()->routeIs('moliya') ? 'active' : '' }}">
+                    <a href="{{ route('moliya') }}" class="sidebar-link">
+                        <i class="bi bi-bar-chart-fill"></i> <span>Moliya</span>
                     </a>
                 </li>
+
+                <li class="sidebar-item {{ request()->routeIs('statistika') ? 'active' : '' }}">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-pie-chart-fill"></i> <span>Statistika (Jarayonda)</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item {{ request()->routeIs('hisobot') ? 'active' : '' }}">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-file-earmark-text-fill"></i> <span>Hisobot (Jarayonda)</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item {{ request()->routeIs([
+                    'meneger_show','oshpaz_show','oshpaz_paymart','hodim_techer_tarix','hodim_techer_paymart',
+                    'hodim_tarbiyachi_show','hodim_tarbiyachi_show_tarix','hodim_tarbiyachi_show_paymart',
+                    'hodim','hodim_tarbiyachi','meneger_show_paymart','hodim_boshqa_show','hodim_boshqa_show_tulovlar',
+                    'hodim_vacancy_show','hodim_techer','hodim_techer_show','hodim_oshpazlar','hodim_boshqalar',
+                    'hodim_vacancy','hodim_vacancy_create'
+                ]) ? 'active' : '' }}">
+                    <a href="{{ route('hodim') }}" class="sidebar-link">
+                        <i class="bi bi-person-badge"></i> <span>Hodimlar</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item {{ request()->routeIs('profile') ? 'active' : '' }}">
+                    <a href="{{ route('profile') }}" class="sidebar-link">
+                        <i class="bi bi-person-circle"></i> <span>Profil (Jaroyonda)</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item {{ request()->routeIs('setting') ? 'active' : '' }}">
+                    <a href="{{ route('setting') }}" class="sidebar-link">
+                        <i class="bi bi-gear-fill"></i> <span>Sozlamalar</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-pie-chart-fill"></i><span>Statistika</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-text-fill"></i><span>Hisobot</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ request()->routeIs(['meneger_show'],['oshpaz_show'],['oshpaz_paymart'],['hodim_techer_tarix'],['hodim_techer_paymart'],['hodim_tarbiyachi_show'],['hodim_tarbiyachi_show_tarix'],['hodim_tarbiyachi_show_paymart'],['hodim'],['hodim_tarbiyachi'],['meneger_show_paymart'],['hodim_boshqa_show'],['hodim_boshqa_show_tulovlar'],['hodim_vacancy_show'],['hodim_techer'],['hodim_techer_show'],['hodim_oshpazlar'],['hodim_boshqalar'],['hodim_vacancy'],['hodim_vacancy_create']) ? 'active' : '' }}">
-                    <a href="{{ route('hodim') }}" class='sidebar-link'>
-                        <i class="bi bi-person-badge-fill"></i><span>Hodimlar</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ request()->routeIs(['profile']) ? 'active' : '' }}">
-                    <a href="{{ route('profile') }}" class='sidebar-link'>
-                        <i class="bi bi-person-circle"></i><span>Profil</span>
-                    </a>
-                </li>
-                <li class="sidebar-item {{ request()->routeIs(['setting']) ? 'active' : '' }}">
-                    <a href="{{ route('setting')  }}" class='sidebar-link'>
-                        <i class="bi bi-gear-fill"></i><span>Sozlamalar</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class='sidebar-link text-danger'>
-                        <i class="bi bi-box-arrow-right text-danger"></i><span>Chiqish</span>
+                    <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    class="sidebar-link text-danger">
+                        <i class="bi bi-box-arrow-right"></i> <span>Chiqish</span>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
@@ -91,3 +119,33 @@
     </div>
 </div>
 
+<style>
+    .sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 15px;
+        border-radius: 10px;
+        color: #333;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .sidebar-link:hover {
+        background-color: #f1f1f1;
+        color: #0d6efd;
+    }
+
+    .sidebar-item.active .sidebar-link {
+        background-color: #0d6efd;
+        color: #fff;
+    }
+
+    .sidebar-link i {
+        font-size: 1.2rem;
+    }
+
+    .sidebar-link span {
+        font-weight: 500;
+        font-size: 15px;
+    }
+</style>

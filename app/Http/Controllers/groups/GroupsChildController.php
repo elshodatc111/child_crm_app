@@ -30,7 +30,16 @@ class GroupsChildController extends Controller{
             $child[$key]['status'] = $value->status;
             $child[$key]['end_manejer'] = $value->end_manager_id!=null?User::find($value->end_manager_id)->fio:'';
         }
-        return view('groups.index_show_child', compact('id','child'));
+        $GroupsTarbiyachi = GroupsTarbiyachi::where('group_id',$id)->get();
+        $res = [];
+        foreach ($GroupsTarbiyachi as $key => $value) {
+            $res[$key]['tarbiyachi'] = User::find($value->user_id)->fio;
+            $res[$key]['start_time'] = $value->start_time;
+            $res[$key]['end_time'] = $value->end_time;
+            $res[$key]['type'] = $value->type;
+            $res[$key]['status'] = $value->status;
+        }
+        return view('groups.index_show_child', compact('id','child','res'));
     }
 
     public function groups_show_child_update(Request $request){
