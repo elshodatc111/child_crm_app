@@ -231,7 +231,7 @@
                     @csrf
                     <input type="hidden" name="user_id" value="{{ $id }}">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="salaryModalLabel">Ish daoliyatini o'zgartirish</h5>
+                        <h5 class="modal-title" id="salaryModalLabel">Ish faoliyatini o'zgartirish</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
                     </div>
                     <div class="modal-body">
@@ -245,7 +245,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="note" class="form-label">Izoh</label>
-                            <textarea class="form-control" id="note" name="note" rows="2" required placeholder="To‘lov haqida izoh..."></textarea>
+                            <textarea class="form-control" id="note" name="note" rows="2" required placeholder="Izoh..."></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

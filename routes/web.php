@@ -54,6 +54,8 @@ Route::get('/techer', [TecherHodimController::class, 'index'])->name('hodim_tech
 Route::get('/techer-show/{id}', [TecherHodimController::class, 'show'])->name('hodim_techer_show')->middleware(['auth']);
 Route::get('/techer-tarix/{id}', [TecherHodimController::class, 'tarix'])->name('hodim_techer_tarix')->middleware(['auth']);
 Route::get('/techer-paymart/{id}', [TecherHodimController::class, 'paymart'])->name('hodim_techer_paymart')->middleware(['auth']);
+Route::post('/techer-update', [TecherHodimController::class, 'update'])->name('hodim_techer_update')->middleware(['auth']);
+Route::post('/techer-create-dars', [TecherHodimController::class, 'create_dars'])->name('hodim_create_dars')->middleware(['auth']);
 
 Route::get('/tarbiyachi', [TarbiyachiController::class, 'hodim_tarbiyachi'])->name('hodim_tarbiyachi')->middleware(['auth']);
 

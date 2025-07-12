@@ -64,15 +64,24 @@
                             <thead class="bg-primary">
                                 <tr class="text-center">
                                     <th class="text-white">#</th>
-                                    <th class="text-white">FIO</th>
-                                    <th class="text-white">Hodim haqida</th>
-                                    <th class="text-white">Holati</th>
-                                    <th class="text-white">Ishga olindi</th>
-                                    <th class="text-white">Ishga bo'shatildi</th>
+                                    <th class="text-white">Guruh</th>
+                                    <th class="text-white">Dars nomi</th>
+                                    <th class="text-white">Bolalar soni</th>
+                                    <th class="text-white">Menejer</th>
+                                    <th class="text-white">Saqlangan vaqt</th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @foreach($res as $item)
+                                    <tr>
+                                        <td>{{ $loop->index+1 }}</td>
+                                        <td>{{ $item['group_name'] }}</td>
+                                        <td>{{ $item['lesson_name'] }}</td>
+                                        <td>{{ $item['child_count'] }}</td>
+                                        <td>{{ $item['meneger'] }}</td>
+                                        <td>{{ $item['created_at'] }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
