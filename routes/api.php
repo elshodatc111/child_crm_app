@@ -9,4 +9,5 @@ Route::controller(AuthControloler::class)->group(function(){
 });
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthControloler::class, 'logout']);
+    Route::post('/password/update', [AuthControloler::class, 'password_update']);
 });
