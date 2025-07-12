@@ -15,4 +15,5 @@ Route::middleware('auth:sanctum')->group(function () {
 // Moliya
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/moliya', [MoliyaController::class, 'index']);
+    Route::post('/moliya/chiqim', [MoliyaController::class, 'chiqim']);
 });

@@ -32,4 +32,43 @@ class MoliyaController extends Controller{
         ], 200);
     }
 
+    public function chiqim(Request $request){
+        $Balans = Balans::first();
+        $naqt = $Balans->naqt;
+        $plastik = $Balans->plastik;
+        $chiqim_amount = (int) str_replace(",","",$request->amount);
+        $status = $request->status;
+        $comment = $request->start_comment;
+        if($status == 'balans_naqt_xarajat' OR $status == 'balans_naqt_daromad'){
+            if($naqt<$chiqim_amount){
+                return response()->json([
+                    'success' => false,
+                    'message' => "Balansda yetarli mablag' mavjud emas",
+                ], 422);
+            }
+            $Balans->naqt = $Balans->naqt - $chiqim_amount;
+        }
+        if($status == 'balans_plastik_xarajat' OR $status == 'balans_plastik_daromad'){
+            if($plastik<$chiqim_amount){
+                return response()->json([
+                    'success' => false,
+                    'message' => "Balansda yetarli mablag' mavjud emas",
+                ], 422);
+            }
+            $Balans->plastik = $Balans->plastik - $chiqim_amount;
+        }
+        $Balans->save();
+        BalansHistory::create([
+            'status' => $status,
+            'type' => 'success',
+            'amount' => $chiqim_amount,
+            'start_comment' => $comment,
+            'start_user_id' => auth()->user()->id,
+        ]);
+        return response()->json([
+            'success' => true,
+            'message' => "Balansdan chiqim tasdiqlandi",
+        ], 200);
+    }
+
 }
