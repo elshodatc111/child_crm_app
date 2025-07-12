@@ -15,6 +15,7 @@ use App\Models\ChildComment;
 use App\Models\ChildParent;
 use App\Models\PaymartChild;
 use App\Models\ChildDavomad;
+use App\Models\BalansHistory;
 use App\Http\Requests\StorePaymentRequest;
 
 class CildController extends Controller{
@@ -220,7 +221,15 @@ class CildController extends Controller{
         $Kassa->save();
         return true;
     }
-
+    protected function QaytarBalansHistory($type, $amount){
+        BalansHistory::create([
+            'status' => $type,
+            'type' => 'success',
+            'amount' => $amount,
+            'start_comment' => 'To\'ov qaytarildi',
+            'start_user_id' => auth()->user()->id,
+        ]);
+    }
     public function paymart_update_balans($request){
         $Child = Child::find($request['child_id']);
         if($request['type'] == 'naqt' OR $request['type'] == 'plastik'){
@@ -230,6 +239,11 @@ class CildController extends Controller{
             $Child->balans = $Child->balans - $request['amount'];
             $typing = $request['type'] == 'qaytar_naqt'?'naqt':'plastik';
             $this->inkrementKassa($typing,'qaytar',$request['amount']);
+            if($request['type'] == 'qaytar_naqt'){
+                $this->QaytarBalansHistory('naqt_qaytar',$request['amount'],'asdas');
+            }else{
+                $this->QaytarBalansHistory('plastik_qaytar',$request['amount'],'asdas');
+            }
         }else{
             $Child->balans = $Child->balans + $request['amount'];
         }

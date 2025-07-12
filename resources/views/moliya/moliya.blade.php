@@ -119,7 +119,7 @@
                 </div>
             </div>
             <div class="card-body table-responsive">
-                <table class="table table-bordered table-hover mb-0 text-center">
+                <table class="table table-bordered table-hover mb-0 text-center" style="font-size:14px;">
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
@@ -131,15 +131,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($recentHistories as $item)
+                        @forelse ($res as $item)
                             <tr>
                                 <td>{{ $loop->index+1 }}</td>
-                                <td style="text-align:left"><span class="badge bg-success">{{ $item['status'] }}</span></td>
+                                <td style="text-align:left">
+                                    @if($item['status'] == 'naqt_chiqim')
+                                        <span class="badge text-info">Kassadan chiqim (Naqt)</span>
+                                    @elseif($item['status'] == 'plastik_chiqim')
+                                        <span class="badge text-info">Kassadan chiqim (Plastik)</span>
+                                    @elseif($item['status'] == 'plastik_xarajat')
+                                        <span class="badge text-danger">Kassadan Xarajat (Plastik)</span>
+                                    @elseif($item['status'] == 'balans_naqt_xarajat')
+                                        <span class="badge text-danger">Balansdan Xarajat (Naqt)</span>
+                                    @elseif($item['status'] == 'balans_plastik_xarajat')
+                                        <span class="badge text-danger">Balansdan Xarajat (Plastik)</span>
+                                    @elseif($item['status'] == 'naqt_xarajat')
+                                        <span class="badge text-danger">Kassadan Xarajat (Naqt)</span>
+                                    @elseif($item['status'] == 'plastik_qaytar')
+                                        <span class="badge text-secondary">Qaytarilgan to'lov (Plastik)</span>
+                                    @elseif($item['status'] == 'naqt_qaytar')
+                                        <span class="badge text-secondary">Qaytarilgan to'lov (Naqt)</span>
+                                    @elseif($item['status'] == 'plastik_ish_haqi')
+                                        <span class="badge text-primary">To'langan ish haqi (Plastik)</span>
+                                    @elseif($item['status'] == 'naqt_ish_haqi')
+                                        <span class="badge text-primary">To'langan ish haqi (Naqt)</span>
+                                    @elseif($item['status'] == 'balans_naqt_daromad')
+                                        <span class="badge text-success">Daromad (Naqt)</span>
+                                    @elseif($item['status'] == 'balans_plastik_daromad')
+                                        <span class="badge text-success">Daromad (Plastik)</span>
+                                    @else
+                                    <span class="badge bg-success">{{ $item['status'] }}</span>
+                                    @endif
+                                </td>
                                 <td>
                                     {{ number_format($item['amount'], 0, '.', ' ') }} so'm
                                 </td>
                                 <td style="text-align:left">{{ $item['start_comment'] }}</td>
-                                <td>{{ $item['fio'] }}</td>
+                                <td>{{ $item['start_user_id'] }}</td>
                                 <td style="text-align:right">{{ $item['created_at'] }}</td>
                             </tr>
                         @empty
@@ -172,8 +200,10 @@
                                     <option value="">Tanlang...</option>
                                     <option value="balans_naqt_xarajat">Xarajat (Naqt)</option>
                                     <option value="balans_plastik_xarajat">Xarajat (Plastik)</option>
+                                    <!--
                                     <option value="balans_naqt_exson">Exson (Naqt)</option>
                                     <option value="balans_plastik_exson">Exson (Plastik)</option>
+                                    -->
                                     <option value="balans_naqt_daromad">Daromad (Naqt)</option>
                                     <option value="balans_plastik_daromad">Daromad (Plastik)</option>
                                 </select>

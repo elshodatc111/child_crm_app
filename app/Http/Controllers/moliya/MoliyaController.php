@@ -4,6 +4,7 @@ namespace App\Http\Controllers\moliya;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Balans;
 use App\Models\BalansHistory;
 use Carbon\Carbon;
@@ -14,67 +15,48 @@ class MoliyaController extends Controller{
 
     public function index(){
         $Balans = Balans::first();
-
-        $recentHistories = BalansHistory::where('balans_histories.created_at', '>=', Carbon::now()->subDays(45))
-            ->join('users','balans_histories.end_user_id','users.id')
-            ->select('users.fio','balans_histories.status','balans_histories.amount','balans_histories.start_comment','balans_histories.created_at')
-            ->where('balans_histories.type','true')
-            ->orderBy('balans_histories.created_at', 'desc')->get();
-        return view('moliya.moliya',compact('Balans','recentHistories'));
-    }
-    protected function checkBalans($amount, $status){
-        $balans = Balans::first();
-        $map = [
-            'balans_naqt_xarajat'     => $balans->naqt,
-            'balans_plastik_xarajat'  => $balans->plastik,
-            'balans_naqt_exson'       => $balans->exson_naqt,
-            'balans_plastik_exson'    => $balans->exson_plastik,
-            'balans_naqt_daromad'     => $balans->naqt,
-            'balans_plastik_daromad'  => $balans->plastik,
-        ];
-        if (!array_key_exists($status, $map)) {
-            return true;
+        $data = Carbon::now()->subDays(45)->toDateString();
+        $BalansHistory = BalansHistory::where('created_at','>=',$data." 00:00:00")->where('type','success')->orderby('updated_at','desc')->get();
+        $res = [];
+        foreach ($BalansHistory as $key => $value) {
+            $res[$key]['status'] = $value->status;
+            $res[$key]['amount'] = $value->amount;
+            $res[$key]['start_comment'] = $value->start_comment;
+            $res[$key]['start_user_id'] = User::find($value->start_user_id)->fio;
+            $res[$key]['created_at'] = $value->updated_at;
         }
-        if ($map[$status] < $amount) {
-            return true;
-        }
-        return false;
-    }
-
-    protected function BalansUpdate($amount, $status){
-        $balans = Balans::first();
-        $statusFieldMap = [
-            'balans_naqt_xarajat'     => 'naqt',
-            'balans_naqt_daromad'     => 'naqt',
-            'balans_plastik_xarajat'  => 'plastik',
-            'balans_plastik_daromad'  => 'plastik',
-            'balans_naqt_exson'       => 'exson_naqt',
-            'balans_plastik_exson'    => 'exson_plastik',
-        ];
-        if (!array_key_exists($status, $statusFieldMap)) {
-            abort(400, 'Noto‘g‘ri balans statusi!');
-        }
-        $field = $statusFieldMap[$status];
-        $balans->$field -= $amount;
-        $balans->save();
-        return null;
+        $recentHistories = [];
+        return view('moliya.moliya',compact('Balans','res'));
     }
 
     public function store(MoliyaChiqimRequest $request){
-        if($this->checkBalans((int) str_replace(',', '', $request->amount), $request->status)){
-            return redirect()->back()->with('error', 'Balansda yetarli mablag‘ mavjud emas!');
+        $Balans = Balans::first();
+        $naqt = $Balans->naqt;
+        $plastik = $Balans->plastik;
+        $chiqim_amount = (int) str_replace(",","",$request->amount);
+        $status = $request->status;
+        $comment = $request->start_comment;
+        if($status == 'balans_naqt_xarajat' OR $status == 'balans_naqt_daromad'){
+            if($naqt<$chiqim_amount){
+                return redirect()->back()->with('error', 'Balansda yetarmi mablag\' mavjud emas!');
+            }
+            $Balans->naqt = $Balans->naqt - $chiqim_amount;
         }
-        $this->BalansUpdate((int) str_replace(',', '', $request->amount), $request->status);
+        if($status == 'balans_plastik_xarajat' OR $status == 'balans_plastik_daromad'){
+            if($plastik<$chiqim_amount){
+                return redirect()->back()->with('error', 'Balansda yetarmi mablag\' mavjud emas!');
+            }
+            $Balans->plastik = $Balans->plastik - $chiqim_amount;
+        }
+        $Balans->save();
         BalansHistory::create([
-            'status' => $request->status,
-            'type' => 'true',
-            'amount' =>(int) str_replace(',', '', $request->amount),
-            'start_comment' => $request->start_comment,
-            'start_user_id' => null,
-            'end_comment' => null,
-            'end_user_id' => auth()->user()->id
+            'status' => $status,
+            'type' => 'success',
+            'amount' => $chiqim_amount,
+            'start_comment' => $comment,
+            'start_user_id' => auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Chiqim qilindi!');
+        return redirect()->back()->with('success', 'Tasdiqlandi!');
     }
 
 }
