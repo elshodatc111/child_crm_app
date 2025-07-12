@@ -90,7 +90,9 @@
                             </table>
                             <div class="w-100 row">
                                 <div class="col-6">
+                                    @if(auth()->user()->type == 'direktor')
                                     <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#salaryModal">Ish haqi to'lov</button>
+                                    @endif
                                 </div>
                                 <div class="col-6">
                                     <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#salaryModal2">Holatni o'zgartirish</button>

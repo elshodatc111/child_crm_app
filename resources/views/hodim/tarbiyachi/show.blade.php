@@ -159,9 +159,11 @@
                                 </tr>
                             </table>
                             <div class="w-100">
+                                @if(auth()->user()->type == 'direktor')
                                 <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#paymentModal">
                                     <i class="bi bi-cash-coin me-1"></i> Ish haqi to'lash
                                 </button>
+                                @endif
                             </div>
                         </div>
                     </div>

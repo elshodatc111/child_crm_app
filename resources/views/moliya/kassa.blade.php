@@ -142,13 +142,15 @@
                             <td>{{ $item['meneger'] }}</td>
                             <td>{{ $item['created_at'] }}</td>
                             <td>
+                                @if(auth()->user()->type == 'direktor')
                                 <form action="{{ route('kassa_chiqim_success') }}" method="post" class="d-inline">
-                                    @csrf 
+                                    @csrf
                                     <input type="hidden" name="id" value="{{ $item['id'] }}">
                                     <button type="submit" class="btn btn-primary px-1 py-1"><i class="bi bi-check"></i></button>
                                 </form>
+                                @endif
                                 <form action="{{ route('kassa_chiqim_delete') }}" method="post" class="d-inline">
-                                    @csrf 
+                                    @csrf
                                     <input type="hidden" name="id" value="{{ $item['id'] }}">
                                     <button class="btn btn-danger px-1 py-1"><i class="bi bi-trash"></i></button>
                                 </form>
@@ -188,7 +190,7 @@
                                 <select class="form-select" name="payment_type" id="payment_type" required>
                                     <option value="">Tanlang</option>
                                     <option value="Naqt">Naqt</option>
-                                    <option value="Plastik">Plastik</option> 
+                                    <option value="Plastik">Plastik</option>
                                 </select>
                             </div>
                             <div class="mb-3">

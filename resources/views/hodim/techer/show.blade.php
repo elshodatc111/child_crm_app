@@ -130,9 +130,11 @@
                                     </button>
                                 </div>
                                 <div class="col-lg-6">
+                                    @if(auth()->user()->type == 'direktor')
                                     <button class="btn btn-success w-100 m-0 my-1" data-bs-toggle="modal" data-bs-target="#paymentModal">
                                         <i class="bi bi-credit-card-2-front me-1"></i> To'lov qilish
                                     </button>
+                                    @endif
                                 </div>
                                 <div class="col-lg-6">
                                     <button class="btn btn-secondary w-100 m-0 my-1" data-bs-toggle="modal" data-bs-target="#lessonModal">
@@ -184,7 +186,7 @@
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <form action="{{ route('hodim_techer_update') }}" method="post">
-                @csrf 
+                @csrf
                 <div class="modal-content">
                     <div class="modal-header bg-warning text-dark">
                         <h5 class="modal-title" id="editModalLabel"><i class="bi bi-pencil-square me-1"></i> Taxrirlash</h5>
@@ -297,7 +299,7 @@
     <div class="modal fade" id="lessonModal" tabindex="-1" aria-labelledby="lessonModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <form action="{{ route('hodim_create_dars') }}" method="post">
-                @csrf 
+                @csrf
                 <input type="hidden" name="techer_id" value="{{ $about['id'] }}">
                 <div class="modal-content">
                     <div class="modal-header bg-secondary text-white">

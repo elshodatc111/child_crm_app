@@ -23,7 +23,6 @@
                         <i class="bi bi-speedometer2"></i> <span>Dashboard (Jarayonda)</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item {{ request()->routeIs([
                     'child','child_debit','child_end','child_show','child_show_group','child_show_davomad'
                 ]) ? 'active' : '' }}">
@@ -31,7 +30,6 @@
                         <i class="bi bi-emoji-smile-fill"></i> <span>Bolalar</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item {{ request()->routeIs([
                     'child_vakancy','child_vakancy_show','child_vakancy_create'
                 ]) ? 'active' : '' }}">
@@ -39,7 +37,6 @@
                         <i class="bi bi-door-open-fill"></i> <span>Tashriflar</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item {{ request()->routeIs([
                     'groups','groups_arxiv','groups_show_child','child_show_darslar','groups_show_child_update','groups_show_davomad','groups_new','groups_show'
                 ]) ? 'active' : '' }}">
@@ -47,63 +44,64 @@
                         <i class="bi bi-diagram-3-fill"></i> <span>Guruhlar</span>
                     </a>
                 </li>
+                @if(auth()->user()->type == 'direktor' OR auth()->user()->type == 'menejer')
+                    <li class="sidebar-item {{ request()->routeIs([
+                        'hodim_davomad_meneger','hodim_davomad_tarbiyachi','hodim_davomad_techer','hodim_davomad_hodim'
+                    ]) ? 'active' : '' }}">
+                        <a href="{{ route('hodim_davomad_meneger') }}" class="sidebar-link">
+                            <i class="bi bi-calendar-check"></i> <span>Hodimlar Davomadi</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->routeIs('kassa') ? 'active' : '' }}">
+                        <a href="{{ route('kassa') }}" class="sidebar-link">
+                            <i class="bi bi-cash-stack"></i> <span>Kassa</span>
+                        </a>
+                    </li>
+                @endif
+                @if(auth()->user()->type == 'direktor')
+                    <li class="sidebar-item {{ request()->routeIs('moliya') ? 'active' : '' }}">
+                        <a href="{{ route('moliya') }}" class="sidebar-link">
+                            <i class="bi bi-bar-chart-fill"></i> <span>Moliya</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->routeIs('statistika') ? 'active' : '' }}">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-pie-chart-fill"></i> <span>Statistika (Jarayonda)</span>
+                        </a>
+                    </li>
+                @endif
+                @if(auth()->user()->type == 'direktor' OR auth()->user()->type == 'menejer')
+                    <li class="sidebar-item {{ request()->routeIs('hisobot') ? 'active' : '' }}">
+                        <a href="#" class="sidebar-link">
+                            <i class="bi bi-file-earmark-text-fill"></i> <span>Hisobot (Jarayonda)</span>
+                        </a>
+                    </li>
 
-                <li class="sidebar-item {{ request()->routeIs([
-                    'hodim_davomad_meneger','hodim_davomad_tarbiyachi','hodim_davomad_techer','hodim_davomad_hodim'
-                ]) ? 'active' : '' }}">
-                    <a href="{{ route('hodim_davomad_meneger') }}" class="sidebar-link">
-                        <i class="bi bi-calendar-check"></i> <span>Hodimlar Davomadi</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item {{ request()->routeIs('kassa') ? 'active' : '' }}">
-                    <a href="{{ route('kassa') }}" class="sidebar-link">
-                        <i class="bi bi-cash-stack"></i> <span>Kassa</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item {{ request()->routeIs('moliya') ? 'active' : '' }}">
-                    <a href="{{ route('moliya') }}" class="sidebar-link">
-                        <i class="bi bi-bar-chart-fill"></i> <span>Moliya</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item {{ request()->routeIs('statistika') ? 'active' : '' }}">
-                    <a href="#" class="sidebar-link">
-                        <i class="bi bi-pie-chart-fill"></i> <span>Statistika (Jarayonda)</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item {{ request()->routeIs('hisobot') ? 'active' : '' }}">
-                    <a href="#" class="sidebar-link">
-                        <i class="bi bi-file-earmark-text-fill"></i> <span>Hisobot (Jarayonda)</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item {{ request()->routeIs([
-                    'meneger_show','oshpaz_show','oshpaz_paymart','hodim_techer_tarix','hodim_techer_paymart',
-                    'hodim_tarbiyachi_show','hodim_tarbiyachi_show_tarix','hodim_tarbiyachi_show_paymart',
-                    'hodim','hodim_tarbiyachi','meneger_show_paymart','hodim_boshqa_show','hodim_boshqa_show_tulovlar',
-                    'hodim_vacancy_show','hodim_techer','hodim_techer_show','hodim_oshpazlar','hodim_boshqalar',
-                    'hodim_vacancy','hodim_vacancy_create'
-                ]) ? 'active' : '' }}">
-                    <a href="{{ route('hodim') }}" class="sidebar-link">
-                        <i class="bi bi-person-badge"></i> <span>Hodimlar</span>
-                    </a>
-                </li>
+                    <li class="sidebar-item {{ request()->routeIs([
+                        'meneger_show','oshpaz_show','oshpaz_paymart','hodim_techer_tarix','hodim_techer_paymart',
+                        'hodim_tarbiyachi_show','hodim_tarbiyachi_show_tarix','hodim_tarbiyachi_show_paymart',
+                        'hodim','hodim_tarbiyachi','meneger_show_paymart','hodim_boshqa_show','hodim_boshqa_show_tulovlar',
+                        'hodim_vacancy_show','hodim_techer','hodim_techer_show','hodim_oshpazlar','hodim_boshqalar',
+                        'hodim_vacancy','hodim_vacancy_create'
+                    ]) ? 'active' : '' }}">
+                        <a href="{{ route('hodim') }}" class="sidebar-link">
+                            <i class="bi bi-person-badge"></i> <span>Hodimlar</span>
+                        </a>
+                    </li>
+                @endif
 
                 <li class="sidebar-item {{ request()->routeIs('profile') ? 'active' : '' }}">
                     <a href="{{ route('profile') }}" class="sidebar-link">
                         <i class="bi bi-person-circle"></i> <span>Profil (Jaroyonda)</span>
                     </a>
                 </li>
-
-                <li class="sidebar-item {{ request()->routeIs('setting') ? 'active' : '' }}">
-                    <a href="{{ route('setting') }}" class="sidebar-link">
-                        <i class="bi bi-gear-fill"></i> <span>Sozlamalar</span>
-                    </a>
-                </li>
-
+                @if(auth()->user()->type == 'direktor')
+                    <li class="sidebar-item {{ request()->routeIs('setting') ? 'active' : '' }}">
+                        <a href="{{ route('setting') }}" class="sidebar-link">
+                            <i class="bi bi-gear-fill"></i> <span>Sozlamalar</span>
+                        </a>
+                    </li>
+                @endif
                 <li class="sidebar-item">
                     <a href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

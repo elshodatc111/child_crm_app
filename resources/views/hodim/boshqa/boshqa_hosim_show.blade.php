@@ -89,7 +89,9 @@
                                 </tr>
                             </table>
                             <div class="w-100 text-center">
+                                @if(auth()->user()->type == 'direktor')
                                 <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#salaryModal">Ish haqi to'lov</button>
+                                @endif
                             </div>
                         </div>
                     </div>

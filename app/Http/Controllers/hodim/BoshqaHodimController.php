@@ -17,7 +17,7 @@ use Carbon\Carbon;
 class BoshqaHodimController extends Controller{
 
     public function index(){
-        $res = User::whereNotIn('type', ['tarbiyachi', 'kichik_tarbiyachi', 'direktor', 'menejer', 'oshpaz'])->whereIn('status', ['active','block'])->get();
+        $res = User::whereNotIn('type', ['tarbiyachi', 'kichik_tarbiyachi', 'direktor', 'menejer', 'oshpaz', 'techer'])->whereIn('status', ['active','block'])->get();
         return view('hodim.boshqa_hosimlar',compact('res'));
     }
 

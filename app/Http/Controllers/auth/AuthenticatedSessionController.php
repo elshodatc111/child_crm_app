@@ -19,7 +19,7 @@ class AuthenticatedSessionController extends Controller{
         ]);
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $user = Auth::user();
-            if (in_array($user->type, ['oshpaz', 'hodim'])) {
+            if (in_array($user->type, ['oshpaz', 'hodim', 'techer'])) {
                 Auth::logout();
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();

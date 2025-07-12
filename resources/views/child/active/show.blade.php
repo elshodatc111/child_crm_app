@@ -134,16 +134,18 @@
                             </tbody>
                         </table>
                         <div class="row">
-                            <div class="col-6">
-                                <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#tolovModal">
-                                    <i class="bi bi-credit-card me-1"></i> To'lov
-                                </button>
-                            </div>
-                            <div class="col-6">
-                                <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#editModal">
-                                    <i class="bi bi-pencil-square me-1"></i> Tahrirlash
-                                </button>
-                            </div>
+                            @if(auth()->user()->type == 'direktor' OR auth()->user()->type == 'menejer')
+                                <div class="col-6">
+                                    <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#tolovModal">
+                                        <i class="bi bi-credit-card me-1"></i> To'lov
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#editModal">
+                                        <i class="bi bi-pencil-square me-1"></i> Tahrirlash
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -179,11 +181,13 @@
                             </tbody>
                         </table>
                         <div class="row">
+                            @if(auth()->user()->type == 'direktor' OR auth()->user()->type == 'menejer')
                             <div class="col-6">
                                 <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateGroupModal">
                                     <i class="bi bi-arrow-repeat me-1"></i> Guruh yangilash
                                 </button>
                             </div>
+                            @endif
                             <div class="col-6">
                                 <button class="btn btn-info text-white w-100" data-bs-toggle="modal" data-bs-target="#newRelativeModal">
                                     <i class="bi bi-person-plus me-1"></i> Yangi qarindosh

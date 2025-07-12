@@ -177,11 +177,13 @@
                             </table>
                             <div class="row">
                                 <div class="col-6">
+                                    @if(auth()->user()->type == 'direktor')
                                     <button type="button" class="btn btn-success w-100 d-flex justify-content-center gap-2"
                                             data-bs-toggle="modal" data-bs-target="#salaryModal">
                                         <i class="bi bi-cash-coin"></i> <!-- Ish haqi uchun ikonka -->
                                         Ish haqi to'lov
                                     </button>
+                                    @endif
                                 </div>
 
                                 <div class="col-6">
