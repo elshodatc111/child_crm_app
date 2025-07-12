@@ -79,8 +79,8 @@
                                 @forelse($res as $item)
                                 <tr>
                                     <td class="text-center">{{ $loop->index+1 }}</td>
-                                    <td>
-                                        <a href="">{{ $item['fio'] }}</a>
+                                    <td style="text-align:left">
+                                        <a href="{{ route('hodim_tarbiyachi_show',$item['id']) }}">{{ $item['fio'] }}</a>
                                     </td>
                                     <td class="text-center">{{ $item['commit'] }}</td>
                                     <td class="text-center">

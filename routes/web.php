@@ -58,6 +58,10 @@ Route::post('/techer-update', [TecherHodimController::class, 'update'])->name('h
 Route::post('/techer-create-dars', [TecherHodimController::class, 'create_dars'])->name('hodim_create_dars')->middleware(['auth']);
 
 Route::get('/tarbiyachi', [TarbiyachiController::class, 'hodim_tarbiyachi'])->name('hodim_tarbiyachi')->middleware(['auth']);
+Route::get('/tarbiyashi_show/{id}', [TarbiyachiController::class, 'show'])->name('hodim_tarbiyachi_show')->middleware(['auth']);
+Route::get('/tarbiyashi_tarix/{id}', [TarbiyachiController::class, 'tarix'])->name('hodim_tarbiyachi_show_tarix')->middleware(['auth']);
+Route::get('/tarbiyashi_paymart/{id}', [TarbiyachiController::class, 'paymart'])->name('hodim_tarbiyachi_show_paymart')->middleware(['auth']);
+Route::post('/tarbiyashi_paymart/update', [TarbiyachiController::class, 'update'])->name('hodim_tarbiyachi_show_update')->middleware(['auth']);
 
 
 Route::get('/hodim_vakancy', [VacancyController::class, 'hodim_vacancy'])->name('hodim_vacancy')->middleware(['auth']);
