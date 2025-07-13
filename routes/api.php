@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
 // Tashriflar
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/tashrif', [ChildTashrifController::class, 'index']);
-    Route::get('/tashrif/show/{id)', [ChildTashrifController::class, 'show']);
+    Route::get('/tashrif/show/{id}', [ChildTashrifController::class, 'show']);
     Route::post('/tashrif/create', [ChildTashrifController::class, 'create']);
     Route::post('/tashrif/create/comment', [ChildTashrifController::class, 'create_comment']);
     Route::post('/tashrif/cancel', [ChildTashrifController::class, 'cancel']);
