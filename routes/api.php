@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\AuthControloler;
 use App\Http\Controllers\api\MoliyaController;
 use App\Http\Controllers\api\ChildTashrifController;
+use App\Http\Controllers\api\ChildController;
 
 // Login
 Route::controller(AuthControloler::class)->group(function(){
@@ -28,4 +29,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/tashrif/create/comment', [ChildTashrifController::class, 'create_comment']);
     Route::post('/tashrif/cancel', [ChildTashrifController::class, 'cancel']);
     Route::post('/tashrif/success', [ChildTashrifController::class, 'success']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/childs', [ChildController::class, 'index']); // Aktiv bolalar
+    Route::get('/childs/debet', [ChildController::class, 'debet']); // Qarzdor bolalar
+    Route::get('/child/{id}', [ChildController::class, 'show']); // Bola haqida
+    Route::get('/child/paymart/{id}', [ChildController::class, 'paymart']); // To'lovlar tarixi
+    Route::get('/child/groups/{id}', [ChildController::class, 'groups']); // Guruhlar tarixi
+    Route::get('/child/davomad/{id}', [ChildController::class, 'davomad']); // Davomadlar tarixi
+    Route::post('/child/paymart/create', [ChildController::class, 'create_paymart']); // Aktiv bolalar
+    Route::post('/child/qarindosh/create', [ChildController::class, 'create_qarindosh']); // Yangi qarindosh
+    Route::post('/child/qarindosh/delete', [ChildController::class, 'create_qarindosh_delete']); // Yangi Comentariya
+    Route::post('/child/comment/create', [ChildController::class, 'create_comment']); // Yangi Comentariya
 });

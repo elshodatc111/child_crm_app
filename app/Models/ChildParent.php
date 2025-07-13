@@ -12,4 +12,6 @@ class ChildParent extends Model
     protected $fillable = ['child_id', 'name', 'phone'];
 
     public function child() { return $this->belongsTo(Child::class); }
+    public function childParent(){return $this->belongsTo(ChildParent::class, 'child_parent_id');}
+    public function user(){return $this->belongsTo(User::class, 'user_id');}
 }
