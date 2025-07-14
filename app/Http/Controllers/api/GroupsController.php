@@ -18,15 +18,11 @@ class GroupsController extends Controller{
     // Faol guruhlar
     public function index(){
         $groups = Group::where('status', true)->get();
-        $data = $groups->map(function ($group) {
-            return [
-                'id' => $group->id,
-                'name' => $group->group_name,
-                'price_month' => $group->price_month,
-                'price_day' => $group->price_day,
-                'child' => GroupChild::where('group_id', $group->id)->where('status', 'true')->count(),
-            ];
-        });
+        $data = [];
+        foreach ($groups as $key => $value) {
+            $data[$key]['id'] = $value->id;
+            $data[$key]['name'] = $value->name;
+        }
         return response()->json([
             'success' => true,
             'groups' => $data,
@@ -222,10 +218,7 @@ class GroupsController extends Controller{
             'days' => $days,
         ];
     }
-    // Create Groups
-    public function create(Request $request){
 
-    }
     // Create Davomad
     public function create_davomad(Request $request){
         
