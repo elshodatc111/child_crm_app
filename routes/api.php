@@ -7,6 +7,7 @@ use App\Http\Controllers\api\MoliyaController;
 use App\Http\Controllers\api\ChildTashrifController;
 use App\Http\Controllers\api\ChildController;
 use App\Http\Controllers\api\KassaController;
+use App\Http\Controllers\api\GroupsController;
 
 // Login
 Route::controller(AuthControloler::class)->group(function(){
@@ -50,4 +51,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/kassa/post', [KassaController::class, 'kassa_post']);
     Route::post('/kassa/delete', [KassaController::class, 'kassa_delete']); 
     Route::post('/kassa/success', [KassaController::class, 'kassa_success']); 
+});
+// Groups
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/groups', [GroupsController::class, 'index']);  // +++
+    Route::get('/groups/show/{id}', [GroupsController::class, 'show']);   // +++
+    Route::get('/groups/child/{id}', [GroupsController::class, 'show_child']);  // +++
+    Route::get('/groups/davomad/{id}', [GroupsController::class, 'show_davomad']);
+    Route::get('/groups/darslar/{id}', [GroupsController::class, 'show_darslar']);
+    Route::post('/groups/create', [GroupsController::class, 'create']);
+    Route::post('/groups/create/davomad', [GroupsController::class, 'create_davomad']);
 });
