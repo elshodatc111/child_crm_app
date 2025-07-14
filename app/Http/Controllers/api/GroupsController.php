@@ -22,6 +22,7 @@ class GroupsController extends Controller{
         foreach ($groups as $key => $value) {
             $data[$key]['id'] = $value->id;
             $data[$key]['name'] = $value->name;
+            $data[$key]['child'] = $value->id;
         }
         return response()->json([
             'success' => true,
@@ -35,6 +36,16 @@ class GroupsController extends Controller{
         $group = Group::findOrFail($id);
         $tarbiyachi = $this->getTarbiyachi($id, 'tarbiyachi');
         $yordamchi = $this->getTarbiyachi($id, 'kichik_tarbiyachi');
+        $IshKun = $this->getIshKunlar($group);
+        $bugun = date("Y-m-d");
+        $DavomadDay = in_array($bugun, array_column($IshKun, 'sanasi')) ? 'true' : 'false';
+        $DavomadOlindimi = ChildDavomad::where('group_id', $id)->where('data', now()->toDateString())->exists();
+        $davomad = false;
+        if($DavomadDay == 'true'){
+            if($DavomadOlindimi == false){
+                $davomad = true;
+            }
+        }
         return response()->json([
             'success' => true,
             'about' => [
@@ -51,8 +62,8 @@ class GroupsController extends Controller{
                 'yordamchi_id' => optional($yordamchi)->id,
                 'yordamchi' => optional($yordamchi)->fio,
             ],
-            'ish_kunlar' => $this->getIshKunlar($group),
-            'davomad_status' => ChildDavomad::where('group_id', $id)->where('data', now()->toDateString())->exists(),
+            'ish_kunlar' => $IshKun,
+            'davomad_status' => $davomad,
             'message' => "Guruh haqida",
         ]);
     }
