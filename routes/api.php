@@ -8,6 +8,8 @@ use App\Http\Controllers\api\ChildTashrifController;
 use App\Http\Controllers\api\ChildController;
 use App\Http\Controllers\api\KassaController;
 use App\Http\Controllers\api\GroupsController;
+use App\Http\Controllers\api\HodimDavomadController;
+use App\Http\Controllers\api\HodimVacancyController;
 
 // Login
 Route::controller(AuthControloler::class)->group(function(){
@@ -59,6 +61,17 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/groups/child/{id}', [GroupsController::class, 'show_child']);  // +++
     Route::get('/groups/davomad/{id}', [GroupsController::class, 'show_davomad']);
     Route::get('/groups/darslar/{id}', [GroupsController::class, 'show_darslar']);
-    Route::post('/groups/create', [GroupsController::class, 'create']);
     Route::post('/groups/create/davomad', [GroupsController::class, 'create_davomad']);
+});
+
+// Hodimlar
+Route::middleware('auth:sanctum')->group(function () { // HodimVacancyController
+    Route::get('/hodimlar', [HodimDavomadController::class, 'index']);  
+    Route::post('/hodimlar/davomad', [HodimDavomadController::class, 'create_davomad']);
+    Route::get('/vacancy', [HodimVacancyController::class, 'index']);  
+    Route::get('/vacancy/show/{id}', [HodimVacancyController::class, 'show']);  
+    Route::post('/vacancy/create/comment', [HodimVacancyController::class, 'create_comment']);  
+    Route::post('/vacancy/cancel', [HodimVacancyController::class, 'vacancy_cancel']);  
+    Route::post('/vacancy/success', [HodimVacancyController::class, 'vacancy_success']);  
+    Route::post('/vacancy/create', [HodimVacancyController::class, 'create_vacancy']);  
 });

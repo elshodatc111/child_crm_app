@@ -19,4 +19,8 @@ class VacancyChild extends Model
     public function comments(){
         return $this->hasMany(VacancyChildComment::class);
     }
+    public function meneger(){
+        return $this->belongsTo(User::class, 'meneger_id');
+    }
+    
 }
