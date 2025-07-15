@@ -23,6 +23,8 @@ use App\Http\Controllers\groups\GroupsController;
 use App\Http\Controllers\groups\GroupDavomatController;
 use App\Http\Controllers\groups\GroupsChildController;
 use App\Http\Controllers\groups\GroupsDarslarController;
+use App\Http\Controllers\chart\ChartController;
+use App\Http\Controllers\report\ReportController;
 
 // Login ko'rinishi
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -31,6 +33,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard')->middleware(['auth']);
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->middleware(['auth']);
+Route::post('/profile/password/update', [ProfileController::class, 'profile_password_update'])->name('profile_password_update')->middleware(['auth']);
 Route::get('/drektor', [HodimController::class, 'index'])->name('hodim')->middleware(['auth']);
 Route::get('/drektor_show/{id}', [HodimController::class, 'meneger_show'])->name('meneger_show')->middleware(['auth']);
 Route::get('/drektor_show_paymart/{id}', [HodimController::class, 'meneger_show_paymart'])->name('meneger_show_paymart')->middleware(['auth']);
@@ -136,3 +139,7 @@ Route::post('/groups-showchild-paymar-update', [GroupsChildController::class, 'g
 
 Route::get('/arxiv-groups', [GroupsController::class, 'arxiv_index'])->name('groups_arxiv')->middleware(['auth']);
 Route::get('/new-groups', [GroupsController::class, 'new_index'])->name('groups_new')->middleware(['auth']);
+
+
+Route::get('/report', [ReportController::class, 'index'])->name('report')->middleware(['auth']);
+Route::get('/chart', [ChartController::class, 'index'])->name('chart')->middleware(['auth']);

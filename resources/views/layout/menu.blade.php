@@ -64,15 +64,15 @@
                             <i class="bi bi-bar-chart-fill"></i> <span>Moliya</span>
                         </a>
                     </li>
-                    <li class="sidebar-item {{ request()->routeIs('statistika') ? 'active' : '' }}">
-                        <a href="#" class="sidebar-link">
+                    <li class="sidebar-item {{ request()->routeIs('chart') ? 'active' : '' }}">
+                        <a href="{{ route('chart') }}" class="sidebar-link">
                             <i class="bi bi-pie-chart-fill"></i> <span>Statistika (Jarayonda)</span>
                         </a>
                     </li>
                 @endif
                 @if(auth()->user()->type == 'direktor' OR auth()->user()->type == 'menejer')
-                    <li class="sidebar-item {{ request()->routeIs('hisobot') ? 'active' : '' }}">
-                        <a href="#" class="sidebar-link">
+                    <li class="sidebar-item {{ request()->routeIs('report') ? 'active' : '' }}">
+                        <a href="{{ route('report') }}" class="sidebar-link">
                             <i class="bi bi-file-earmark-text-fill"></i> <span>Hisobot (Jarayonda)</span>
                         </a>
                     </li>
