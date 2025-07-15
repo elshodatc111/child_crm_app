@@ -34,7 +34,25 @@ class HodimDavomadController extends Controller{
     }
 
     public function create_davomad(Request $request){
-
+        $statuses = $request->input('statuses');
+        $today = date('Y-m-d');
+        $davomad = [];
+        $key = 0;
+        foreach ($statuses as $userId => $status) {
+            HodimDavomad::updateOrCreate(
+                [
+                    'user_id' => $userId,
+                    'date' => $today
+                ],
+                [
+                    'status' => $status
+                ]
+            );
+        }
+        return response()->json([
+            'success' => true,
+            'message' => "Davomad muvaffaqiyatli saqlandi!",
+        ]);
     }
 
 }
