@@ -16,18 +16,16 @@ use App\Http\Requests\EditGroupRequest;
 
 class GroupsController extends Controller{
     public function index(){
-        $groups = Group::where('status', 'true')->get();
-        $data = [];
-        foreach ($groups as $key => $value) {
-            $data[$key]['id'] = $value->id;
-            $data[$key]['group_name'] = $value->group_name;
-            $data[$key]['user_count'] = count(GroupChild::where('group_id',$value->id)->where('status','true')->get());
+        $Groups = Group::where('status','true')->get();
+        $Group = [];
+        foreach ($Groups as $key => $value) {
+            $Group[$key]['id'] = $value->id;
+            $Group[$key]['name'] = $value->group_name;
+            $Group[$key]['price_month'] = $value->price_month;
+            $Group[$key]['price_day'] = $value->price_day;
+            $Group[$key]['child'] = count(GroupChild::where('group_id',$value->id)->where('status','true')->get());
         }
-        return response()->json([
-            'success' => true,
-            'groups' => $data,
-            'message' => "Aktiv guruhlar",
-        ]);
+        return view('groups.index',compact('Group'));
     }
     public function arxiv_index(){
         $Groups = Group::where('status','false')->get();

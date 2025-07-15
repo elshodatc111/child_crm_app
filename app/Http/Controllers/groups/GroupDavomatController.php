@@ -64,7 +64,7 @@ class GroupDavomatController extends Controller{
     public function groups_create_davomat(Request $request){
         $attendances = $request->input('attendance');
         $group_id = $request->group_id;
-        $this->IshKunlarSoni('besh');
+        $group_type = Group::find($group_id)->group_type;
         foreach ($attendances as $child_id => $status) {
             $balans = $this->childDexrementBalans($child_id,$group_id,$status);
             ChildDavomad::create([

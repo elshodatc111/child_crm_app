@@ -231,8 +231,83 @@ class GroupsController extends Controller{
     }
 
     // Create Davomad
+    protected function getWorkingDays($type){
+        $days = [];
+        $year = date('Y');
+        $month = date('m');
+        $startDate = strtotime("$year-$month-01");
+        $endDate = strtotime(date("Y-m-t", $startDate));
+        for ($date = $startDate; $date <= $endDate; $date = strtotime('+1 day', $date)) {
+            $dayOfWeek = date('N', $date);
+            if ($dayOfWeek >= 1 && $dayOfWeek <= $type) {
+                $days[] = date('Y-m-d', $date);
+            }
+        }
+        $i = 0;
+        foreach ($days as $value) {
+            $DamKunlar = DamKunlar::where('data', $value)->first();
+            if (!$DamKunlar) {
+                $i++;
+            }
+        }
+        return $i;
+    }
+    protected function IshKunlarSoni($group_type){
+        if($group_type == 'besh'){
+            return $this->getWorkingDays(5);
+        } else {
+            return $this->getWorkingDays(6);
+        }
+    }
     public function create_davomad(Request $request){
-        
+        $request->validate([
+            'group_id' => 'required|exists:groups,id',
+            'attendance' => 'required|array',
+            'attendance.*' => 'in:keldi,kelmadi'
+        ]);
+        $group_id = $request->group_id;
+        $attendances = $request->attendance;
+        $group = Group::findOrFail($group_id);
+        foreach ($attendances as $child_id => $status) {
+            $child = Child::find($child_id);
+            if (!$child) {
+                continue;
+            }
+            $groupChild = GroupChild::where('child_id', $child_id)
+                ->where('group_id', $group_id)
+                ->where('status', 'true')
+                ->first();
+            if (!$groupChild) {
+                continue; 
+            }
+            $exists = ChildDavomad::where('child_id', $child_id)
+                ->where('group_id', $group_id)
+                ->where('data', now()->toDateString())
+                ->exists();
+            if ($exists) {
+                continue;
+            }
+            if ($groupChild->paymart_type === 'day') {
+                $pay = $status === 'keldi' ? $group->price_day : 0;
+            } else {
+                $dayCount = $this->IshKunlarSoni($groupChild->group_type);
+                $pay = $dayCount > 0 ? ($group->price_month / $dayCount) : 0;
+            }
+            $child->balans = max(0, $child->balans - $pay);
+            $child->save();
+            ChildDavomad::create([
+                'child_id' => $child_id,
+                'group_id' => $group_id,
+                'data' => now()->toDateString(),
+                'amount' => $pay,
+                'status' => $status,
+                'user_id' => auth()->id(),
+            ]);
+        }
+        return response()->json([
+            'success' => true,
+            'message' => "Guruh davomadi saqlandi.",
+        ]);
     }
 
 
