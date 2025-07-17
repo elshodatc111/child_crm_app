@@ -104,7 +104,7 @@ class TecherController extends Controller{
             'comment' => $request->comment,
             'meneger' => auth()->user()->fio,
         ]);
-        return response()->json([
+        return response()->json([ ///sdfsd
             'success' => true,
             'message' => "Izoh muvaffaqiyatli qo'shildi.",
         ], 200);
