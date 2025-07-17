@@ -10,6 +10,7 @@ use App\Http\Controllers\api\KassaController;
 use App\Http\Controllers\api\GroupsController;
 use App\Http\Controllers\api\HodimDavomadController;
 use App\Http\Controllers\api\HodimVacancyController;
+use App\Http\Controllers\api\TecherController;
 
 // Login
 Route::controller(AuthControloler::class)->group(function(){
@@ -74,4 +75,12 @@ Route::middleware('auth:sanctum')->group(function () { // HodimVacancyController
     Route::post('/vacancy/cancel', [HodimVacancyController::class, 'vacancy_cancel']);  
     Route::post('/vacancy/success', [HodimVacancyController::class, 'vacancy_success']);  
     Route::post('/vacancy/create', [HodimVacancyController::class, 'create_vacancy']);  
+});
+
+Route::middleware('auth:sanctum')->group(function () { // HodimVacancyController
+    Route::get('/techers', [TecherController::class, 'index']);  
+    Route::get('/techer/show/{id}', [TecherController::class, 'show']);  
+    Route::get('/techer/show/lessin/{id}', [TecherController::class, 'show_lessin']);  
+    Route::post('/techer/create/comment', [TecherController::class, 'create_comment']);  
+    Route::post('/techer/create/lessin', [TecherController::class, 'create_lessin']);  
 });
