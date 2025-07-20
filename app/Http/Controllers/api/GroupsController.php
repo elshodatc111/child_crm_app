@@ -13,16 +13,28 @@ use App\Models\Child;
 use App\Models\ChildDavomad;
 use App\Models\Darslar;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class GroupsController extends Controller{
     // Faol guruhlar
     public function index(){
-        $groups = Group::where('status', true)->get();
+        $groups = Group::where('status', 'true')->get();
         $data = [];
         foreach ($groups as $key => $value) {
             $data[$key]['id'] = $value->id;
-            $data[$key]['name'] = $value->name;
-            $data[$key]['child'] = $value->id;
+            $data[$key]['name'] = $value->group_name;
+            $data[$key]['child'] = count(GroupChild::where('group_id',$value->id)->where('status','true')->get());
+            $IshKun = $this->getIshKunlar($value);
+            $bugun = date("Y-m-d");
+            $DavomadDay = in_array($bugun, array_column($IshKun, 'sanasi')) ? 'true' : 'false';
+            $DavomadOlindimi = ChildDavomad::where('group_id', $value->id)->where('data', now()->toDateString())->exists();
+            $davomad = false;
+            if($DavomadDay == 'true'){
+                if($DavomadOlindimi == false){
+                    $davomad = true;
+                }
+            }
+            $data[$key]['davomad'] = $davomad;
         }
         return response()->json([
             'success' => true,
@@ -278,7 +290,7 @@ class GroupsController extends Controller{
                 ->where('status', 'true')
                 ->first();
             if (!$groupChild) {
-                continue; 
+                continue;
             }
             $exists = ChildDavomad::where('child_id', $child_id)
                 ->where('group_id', $group_id)
