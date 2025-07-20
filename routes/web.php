@@ -31,6 +31,7 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('l
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name("login_story");
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
+Route::get('/', [DashboardController::class, 'home'])->name('dashboard')->middleware(['auth']);
 Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard')->middleware(['auth']);
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile')->middleware(['auth']);
 Route::post('/profile/password/update', [ProfileController::class, 'profile_password_update'])->name('profile_password_update')->middleware(['auth']);

@@ -3,7 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo text-center">
-                    <a href="{{ route('dashboard') }}">Brend Nomi</a>
+                    <a href="{{ route('dashboard') }}">Kiddix APP</a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                     <div class="form-check form-switch fs-6">
@@ -20,7 +20,7 @@
             <ul class="menu list-unstyled">
                 <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a href="{{ route('dashboard') }}" class="sidebar-link">
-                        <i class="bi bi-speedometer2"></i> <span>Dashboard (Jarayonda)</span>
+                        <i class="bi bi-speedometer2"></i> <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs([
@@ -92,7 +92,7 @@
 
                 <li class="sidebar-item {{ request()->routeIs('profile') ? 'active' : '' }}">
                     <a href="{{ route('profile') }}" class="sidebar-link">
-                        <i class="bi bi-person-circle"></i> <span>Profil (Jaroyonda)</span>
+                        <i class="bi bi-person-circle"></i> <span>Profil</span>
                     </a>
                 </li>
                 @if(auth()->user()->type == 'direktor')

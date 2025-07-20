@@ -36,7 +36,7 @@
         @endif
 
         <div class="row g-4">
-            <!-- Sozlamalar -->
+            <!-- Sozlamalar
             <div class="col-lg-8">
                 <div class="card shadow-lg border-0 rounded-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <!-- Exson foiz -->
+            Exson foiz
             <div class="col-lg-4">
                 <div class="card shadow-lg border-0 rounded-4">
                     <div class="card-header  d-flex justify-content-between align-items-center">
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <!-- Qo'shimcha dam olish kunlari -->
+            Qo'shimcha dam olish kunlari -->
             <div class="col-lg-12">
                 <div class="card shadow-lg border-0 rounded-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
