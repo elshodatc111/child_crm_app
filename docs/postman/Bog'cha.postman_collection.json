@@ -1,0 +1,1933 @@
+{
+	"info": {
+		"_postman_id": "f9f481e9-22f4-4367-934d-3616c707b6bd",
+		"name": "Bog'cha",
+		"description": "Bog'cha CRM tizimi uchun tayyorlangan API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14732812",
+		"_collection_link": "https://orange-escape-760682.postman.co/workspace/New-Team-Workspace~b2337858-3303-4631-823a-9162bef0e6a6/collection/14732812-f9f481e9-22f4-4367-934d-3616c707b6bd?action=share&source=collection_link&creator=14732812"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "drektor@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						},
+						"description": "Logindan chiqish uchun ishlatiladi"
+					},
+					"response": []
+				},
+				{
+					"name": "ChangePassword",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "current_password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "new_password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "repeat_new_password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/password/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"password",
+								"update"
+							]
+						},
+						"description": "Parolni yangilash"
+					},
+					"response": []
+				}
+			],
+			"description": "Tizimga kirish uchun auth qilinadi va token qaytaradi"
+		},
+		{
+			"name": "Moliya",
+			"item": [
+				{
+					"name": "Moliya",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/moliya",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"moliya"
+							]
+						},
+						"description": "Moliya haqida umumiy ma'lumotlar"
+					},
+					"response": []
+				},
+				{
+					"name": "Moliya Chiqim",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amount",
+									"value": "600000",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "balans_naqt_xarajat",
+									"type": "text"
+								},
+								{
+									"key": "start_comment",
+									"value": "API orqali",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/moliya/chiqim",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"moliya",
+								"chiqim"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Moliya hisobotlarini kuzatib borish"
+		},
+		{
+			"name": "Tashrif",
+			"item": [
+				{
+					"name": "Tashriflar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tashrif",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tashrif"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Tashrif",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Salimov Toxirjon",
+									"type": "text"
+								},
+								{
+									"key": "phone1",
+									"value": "+998 90 888 4004",
+									"type": "text"
+								},
+								{
+									"key": "phone2",
+									"value": "+998 90 883 0550",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "2022-01-01",
+									"type": "text"
+								},
+								{
+									"key": "addres",
+									"value": "Qarshi shaxar",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "API TEST",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tashrif/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tashrif",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tashrif show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tashrif/show/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tashrif",
+								"show",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "vacancy_child_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tashrif/create/comment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tashrif",
+								"create",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Success",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "child_id",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "group_id",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "start_comment",
+									"value": "Test",
+									"type": "text"
+								},
+								{
+									"key": "paymart_type",
+									"value": "day",
+									"description": "monch",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tashrif/success",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tashrif",
+								"success"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "vacancy_child_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tashrif/cancel",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tashrif",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bolalar",
+			"item": [
+				{
+					"name": "Aktiv bolalar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/childs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"childs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Qarzdorlar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/childs/debet",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"childs",
+								"debet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bola haqida",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/child/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"child",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bola to'lovlari",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/child/paymart/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"child",
+								"paymart",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bola guruhlari",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/child/groups/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"child",
+								"groups",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bola Davomadi",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/child/davomad/5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"child",
+								"davomad",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Yangi to'lov",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "child_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "naqt",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "15000",
+									"type": "text"
+								},
+								{
+									"key": "child_parent_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "asdasda",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/child/paymart/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"child",
+								"paymart",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Yangi Qarindosh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "child_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Test",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+998 90 883 0450",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/child/qarindosh/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"child",
+								"qarindosh",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Qarindoshni o'chirish",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/child/qarindosh/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"child",
+								"qarindosh",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Yangi Izoh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "child_id",
+									"value": "11",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Test uchun 2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/child/comment/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"child",
+								"comment",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "Active Groups",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/groups",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Group Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/groups/show/4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"groups",
+								"show",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Group Child And Tarbiyachilar Tarixi",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/groups/child/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"groups",
+								"child",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Group Davomad",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/groups/davomad/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"groups",
+								"davomad",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Group Darslar Tarixi",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/groups/darslar/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"groups",
+								"darslar",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Group Create Davomat",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"group_id\": 3,\r\n  \"attendance\": {\r\n    \"4\": \"keldi\",\r\n    \"11\": \"keldi\",\r\n    \"12\": \"kelmadi\",\r\n    \"13\": \"kelmadi\",\r\n    \"14\": \"keldi\"\r\n  }\r\n}\r\n// keldi,  kelmadi",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/groups/create/davomad",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"groups",
+								"create",
+								"davomad"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Techers",
+			"item": [
+				{
+					"name": "Techers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/techers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"techers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Techer show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/techer/show/11",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"techer",
+								"show",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Techer show Lessin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/techer/show/lessin/11",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"techer",
+								"show",
+								"lessin",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Techer Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "11",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "Saaaaallllllooooommmmm",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/techer/create/comment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"techer",
+								"create",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Techer Create Lessin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "group_id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "techer_id",
+									"value": "11",
+									"type": "text"
+								},
+								{
+									"key": "lesson_name",
+									"value": "nammmme",
+									"type": "text"
+								},
+								{
+									"key": "child_count",
+									"value": "30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/techer/create/lessin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"techer",
+								"create",
+								"lessin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kassa",
+			"item": [
+				{
+					"name": "Kassa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/kassa",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"kassa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kassa Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "expense_type",
+									"value": "chiqim",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "payment_type",
+									"value": "Naqt",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": "Chiqim haqida izoh",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/kassa/post",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"kassa",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kassa Post Delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "46",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/kassa/delete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"kassa",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kassa Post Success",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "44",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/kassa/success",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"kassa",
+								"success"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hodim",
+			"item": [
+				{
+					"name": "Hodim Davomad Status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/hodimlar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hodimlar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hodim Davomad POST",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"statuses\": {\r\n    \"2\": \"present\",\r\n    \"3\": \"absent\",\r\n    \"4\": \"late\",\r\n    \"5\": \"no_uniform\",\r\n    \"7\": \"off_day\",\r\n    \"8\": \"absent\",\r\n    \"9\": \"present\",\r\n    \"10\": \"late\",\r\n    \"12\": \"no_uniform\",\r\n    \"13\": \"off_day\"\r\n  }\r\n}\r\n// 'present','absent','late','no_uniform','off_day'",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/hodimlar/davomad",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hodimlar",
+								"davomad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hodim Vacansy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vacancy",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vacancy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hodim Vacansy Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vacancy/show/14",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vacancy",
+								"show",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hodim Vacansy POST Comments",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "vacancy_id",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Yangi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vacancy/create/comment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vacancy",
+								"create",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hodim Vacansy Cancel",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "vacancy_id",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Bekor qilindi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vacancy/cancel",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vacancy",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hodim Vacansy Success",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "vacancy_id",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "oshpaz",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "qabul qilindi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vacancy/success",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vacancy",
+								"success"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hodim Vacansy Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "fio",
+									"value": "Qalandarov Alisher",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+998 88 888 8888",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Qarshi shaxar",
+									"type": "text"
+								},
+								{
+									"key": "tkun",
+									"value": "2020-01-01",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "techer",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "O'qituvchi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/vacancy/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"vacancy",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://atko.tech/child_app/public/api",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "40|7eX5H468xQ4QtIIQmUzlYoZW3CymEIAeLs8PxVUkfc5707aa",
+			"type": "string"
+		}
+	]
+}

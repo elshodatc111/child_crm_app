@@ -78,6 +78,9 @@ API uchun `Laravel Sanctum` orqali token asosida autentifikatsiya ishlatiladi. H
 
 ---
 
+[Postman API Hujjat (JSON)](docs/postman/Bog'cha.postman_collection.json)
+
+
 ## 👤 Muallif
 
 **Elshod ATC**  
