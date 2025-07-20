@@ -1,61 +1,91 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎓 Child CRM App — Laravel Backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Child CRM App** — bu maktab, bog‘cha yoki o‘quv markazlarida bolalar va xodimlarni boshqarish uchun mo‘ljallangan Laravel asosidagi backend tizimi. Ushbu tizim orqali foydalanuvchilarni ro'yxatdan o'tkazish, tashrifni boshqarish, moliyaviy hisob-kitoblarni yuritish, statistikalarni ko‘rish va boshqa ko‘plab imkoniyatlar yaratilgan.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Boshlanish
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Talablar
+- PHP 8.2 yoki undan yuqori
+- Composer
+- MySQL yoki SQLite
+- Node.js va NPM (Vite uchun)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### O‘rnatish
 
-## Learning Laravel
+```bash
+git clone https://github.com/elshodatc111/child_crm_app.git
+cd child_crm_app
+cp .env.example .env
+composer install
+php artisan key:generate
+php artisan migrate --seed
+npm install && npm run dev
+php artisan serve
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 📦 Texnologiyalar
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Texnologiya         | Tavsif                                      |
+|---------------------|----------------------------------------------|
+| Laravel 12          | PHP backend freymvorki                       |
+| Sanctum             | API token autentifikatsiyasi                 |
+| Vite + Tailwind CSS | Frontendni real vaqtli ishlatish uchun      |
+| MySQL/SQLite        | Ma’lumotlar bazasi                          |
+| PHPUnit             | Backend testlash                             |
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📁 Loyiha Tuzilishi (Backend)
 
-### Premium Partners
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── api/             # API controllerlari
+│   │   ├── auth/            # Login / logout
+│   │   ├── chart/           # Statistikalar
+│   │   ├── dashboard/       # Dashboard
+│   │   ├── child/           # Bolalar bilan ishlash
+├── Models/                 # Eloquent modellari
+routes/
+├── api.php                # API yo‘llari
+├── web.php                # Web interfeys yo‘llari
+database/
+├── migrations/            # Jadval yaratuvchi fayllar
+├── seeders/               # Demo ma’lumotlar
+tests/                     # Unit va feature testlar
+.env.example               # Muhit sozlamalari
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 🔒 Autentifikatsiya
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+API uchun `Laravel Sanctum` orqali token asosida autentifikatsiya ishlatiladi. Har bir foydalanuvchi login orqali token oladi va shu orqali tizimga murojaat qiladi.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## ✅ Rejalashtirilgan Imkoniyatlar
 
-## Security Vulnerabilities
+- 📤 Push xabarnomalar (notification)
+- 📊 Barcha grafiklar uchun ChartJS
+- 📅 Calendar integratsiyasi (dars jadvali, tashriflar)
+- 🌐 Swagger API hujjatlari
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 👤 Muallif
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Elshod ATC**  
+Telegram: [@elshodatc111](https://t.me/elshodatc111)  
+GitHub: [elshodatc111](https://github.com/elshodatc111)
+
+---
+
+## 📄 Litsenziya
+
+Ushbu loyiha MIT litsenziyasi asosida ochiq manbali holda tarqatiladi.
