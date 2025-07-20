@@ -305,7 +305,7 @@ class GroupsController extends Controller{
                 $dayCount = $this->IshKunlarSoni($groupChild->group_type);
                 $pay = $dayCount > 0 ? ($group->price_month / $dayCount) : 0;
             }
-            $child->balans = max(0, $child->balans - $pay);
+            $child->balans = $child->balans - $pay;
             $child->save();
             ChildDavomad::create([
                 'child_id' => $child_id,
