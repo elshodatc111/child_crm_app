@@ -151,7 +151,7 @@ class CildController extends Controller{
         $Child->description = $request->description;
         $Child->status = $request->status;
         $Child->save();
-        return redirect()->back()->with('success', 'O\'zgarishlar saqlandi!');
+        return redirect()->back()->with('success', 'Изменения сохранены!');
     }
 
     public function child_new_qarindosh(Request $request){
@@ -160,7 +160,7 @@ class CildController extends Controller{
             'name' => $request->name,
             'phone' => $request->phone,
         ]);
-        return redirect()->back()->with('success', 'Yangi qarindosh qo\'shildi!');
+        return redirect()->back()->with('success', 'Добавлен новый родственник!');
     }
 
     public function child_new_eslatma(Request $request){
@@ -169,7 +169,7 @@ class CildController extends Controller{
             'description' => $request->description,
             'user_id' => auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Eslatma saqlandi!');
+        return redirect()->back()->with('success', 'Примечание сохранено!');
     }
 
     protected function create_paymart_table($request){
@@ -268,17 +268,17 @@ class CildController extends Controller{
         $validates = $request->validated();
         if($validates['type'] == 'qaytar_naqt' OR $validates['type'] == 'qaytar_plastik'){
             if($this->checkKassa($validates['type'],$validates['amount'])){
-                return redirect()->back()->with('error', 'Qaytarish uchun kassada mablag\' yetarli emas.');
+                return redirect()->back()->with('error', 'В кассе недостаточно средств для осуществления возврата.');
             }
         }
         $create_paymart_table = $this->create_paymart_table($validates);
         $paymart_update_balans = $this->paymart_update_balans($validates);
-        return redirect()->back()->with('success', 'To\'lov qabul qilindi!');
+        return redirect()->back()->with('success', 'Оплата принята!');
     }
 
     public function child_delete_qarindosh(Request $request){
         $ChildParent = ChildParent::find($request->id)->delete();
-        return redirect()->back()->with('success', 'Yangi qarindosh o\'chirildi!');
+        return redirect()->back()->with('success', 'Новый родственник удален!');
     }
 
     public function show_paymart($id){

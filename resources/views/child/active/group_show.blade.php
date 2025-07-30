@@ -1,5 +1,5 @@
 @extends('layout.cdn2')
-@section('title','Guruhlar tarixi')
+@section('title','История групп')
 @section('content')
 
 <div id="app">
@@ -15,14 +15,14 @@
             <div class="page-title">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        <h3>Guruhlar tarixi</h3>
+                        <h3>История групп</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('child') }}">Aktiv bolalar</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Guruhlar tarixi</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Главная</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('child') }}">Дети</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">История групп</li>
                             </ol>
                         </nav>
                     </div>
@@ -33,36 +33,36 @@
         <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="list-group list-group-horizontal text-center" id="inbox-menu">
-                    <a href="{{ route('child_show',$id) }}" class="list-group-item list-group-item-action ">Bola haqida</a>
-                    <a href="{{ route('child_show_group',$id) }}" class="list-group-item list-group-item-action active">Guruhlar tarixi</a>
-                    <a href="{{ route('child_show_davomad',$id) }}" class="list-group-item list-group-item-action ">Davomad</a>
-                    <a href="{{ route('child_show_paymart',$id) }}" class="list-group-item list-group-item-action ">To'lovlar tarixi</a>
+                    <a href="{{ route('child_show',$id) }}" class="list-group-item list-group-item-action ">О ребенке</a>
+                    <a href="{{ route('child_show_group',$id) }}" class="list-group-item list-group-item-action active">История групп</a>
+                    <a href="{{ route('child_show_davomad',$id) }}" class="list-group-item list-group-item-action">Посещаемость</a>
+                    <a href="{{ route('child_show_paymart',$id) }}" class="list-group-item list-group-item-action ">История платежей</a>
                 </div>
             </div>
         </div>
 
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Guruhlar tarixi</h5>
+                <h5 class="card-title">История групп</h5>
             </div>
             <div class="card-body">
             <table class="table table-bordered table-hover align-middle text-center" style="font-size:14px;">
     <thead class="table-light">
         <tr>
-            <th rowspan="2" class="align-middle">#</th>
-            <th rowspan="2" class="align-middle">Guruh</th>
-            <th rowspan="2" class="align-middle">To'lov turi</th>
-            <th colspan="3">Guruhga olindi</th>
-            <th colspan="3">Guruhdan o'chirdi</th>
-            <th rowspan="2" class="align-middle">Guruh holati</th>
+            <th rowspan="2" class="align-middle">№</th>
+            <th rowspan="2" class="align-middle">Группа</th>
+            <th rowspan="2" class="align-middle">Тип оплаты</th>
+            <th colspan="3">Принят в группу</th>
+            <th colspan="3">Исключён из группы</th>
+            <th rowspan="2" class="align-middle">Статус группы</th>
         </tr>
         <tr>
-            <th>Olingan vaqt</th>
-            <th>Meneger</th>
-            <th>Izoh</th>
-            <th>Olingan vaqt</th>
-            <th>Meneger</th>
-            <th>Izoh</th>
+            <th>Время приёма</th>
+            <th>Менеджер</th>
+            <th>Комментарий</th>
+            <th>Время исключения</th>
+            <th>Менеджер</th>
+            <th>Комментарий</th>
         </tr>
     </thead>
     <tbody>
@@ -72,9 +72,9 @@
             <td>{{ $item['group_name'] }}</td>
             <td>
                 @if($item['paymart_type']=='monch')
-                    Oylik
+                    Ежемесячно
                 @else
-                    Kunlik
+                    Ежедневно
                 @endif
             </td>
             <td>{{ $item['start_time'] }}</td>
@@ -85,9 +85,9 @@
             <td>{{ $item['end_comment'] }}</td>
             <td>
                 @if($item['status']=='true')
-                    Aktive
+                    Активный
                 @else
-                    Block
+                    Блокировка
                 @endif
             </td>
         </tr>

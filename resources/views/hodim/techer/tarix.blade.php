@@ -1,5 +1,5 @@
 @extends('layout.cdn2')
-@section('title','O\'qituvchilar')
+@section('title','Учителя')
 
 @section('content')
 <div id="app">
@@ -14,14 +14,14 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>O'qituvchilar</h3>
+                        <h3>Учителя</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('hodim_techer') }}">O'qituvchilar</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">O'qituvchi</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Панель управления</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('hodim_techer') }}">Учителя</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Учитель</li>
                             </ol>
                         </nav>
                     </div>
@@ -34,17 +34,17 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="list-group">
-                                <a href="{{ route('hodim_techer_show',$id) }}" class="list-group-item list-group-item-action text-center ">O'qituvchi haqida</a>
+                                <a href="{{ route('hodim_techer_show',$id) }}" class="list-group-item list-group-item-action text-center">О преподавателе</a>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="list-group">
-                                <a href="{{ route('hodim_techer_tarix',$id) }}" class="list-group-item list-group-item-action text-center active">Darslar tarixi</a>
+                                <a href="{{ route('hodim_techer_tarix',$id) }}" class="list-group-item list-group-item-action text-center active">История уроков</a>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="list-group">
-                                <a href="{{ route('hodim_techer_paymart',$id) }}" class="list-group-item list-group-item-action text-center ">Ish haqi to'lovlari</a>
+                                <a href="{{ route('hodim_techer_paymart',$id) }}" class="list-group-item list-group-item-action text-center">Выплаты зарплаты</a>
                             </div>
                         </div>
                     </div>
@@ -52,11 +52,11 @@
             </div>
             <div class="card shadow-sm rounded">
                 <div class="card-body">
-                    <h5 class="card-title">O'qituvchilar</h5>
+                    <h5 class="card-title">Учителя</h5>
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
                         </div>
                     @endif
                     <div class="table-responsive">
@@ -64,11 +64,11 @@
                             <thead class="bg-primary">
                                 <tr class="text-center">
                                     <th class="text-white">#</th>
-                                    <th class="text-white">Guruh</th>
-                                    <th class="text-white">Dars nomi</th>
-                                    <th class="text-white">Bolalar soni</th>
-                                    <th class="text-white">Menejer</th>
-                                    <th class="text-white">Saqlangan vaqt</th>
+                                    <th class="text-white">Группа</th>
+                                    <th class="text-white">Название урока</th>
+                                    <th class="text-white">Количество детей</th>
+                                    <th class="text-white">Менеджер</th>
+                                    <th class="text-white">Дата сохранения</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,11 +87,7 @@
                     </div>
                 </div>
             </div>
-
-
         </section>
     </div>
 </div>
-
-
 @endsection

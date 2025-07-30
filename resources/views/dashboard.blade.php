@@ -1,5 +1,5 @@
 @extends('layout.cdn1')
-@section('title','Dashboard')
+@section('title','Панель управления')
 @section('content')
     <div id="app">
         @extends('layout.menu')
@@ -8,7 +8,7 @@
                 <a href="#" class="burger-btn d-block d-xl-none"><i class="bi bi-justify fs-3"></i></a>
             </header>
             <div class="page-heading">
-                <h3>Dashboard</h3>
+                <h3>Панель управления</h3>
             </div>
             <div class="page-content">
                 <div class="row g-3">
@@ -22,7 +22,7 @@
                                         </div>
                                     </div>
                                     <div class="col-9">
-                                        <h6 class="text-muted font-semibold mb-1">Aktiv bolalar</h6>
+                                        <h6 class="text-muted font-semibold mb-1">Активные дети</h6>
                                         <h6 class="font-extrabold mb-0 text-dark">{{ $countChild }}</h6>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                         </div>
                                     </div>
                                     <div class="col-9">
-                                        <h6 class="text-muted font-semibold mb-1">Qarzdor bolalar</h6>
+                                        <h6 class="text-muted font-semibold mb-1">Дети в долгах</h6>
                                         <h6 class="font-extrabold mb-0 text-dark">{{ $countDebedChild }}</h6>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div class="col-9">
-                                        <h6 class="text-muted font-semibold mb-1">Aktiv hodimlar</h6>
+                                        <h6 class="text-muted font-semibold mb-1">Активные сотрудники</h6>
                                         <h6 class="font-extrabold mb-0 text-dark">{{ $countActiveHodim }}</h6>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                     <div class="col-9">
-                                        <h6 class="text-muted font-semibold mb-1">Aktiv guruhlar</h6>
+                                        <h6 class="text-muted font-semibold mb-1">Активные группы</h6>
                                         <h6 class="font-extrabold mb-0 text-dark">{{ $countActiveGroups }}</h6>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Davomad tarixi</h4>
+                                <h4>Архив посещаемости</h4>
                             </div>
                             <div class="card-body">
                                 <div id="columnChart"></div>
@@ -94,7 +94,7 @@
                                     document.addEventListener("DOMContentLoaded", () => {
                                         new ApexCharts(document.querySelector("#columnChart"), {
                                             series: [{
-                                                    name: 'Kelgan bolalar',
+                                                    name: 'Дети, которые пришли',
                                                     data: [
                                                         @foreach ($childDavomad as $item)
                                                             {{ $item }},
@@ -102,7 +102,7 @@
                                                     ]
                                                 },
                                                 {
-                                                    name: 'Kelgan hodimlar',
+                                                    name: 'Приходящие сотрудники',
                                                     data: [
                                                         @foreach ($hodimDavomad as $item)
                                                             {{ $item }},
@@ -138,7 +138,7 @@
                                             },
                                             yaxis: {
                                                 title: {
-                                                    text: 'Davomad'
+                                                    text: 'Посещаемости'
                                                 }
                                             },
                                             fill: {

@@ -1,5 +1,5 @@
 @extends('layout.cdn2')
-@section('title','Guruh haqida')
+@section('title','О группе')
 @section('content')
 
 <style>
@@ -48,14 +48,14 @@
             <div class="page-title">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        <h3>Guruh haqida</h3>
+                        <h3>О группе</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('groups') }}">Aktiv Guruhlar</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Guruh haqida</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Главная</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('groups') }}">Активные группы</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">О группе</li>
                             </ol>
                         </nav>
                     </div>
@@ -67,16 +67,16 @@
             <div class="card-body">
                 <div class="row text-center">
                     <div class="col-lg-3 list-group mt-lg-0 mt-2">
-                        <a href="{{ route('groups_show',$id) }}" class="list-group-item list-group-item-action ">Guruh haqida</a>
+                        <a href="{{ route('groups_show',$id) }}" class="list-group-item list-group-item-action">О группе</a>
                     </div>
                     <div class="col-lg-3 list-group mt-lg-0 mt-2">
-                        <a href="{{ route('groups_show_child',$id) }}" class="list-group-item list-group-item-action ">Bolalar && Tarbiyachilar</a>
+                        <a href="{{ route('groups_show_child',$id) }}" class="list-group-item list-group-item-action">Дети и Воспитатели</a>
                     </div>
                     <div class="col-lg-3 list-group mt-lg-0 mt-2">
-                        <a href="{{ route('groups_show_davomad',$id) }}" class="list-group-item list-group-item-action ">Guruh davomadi</a>
+                        <a href="{{ route('groups_show_davomad',$id) }}" class="list-group-item list-group-item-action">Посещаемость группы</a>
                     </div>
                     <div class="col-lg-3 list-group mt-lg-0 mt-2">
-                        <a href="{{ route('child_show_darslar',$id) }}" class="list-group-item list-group-item-action active">Qo'shimcha darslar</a>
+                        <a href="{{ route('child_show_darslar',$id) }}" class="list-group-item list-group-item-action active">Дополнительные занятия</a>
                     </div>
                 </div>
             </div>
@@ -84,12 +84,12 @@
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
             </div>
         @endif
         <div class="card shadow-sm border-0 rounded-4">
             <div class="card-header rounded-top-4">
-                <h5 class="mb-0"><i class="bi bi-info-circle-fill me-2"></i>Qo'shimcha darslar</h5>
+                <h5 class="mb-0"><i class="bi bi-info-circle-fill me-2"></i>Дополнительные занятия</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -97,11 +97,11 @@
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
-                                <th>O'qituvchi</th>
-                                <th>Dars nomi</th>
-                                <th>Bolalar soni</th>
-                                <th>Meneger</th>
-                                <th>Dar vaqti</th>
+                                <th>Преподаватель</th>
+                                <th>Название занятия</th>
+                                <th>Количество детей</th>
+                                <th>Менеджер</th>
+                                <th>Дата занятия</th>
                             </tr>
                         </thead>
                         <tbody>

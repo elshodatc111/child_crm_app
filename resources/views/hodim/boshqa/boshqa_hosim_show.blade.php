@@ -10,36 +10,37 @@
                 <i class="bi bi-justify fs-3"></i>
             </a>
         </header>
-        <div class="page-heading">
-            <div class="page-title">
-                <div class="row">
-                    <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Hodim haqida</h3>
-                    </div>
-                    <div class="col-12 col-md-6 order-md-2 order-first">
-                        <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('hodim_boshqalar') }}">Hodimlar</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Hodim haqida</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>О сотруднике</h3>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Панель управления</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('hodim_boshqalar') }}">Сотрудники</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">О сотруднике</li>
+                    </ol>
+                </nav>
             </div>
         </div>
+    </div>
+</div>
+
         <section class="section">
             <div class="card shadow-sm rounded">
                 <div class="card-body">
                     <div class="row mb-4">
                         <div class="col-lg-6">
                             <div class="list-group">
-                                <a href="{{ route('hodim_boshqa_show',$id) }}" class="list-group-item list-group-item-action text-center active">Hodim haqida</a>
+                                <a href="{{ route('hodim_boshqa_show',$id) }}" class="list-group-item list-group-item-action text-center active">О сотруднике</a>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="list-group">
-                                <a href="{{ route('hodim_boshqa_show_tulovlar',$id) }}" class="list-group-item list-group-item-action text-center">Ish haqi to'lovlari</a>
+                                <a href="{{ route('hodim_boshqa_show_tulovlar',$id) }}" class="list-group-item list-group-item-action text-center ">Выплаты зарплаты</a>
                             </div>
                         </div>
                     </div>
@@ -61,36 +62,36 @@
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"></i>Hodim haqida</h5>
+                            <h5 class="card-title">О сотруднике</h5>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>FIO:</th>
+                                    <th>ФИО:</th>
                                     <td style="text-align:right">{{ $about['fio'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Telefon:</th>
+                                    <th>Телефон:</th>
                                     <td style="text-align:right">{{ $about['phone'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Manzil:</th>
+                                    <th>Адрес:</th>
                                     <td style="text-align:right">{{ $about['address'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Tug'ilgan kuni:</th>
+                                    <th>Дата рождения:</th>
                                     <td style="text-align:right">{{ $about['tkun'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Holati:</th>
+                                    <th>Статус:</th>
                                     <td style="text-align:right">{{ $about['status'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Ishga olindi:</th>
+                                    <th>Дата приема на работу:</th>
                                     <td style="text-align:right">{{ $about['created_at'] }}</td>
                                 </tr>
                             </table>
                             <div class="w-100 text-center">
                                 @if(auth()->user()->type == 'direktor')
-                                <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#salaryModal">Ish haqi to'lov</button>
+                                <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#salaryModal">Выплата зарплаты</button>
                                 @endif
                             </div>
                         </div>
@@ -99,35 +100,35 @@
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"></i>Hodimning joriy oydagi davomadi</h5>
+                            <h5 class="card-title">Посещаемость сотрудника в текущем месяце</h5>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th>Joriy oyda davomad soni:</th>
+                                    <th>Всего рабочих дней:</th>
                                     <td style="text-align:right">{{ $davomad['all'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Ishga keldi:</th>
+                                    <th>Присутствовал:</th>
                                     <td style="text-align:right">{{ $davomad['keldi'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Ishga kelmagan:</th>
+                                    <th>Отсутствовал:</th>
                                     <td style="text-align:right">{{ $davomad['kelmadi'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Kechikib keldi:</th>
+                                    <th>Опоздал:</th>
                                     <td style="text-align:right">{{ $davomad['kechikdi'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Formada kelmadi:</th>
+                                    <th>Без формы:</th>
                                     <td style="text-align:right">{{ $davomad['formada_emas'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Ish kuni emas:</th>
+                                    <th>Не рабочий день:</th>
                                     <td style="text-align:right">{{ $davomad['ish_kuni_emas'] }}</td>
                                 </tr>
                             </table>
                             <div class="w-100 text-center">
-                                <button type="button" class="btn btn-primary w-50" data-bs-toggle="modal" data-bs-target="#salaryModal2">Ish faoliyatini o'zgartirish</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#salaryModal2">Изменить рабочую активность</button>
                             </div>
                         </div>
                     </div>
@@ -135,7 +136,7 @@
                 <div class="col-lg-4 mb-4">
                     <div class="card shadow-sm rounded">
                         <div class="card-body">
-                            <h5 class="card-title">Izohlar ({{ $countComment }})</h5>
+                            <h5 class="card-title">Комментарии ({{ $countComment }})</h5>
                             <div class="comment-list">
                                 @foreach ($UserComment as $item)
                                 <div class="comment-box d-flex align-items-start">
@@ -152,11 +153,11 @@
                                 <div class="row">
                                     <div class="col-7">
                                         <input type="hidden" name="user_id" value="{{ $id }}">
-                                        <input type="text" class="form-control rounded" id="comment" name="comment" placeholder="Hodim haqida fikringizni yozing...">
+                                        <input type="text" class="form-control rounded" id="comment" name="comment" placeholder="Напишите свой отзыв о сотруднике...">
                                     </div>
                                     <div class="col-5">
                                         <button type="submit" class="btn btn-primary w-100">
-                                            <i class="bi bi-send"></i> Saqlash
+                                            <i class="bi bi-send"></i> Сохранить
                                         </button>
                                     </div>
                                 </div>
@@ -165,6 +166,7 @@
                     </div>
                 </div>
             </div>
+
         </section>
     </div>
     <div class="modal fade" id="salaryModal" tabindex="-1" aria-labelledby="salaryModalLabel" aria-hidden="true">
@@ -173,22 +175,22 @@
                 <form action="{{ route('hodim_boshqalar_paymart_post') }}" method="POST">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="salaryModalLabel">Hodimga ish haqi to'lovi</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                        <h5 class="modal-title" id="salaryModalLabel">Выплата заработной платы сотруднику</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
                     <div class="modal-body">
                         <table class="table text-center table-bordered">
                             <thead>
                                 <tr>
-                                    <th colspan=2>Balansda mavjud</th>
+                                    <th colspan=2>Доступный баланс</th>
                                 </tr>
                                 <tr>
-                                    <td>Naqt</td>
-                                    <td>Plastik</td>
+                                    <td>Наличные</td>
+                                    <td>Пластик</td>
                                 </tr>
                                 <tr>
-                                    <td>{{ number_format($balans['naqt'], 0, '', ' ') }} so'm</td>
-                                    <td>{{ number_format($balans['plastik'], 0, '', ' ') }} so'm</td>
+                                    <td>{{ number_format($balans['naqt'], 0, '', ' ') }} сум</td>
+                                    <td>{{ number_format($balans['plastik'], 0, '', ' ') }} сум</td>
                                 </tr>
                             </thead>
                         </table>
@@ -196,27 +198,28 @@
                         <input type="hidden" name="naqt" value="{{ $balans['naqt'] }}">
                         <input type="hidden" name="plastik" value="{{ $balans['plastik'] }}">
                         <div class="mb-3">
-                            <label for="amount" class="form-label">To‘lov miqdori (so‘m):</label>
+                            <label for="amount" class="form-label">Сумма платежа (сум):</label>
                             <input type="text" class="form-control price-format" id="amount" name="amount" required>
                         </div>
                         <div class="mb-3">
-                            <label for="payment_type" class="form-label">To‘lov turi</label>
+                            <label for="payment_type" class="form-label">Тип оплаты</label>
                             <select name="payment_type" class="form-select" required>
-                                <option value="">Tanlang</option>
-                                <option value="naqt">Naqt</option>
-                                <option value="plastik">Plastik</option>
+                                <option value="">Выберите</option>
+                                <option value="naqt">Наличные</option>
+                                <option value="plastik">Пластик</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="comment" class="form-label">Izoh (ixtiyoriy):</label>
-                            <textarea class="form-control" id="comment" name="comment" required rows="2" placeholder="To‘lov haqida izoh..."></textarea>
+                            <label for="comment" class="form-label">Комментарий (необязательно):</label>
+                            <textarea class="form-control" id="comment" name="comment" required rows="2" placeholder="Комментарий о платеже..."></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
-                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Saqlash</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Сохранить</button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
@@ -227,28 +230,29 @@
                     @csrf
                     <input type="hidden" name="user_id" value="{{ $id }}">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="salaryModalLabel">Ish daoliyatini o'zgartirish</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                        <h5 class="modal-title" id="salaryModalLabel">Изменить статус деятельности</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="status" class="form-label">Faoliyat turini tanlang</label>
+                            <label for="status" class="form-label">Выберите тип деятельности</label>
                             <select name="status" class="form-select" required>
-                                <option value="">Tanlang</option>
-                                <option value="active" {{ ($about['status'] ?? '') == 'active' ? 'selected' : '' }}>Aktiv</option>
-                                <option value="block" {{ ($about['status'] ?? '') == 'block' ? 'selected' : '' }}>Block</option>
+                                <option value="">Выберите</option>
+                                <option value="active" {{ ($about['status'] ?? '') == 'active' ? 'selected' : '' }}>Активен</option>
+                                <option value="block" {{ ($about['status'] ?? '') == 'block' ? 'selected' : '' }}>Заблокирован</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="note" class="form-label">Izoh</label>
-                            <textarea class="form-control" id="note" name="note" rows="2" required placeholder="To‘lov haqida izoh..."></textarea>
+                            <label for="note" class="form-label">Комментарий</label>
+                            <textarea class="form-control" id="note" name="note" rows="2" required placeholder="Комментарий о платеже..."></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
-                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Saqlash</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle"></i> Сохранить</button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

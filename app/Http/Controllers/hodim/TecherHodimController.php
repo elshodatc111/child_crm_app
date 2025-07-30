@@ -96,7 +96,7 @@ class TecherHodimController extends Controller{
             'comment' => "Taxrirlandi",
             'meneger' => auth()->user()->fio,
         ]);
-        return redirect()->back()->with('success', 'O\'qituvchi ma`lumotlari yangilandi!');
+        return redirect()->back()->with('success', 'Информация об учителе обновлена!');
     }
 
     public function create_dars(Request $request){
@@ -107,7 +107,7 @@ class TecherHodimController extends Controller{
             'child_count' => (int) $request->child_count,
             'user_id' => auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Yangi dars saqlandi!');
+        return redirect()->back()->with('success', 'Новый урок сохранен!');
     }
 
 }

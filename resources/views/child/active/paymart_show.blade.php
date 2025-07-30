@@ -1,5 +1,5 @@
 @extends('layout.cdn2')
-@section('title','To\'lovlar tarixi')
+@section('title','История платежей')
 @section('content')
 
 <div id="app">
@@ -15,14 +15,14 @@
             <div class="page-title">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        <h3>To'lovlar tarixi</h3>
+                        <h3>История платежей</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('child') }}">Aktiv bolalar</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">To'lovlar tarixi</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Главная</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('child') }}">Дети</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">История платежей</li>
                             </ol>
                         </nav>
                     </div>
@@ -33,31 +33,32 @@
         <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="list-group list-group-horizontal text-center" id="inbox-menu">
-                    <a href="{{ route('child_show',$id) }}" class="list-group-item list-group-item-action ">Bola haqida</a>
-                    <a href="{{ route('child_show_group',$id) }}" class="list-group-item list-group-item-action ">Guruhlar tarixi</a>
-                    <a href="{{ route('child_show_davomad',$id) }}" class="list-group-item list-group-item-action ">Davomad</a>
-                    <a href="{{ route('child_show_paymart',$id) }}" class="list-group-item list-group-item-action active">To'lovlar tarixi</a>
+                    <a href="{{ route('child_show',$id) }}" class="list-group-item list-group-item-action ">О ребенке</a>
+                    <a href="{{ route('child_show_group',$id) }}" class="list-group-item list-group-item-action">История групп</a>
+                    <a href="{{ route('child_show_davomad',$id) }}" class="list-group-item list-group-item-action">Посещаемость</a>
+                    <a href="{{ route('child_show_paymart',$id) }}" class="list-group-item list-group-item-action active">История платежей</a>
                 </div>
             </div>
         </div>
 
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">To'lovlar</h5>
+                <h5 class="card-title">История платежей</h5>
             </div>
             <div class="card-body">
                 <table class="table table-bordered text-center">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>To'lov turi</th>
-                            <th>To'lov summasi</th>
-                            <th>Type</th>
-                            <th>To'lov haqida</th>
-                            <th>To'lov qildi</th>
-                            <th>To'lov vaqti</th>
-                            <th>Meneger</th>
+                            <th>№</th>
+                            <th>Тип оплаты</th>
+                            <th>Сумма оплаты</th>
+                            <th>Тип</th>
+                            <th>О платеже</th>
+                            <th>Оплатил</th>
+                            <th>Время оплаты</th>
+                            <th>Менеджер</th>
                         </tr>
+
                     </thead>
                     <tbody>
                         @foreach($paymart as $item)
@@ -65,23 +66,23 @@
                             <td>{{ $loop->index+1 }}</td>
                             <td>
                                 @if($item['status']=='tulov')
-                                    To'lov
+                                    Оплата
                                 @elseif($item['status']=='chegirma')
-                                    Chegirma
+                                    Скидка
                                 @elseif($item['status']=='qaytar')
-                                    Qaytarildi
+                                    Он вернулся
                                 @endif
                             </td>
                             <td>
-                                {{ number_format($item['amount'], 0, '', ' ') }} so'm
+                                {{ number_format($item['amount'], 0, '', ' ') }} сум
                             </td>
                             <td>
                                 @if($item['type']=='naqt')
-                                    Naqt
+                                    Наличные
                                 @elseif($item['type']=='plastik')
-                                    Plastik
+                                    Пластик
                                 @elseif($item['type']=='chegirma')
-                                    Chegirma
+                                    Он вернулся
                                 @endif
                             </td>
                             <td>{{ $item['about'] }}</td>

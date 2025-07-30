@@ -76,7 +76,7 @@ class GroupDavomatController extends Controller{
                 'user_id' => auth()->user()->id,
             ]);
         }
-        return redirect()->back()->with('success', 'Guruh davomadi saqalndi!');
+        return redirect()->back()->with('success', 'Группа продолжала расти!');
     }
 
     protected function getWorkingDaysYMD($type){

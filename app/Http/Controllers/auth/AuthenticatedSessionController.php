@@ -24,7 +24,7 @@ class AuthenticatedSessionController extends Controller{
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
                 throw ValidationException::withMessages([
-                    'email' => 'Sizga tizimga kirishga ruxsat berilmagan.',
+                    'email' => 'У вас нет прав для входа в систему.',
                 ]);
             }
             if ($user->status === 'block') {
@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller{
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
                 throw ValidationException::withMessages([
-                    'email' => 'Sizning ish faoliyatingiz bloklangan.',
+                    'email' => 'Ваша трудовая деятельность заблокирована.',
                 ]);
             }
             if ($user->status === 'delete') {
@@ -40,7 +40,7 @@ class AuthenticatedSessionController extends Controller{
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
                 throw ValidationException::withMessages([
-                    'email' => 'Siz ish faoliyatingizni yakunlagansiz.',
+                    'email' => 'Вы завершили свою работу.',
                 ]);
             }
             $request->session()->regenerate();

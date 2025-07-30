@@ -38,13 +38,13 @@ class MoliyaController extends Controller{
         $comment = $request->start_comment;
         if($status == 'balans_naqt_xarajat' OR $status == 'balans_naqt_daromad'){
             if($naqt<$chiqim_amount){
-                return redirect()->back()->with('error', 'Balansda yetarmi mablag\' mavjud emas!');
+                return redirect()->back()->with('error', 'На балансе недостаточно средств!');
             }
             $Balans->naqt = $Balans->naqt - $chiqim_amount;
         }
         if($status == 'balans_plastik_xarajat' OR $status == 'balans_plastik_daromad'){
             if($plastik<$chiqim_amount){
-                return redirect()->back()->with('error', 'Balansda yetarmi mablag\' mavjud emas!');
+                return redirect()->back()->with('error', 'На балансе недостаточно средств!');
             }
             $Balans->plastik = $Balans->plastik - $chiqim_amount;
         }
@@ -56,7 +56,7 @@ class MoliyaController extends Controller{
             'start_comment' => $comment,
             'start_user_id' => auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Tasdiqlandi!');
+        return redirect()->back()->with('success', 'Подтвержденный!');
     }
 
 }

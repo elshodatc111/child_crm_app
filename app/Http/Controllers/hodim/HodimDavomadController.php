@@ -80,7 +80,7 @@ class HodimDavomadController extends Controller{
                 ]
             );
         }
-        return redirect()->back()->with('success', 'Davomad muvaffaqiyatli saqlandi!');
+        return redirect()->back()->with('success', 'Продолжение успешно сохранено!');
     }
     protected function DavomadJadvalTarbiyachi($ishKunlar){
         $types = ['tarbiyachi', 'kichik_tarbiyachi'];

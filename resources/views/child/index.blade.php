@@ -1,5 +1,5 @@
 @extends('layout.cdn1')
-@section('title','Bolalar')
+@section('title','Дети')
 @section('content')
 
 <style>
@@ -71,13 +71,13 @@
             <div class="page-title">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        <h3>Bolalar</h3>
+                        <h3>Дети</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Bolalar</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Главная</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Дети</li>
                             </ol>
                         </nav>
                     </div>
@@ -90,22 +90,22 @@
         <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="list-group list-group-horizontal mb-4" id="inbox-menu">
-                    <a href="{{ route('child') }}" class="list-group-item list-group-item-action active">Aktiv bolalar</a>
-                    <a href="{{ route('child_end') }}" class="list-group-item list-group-item-action">Tark etgan bolalar</a>
-                    <a href="{{ route('child_debit') }}" class="list-group-item list-group-item-action">Qarzdorlar</a>
+                    <a href="{{ route('child') }}" class="list-group-item list-group-item-action active">Активные дети</a>
+                    <a href="{{ route('child_end') }}" class="list-group-item list-group-item-action">Брошенные дети</a>
+                    <a href="{{ route('child_debit') }}" class="list-group-item list-group-item-action">Должники</a>
                 </div>
                 <form action="{{ route('child') }}" method="get" class="mb-3">
-                    <input type="text" name="search" placeholder="Qidiruv..." value="{{ request('search') }}" class="form-control">
+                    <input type="text" name="search" placeholder="Поиск..." value="{{ request('search') }}" class="form-control">
                 </form>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered align-middle text-center">
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
-                                <th>Ismi</th>
-                                <th>Yoshi</th>
-                                <th>Guruh</th>
-                                <th>Balans</th>
+                                <th>ФИО</th>
+                                <th>Молодой</th>
+                                <th>Группа</th>
+                                <th>Баланс</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -117,16 +117,16 @@
                                         @php
                                             $age = \Carbon\Carbon::parse($child->birthday)->age;
                                         @endphp
-                                        {{ $age }} yosh
+                                        {{ $age }} молодой
                                     </td>
                                     <td>{{ $child->group_name }}</td>
                                     <td>
                                         @if($child->balans < 0)
-                                            <span class="badge bg-danger">{{ number_format($child->balans, 0, ',', ' ') }} so‘m</span>
+                                            <span class="badge bg-danger">{{ number_format($child->balans, 0, ',', ' ') }} сум</span>
                                         @elseif($child->balans == 0)
-                                            <span class="badge bg-secondary">0 so‘m</span>
+                                            <span class="badge bg-secondary">0 сум</span>
                                         @else
-                                            <span class="badge bg-success">{{ number_format($child->balans, 0, ',', ' ') }} so‘m</span>
+                                            <span class="badge bg-success">{{ number_format($child->balans, 0, ',', ' ') }} сум</span>
                                         @endif
                                     </td>
                                 </tr>

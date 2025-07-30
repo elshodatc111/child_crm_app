@@ -30,7 +30,7 @@ class SettingController extends Controller{
         $Setting = Setting::first();
         $Setting->message_send = $message_send?'true':'false';
         $Setting->save();
-        return redirect()->back()->with('success', 'O\'zgarishlar saqlandi');
+        return redirect()->back()->with('success', 'Изменения сохранены.');
     }
 
     public function update_exson(Request $request){
@@ -38,7 +38,7 @@ class SettingController extends Controller{
         $Setting = Balans::first();
         $Setting->exson_foiz =  $exson_foiz;
         $Setting->save();
-        return redirect()->back()->with('success', 'O\'zgarishlar saqlandi');
+        return redirect()->back()->with('success', 'Изменения сохранены.');
     }
 
     public function create_day(Request $request){
@@ -49,14 +49,14 @@ class SettingController extends Controller{
             'data' => $data,
             'user_id' => auth()->user()->id
         ]);
-        return redirect()->back()->with('success', 'Yangi dam olish kuni qo\'shildi!');
+        return redirect()->back()->with('success', 'Добавлен новый праздник!');
     }
 
     public function delete_day(Request $request){
         $id = $request->id;
         $DamKunlar = DamKunlar::find($id);
         $DamKunlar->delete();
-        return redirect()->back()->with('success', 'Dam olish kuni o\'chirildi!');
+        return redirect()->back()->with('success', 'Праздник отменён!');
     }
 
 }

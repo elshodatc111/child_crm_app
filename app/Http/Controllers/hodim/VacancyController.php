@@ -22,7 +22,7 @@ class VacancyController extends Controller{
             'description' => "Ro'yhatga oliondi",
             'meneger_id' => auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Vakansiya muvaffaqiyatli qo‘shildi!');
+        return redirect()->back()->with('success', 'Вакансия успешно добавлена!');
     }
 
     public function hodim_vacancy(){
@@ -65,7 +65,7 @@ class VacancyController extends Controller{
             $Vacancy->status = 'pending';
             $Vacancy->save();
         }
-        return redirect()->back()->with('success', 'Eslatma saqlandi!');
+        return redirect()->back()->with('success', 'Примечание сохранено!');
     }
 
     public function hodim_vakancy_create(){
@@ -81,7 +81,7 @@ class VacancyController extends Controller{
             'description' => $request->description,
             'meneger_id' => auth()->user()->id
         ]);
-        return redirect()->back()->with('success', 'Vakansiya bekor qilindi!');
+        return redirect()->back()->with('success', 'Вакансия отменена!');
     }
 
     public function story_success(Request $request){
@@ -107,7 +107,7 @@ class VacancyController extends Controller{
             'email' => time()."@email.com",
             'password' => Hash::make('password'),
         ]);
-        return redirect()->back()->with('success', 'Vakansiya ishga qabul qilindi!');
+        return redirect()->back()->with('success', 'Вакансия закрыта!');
     }
 
 

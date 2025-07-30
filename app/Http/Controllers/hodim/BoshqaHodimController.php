@@ -27,7 +27,7 @@ class BoshqaHodimController extends Controller{
             'comment' => $request->comment,
             'meneger' => auth()->user()->fio,
         ]);
-        return back()->with('success', 'Hodim haqida izoh qoldirildi.');
+        return back()->with('success', 'Оставлен комментарий о сотруднике.');
     }
 
     protected function HodimAbout($id){
@@ -86,7 +86,7 @@ class BoshqaHodimController extends Controller{
             'comment' => $request->note." ( ".$request->status." )",
             'meneger' => auth()->user()->fio,
         ]);
-        return back()->with('success', 'Hodim ish faoliyati yangilandi.');
+        return back()->with('success', 'Трудовая деятельность сотрудника обновлена.');
     }
 
     public function show($id){
@@ -109,7 +109,7 @@ class BoshqaHodimController extends Controller{
         $balans = Balans::first();
         if($payment_type=='naqt'){
             if($naqt<$amount){
-                return back()->with('error', 'Balansda yetarli mablag\' mavjud emas.');
+                return back()->with('error', 'На балансе недостаточно средств.');
             }else{
                 $balans->naqt = $balans->naqt - $amount;
                 UserSalary::create([
@@ -129,7 +129,7 @@ class BoshqaHodimController extends Controller{
             }
         }else{
             if($plastik<$amount){
-                return back()->with('error', 'Balansda yetarli mablag\' mavjud emas.');
+                return back()->with('error', 'На балансе недостаточно средств.');
             }else{
                 $balans->plastik = $balans->plastik - $amount;
                 UserSalary::create([
@@ -149,7 +149,7 @@ class BoshqaHodimController extends Controller{
             }
         }
         $balans->save();
-        return back()->with('success', 'Ish haqi to\'lovi amalga oshirildi.');
+        return back()->with('success', 'Выплата заработной платы произведена.');
     }
 
     public function tulovlar($id){

@@ -213,7 +213,7 @@ class GroupsController extends Controller{
         $Group['price_day'] = $data['price_day'];
         $Group['status'] = $data['status'];
         $Group->save();
-        return redirect()->back()->with('success', 'Guruh malumotlari yangilandi!');
+        return redirect()->back()->with('success', 'Информация о группе обновлена!');
     }
     public function groups_updates_tarbiyachi(Request $request){
         $guruh_id = $request->id;
@@ -229,7 +229,7 @@ class GroupsController extends Controller{
             'type' => 'tarbiyachi',
             'status' => true,
         ]);
-        return redirect()->back()->with('success', 'Guruh tarbiyachisi yangilandi!');
+        return redirect()->back()->with('success', 'Групповой преподаватель обновлен!');
     }
     public function groups_updates_yordamchi(Request $request){
         $guruh_id = $request->id;
@@ -245,7 +245,7 @@ class GroupsController extends Controller{
             'type' => 'yordamchi',
             'status' => true,
         ]);
-        return redirect()->back()->with('success', 'Guruh yordamchisi yangilandi!');
+        return redirect()->back()->with('success', 'Групповой помощник обновлен!');
     }
 
 }

@@ -1,5 +1,5 @@
 @extends('layout.cdn1')
-@section('title','Guruhlar')
+@section('title','Группы')
 @section('content')
 
 <style>
@@ -48,13 +48,13 @@
             <div class="page-title">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        <h3>Guruhlar</h3>
+                        <h3>Группы</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Guruhlar</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Главная</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Группы</li>
                             </ol>
                         </nav>
                     </div>
@@ -65,9 +65,9 @@
         <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="list-group list-group-horizontal mb-4" id="inbox-menu">
-                    <a href="{{ route('groups') }}" class="list-group-item list-group-item-action active">Aktiv guruhlar</a>
-                    <a href="{{ route('groups_arxiv') }}" class="list-group-item list-group-item-action">Arxiv guruhlar</a>
-                    <a href="{{ route('groups_new') }}" class="list-group-item list-group-item-action">Yangi guruh</a>
+                    <a href="{{ route('groups') }}" class="list-group-item list-group-item-action active">Активные группы</a>
+                    <a href="{{ route('groups_arxiv') }}" class="list-group-item list-group-item-action">Архив групп</a>
+                    <a href="{{ route('groups_new') }}" class="list-group-item list-group-item-action">Новая группа</a>
                 </div>
 
                 <div class="table-responsive">
@@ -75,11 +75,11 @@
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
-                                <th>Guruh nomi</th>
-                                <th>Guruh narxi(kun)</th>
-                                <th>Guruh narxi(oy)</th>
-                                <th>Bolalar soni</th>
-                                <th>Guruh holati</th>
+                                <th>Название группы</th>
+                                <th>Цена (день)</th>
+                                <th>Цена (месяц)</th>
+                                <th>Количество детей</th>
+                                <th>Статус группы</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,10 +87,10 @@
                                 <tr>
                                     <td>{{ $loop->index+1 }}</td>
                                     <td><a href="{{ route('groups_show',$item['id']) }}">{{ $item['name'] }}</a></td>
-                                    <td>{{ number_format($item['price_month'], 0, '.', ' ') }} so'm</td>
-                                    <td>{{ number_format($item['price_day'], 0, '.', ' ') }} so'm</td>
+                                    <td>{{ number_format($item['price_day'], 0, '.', ' ') }} сум</td>
+                                    <td>{{ number_format($item['price_month'], 0, '.', ' ') }} сум</td>
                                     <td>{{ $item['child'] }}</td>
-                                    <td><span class="badge bg-success">Faol</span></td>
+                                    <td><span class="badge bg-success">Активна</span></td>
                                 </tr>
                             @endforeach
                         </tbody>

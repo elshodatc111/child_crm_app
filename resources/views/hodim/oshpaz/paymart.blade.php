@@ -1,5 +1,5 @@
 @extends('layout.cdn2')
-@section('title','Hodim haqida')
+@section('title','О сотруднике')
 
 @section('content')
 <div id="app">
@@ -14,14 +14,14 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Hodim haqida</h3>
+                        <h3>О сотруднике</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('hodim_oshpazlar') }}">Oshpazlar</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Hodim haqida</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Панель</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('hodim_oshpazlar') }}">Поварa</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">О сотруднике</li>
                             </ol>
                         </nav>
                     </div>
@@ -34,12 +34,12 @@
                     <div class="row mb-4">
                         <div class="col-lg-6">
                             <div class="list-group">
-                                <a href="{{ route('oshpaz_show',$id) }}" class="list-group-item list-group-item-action text-center ">Oshpaz haqida</a>
+                                <a href="{{ route('oshpaz_show',$id) }}" class="list-group-item list-group-item-action text-center ">О поваре</a>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="list-group">
-                                <a href="{{ route('oshpaz_paymart',$id) }}" class="list-group-item list-group-item-action text-center active">Ish haqi to'lovlari</a>
+                                <a href="{{ route('oshpaz_paymart',$id) }}" class="list-group-item list-group-item-action text-center active">Выплаты зарплаты</a>
                             </div>
                         </div>
                     </div>
@@ -48,13 +48,13 @@
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ session('error') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
                 </div>
             @endif
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
                 </div>
             @endif
             <div class="card shadow-sm rounded">
@@ -62,27 +62,27 @@
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
                         </div>
                     @endif
-                    <h5 class="card-title">To'lovlar</h5>
+                    <h5 class="card-title">Платежи</h5>
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered align-middle text-center">
                             <thead class="bg-primary">
                                 <tr class="text-center">
                                     <th class="text-white">#</th>
-                                    <th class="text-white">To'lov summasi</th>
-                                    <th class="text-white">To'lov turi</th>
-                                    <th class="text-white">To'lov haqida</th>
-                                    <th class="text-white">Menejer</th>
-                                    <th class="text-white">To'lov vaqti</th>
+                                    <th class="text-white">Сумма выплаты</th>
+                                    <th class="text-white">Тип выплаты</th>
+                                    <th class="text-white">О платеже</th>
+                                    <th class="text-white">Менеджер</th>
+                                    <th class="text-white">Дата и время</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($res as $item)
                                     <tr>
                                         <td>{{ $loop->index+1 }}</td>
-                                        <td>{{ number_format($item['amount'], 0, '', ' ') }} so'm</td>
+                                        <td>{{ number_format($item['amount'], 0, '', ' ') }} сум</td>
                                         <td>{{ $item['type'] }}</td>
                                         <td>{{ $item['comment'] }}</td>
                                         <td>{{ $item['meneger'] }}</td>
@@ -98,24 +98,24 @@
     </div>
 </div>
 
-    <script>
-        document.querySelectorAll('.price-format').forEach(function(input) {
-            input.addEventListener('input', function(e) {
-                let value = input.value.replace(/\D/g, '');
-                if (value) {
-                    input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-                } else {
-                    input.value = '';
-                }
-            });
-            input.addEventListener('blur', function() {
-                input.value = input.value.trim();
-            });
+<script>
+    document.querySelectorAll('.price-format').forEach(function(input) {
+        input.addEventListener('input', function(e) {
+            let value = input.value.replace(/\D/g, '');
+            if (value) {
+                input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            } else {
+                input.value = '';
+            }
         });
-    </script>
-    <style>
-        .comment-list {max-height: 210px;overflow-y: auto;padding-right: 10px;}
-        .comment-box {background-color: #f8f9fa;border-left: 4px solid #0d6efd;padding: 10px 15px;border-radius: 8px;margin-bottom: 10px;}
-        .avatar {width: 40px;height: 40px;object-fit: cover;border-radius: 50%;margin-right: 10px;}
-    </style>
+        input.addEventListener('blur', function() {
+            input.value = input.value.trim();
+        });
+    });
+</script>
+<style>
+    .comment-list {max-height: 210px;overflow-y: auto;padding-right: 10px;}
+    .comment-box {background-color: #f8f9fa;border-left: 4px solid #0d6efd;padding: 10px 15px;border-radius: 8px;margin-bottom: 10px;}
+    .avatar {width: 40px;height: 40px;object-fit: cover;border-radius: 50%;margin-right: 10px;}
+</style>
 @endsection

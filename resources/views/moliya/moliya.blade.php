@@ -1,5 +1,5 @@
 @extends('layout.cdn1')
-@section('title','Moliya')
+@section('title','Финансы')
 @section('content')
 <div id="app">
     @extends('layout.menu')
@@ -14,13 +14,13 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Moliya</h3>
+                        <h3>Финансы</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Moliya</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Панель управления</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Финансы</li>
                             </ol>
                         </nav>
                     </div>
@@ -36,8 +36,8 @@
                             <i class="bi bi-cash fs-1"></i>
                         </div>
                         <div>
-                            <h6 class="text-muted mb-1">Balansda (Naqt)</h6>
-                            <h5 class="mb-0 fw-bold">{{ number_format($Balans['naqt'], 0, '.', ' ') }} so'm</h5>
+                            <h6 class="text-muted mb-1">На балансе (Наличные)</h6>
+                            <h5 class="mb-0 fw-bold">{{ number_format($Balans['naqt'], 0, '.', ' ') }} сум</h5>
                         </div>
                     </div>
                 </div>
@@ -49,41 +49,14 @@
                             <i class="bi bi-credit-card fs-1"></i>
                         </div>
                         <div>
-                            <h6 class="text-muted mb-1">Balansda (Plastik)</h6>
-                            <h5 class="mb-0 fw-bold">{{ number_format($Balans['plastik'], 0, '.', ' ') }} so'm</h5>
+                            <h6 class="text-muted mb-1">На балансе (Карта)</h6>
+                            <h5 class="mb-0 fw-bold">{{ number_format($Balans['plastik'], 0, '.', ' ') }} сум</h5>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card shadow-sm border-start border-4 border-success">
-                    <div class="card-body d-flex align-items-center">
-                        <div class="me-3 text-success">
-                            <i class="bi bi-currency-exchange fs-1"></i>
-                        </div>
-                        <div>
-                            <h6 class="text-muted mb-1">Exson (Naqt)</h6>
-                            <h5 class="mb-0 fw-bold">{{ number_format($Balans['exson_naqt'], 0, '.', ' ') }} so'm</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3">
-                <div class="card shadow-sm border-start border-4 border-danger">
-                    <div class="card-body d-flex align-items-center">
-                        <div class="me-3 text-danger">
-                            <i class="bi bi-wallet2 fs-1"></i>
-                        </div>
-                        <div>
-                            <h6 class="text-muted mb-1">Exson (Plastik)</h6>
-                            <h5 class="mb-0 fw-bold">{{ number_format($Balans['exson_plastik'], 0, '.', ' ') }} so'm</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
--->
         </div>
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul class="mb-0">
@@ -96,24 +69,25 @@
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
             </div>
         @endif
         @if (session('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ session('error') }}
-                <button type="error" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
+                <button type="error" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
             </div>
         @endif
+
         <div class="card mt-4">
             <div class="card-header">
                 <div class="row">
                     <div class="col-6">
-                        <h5 class="mb-0">Moliya tarixi (Oxirgi 45 kun)</h5>
+                        <h5 class="mb-0">История финансов (последние 45 дней)</h5>
                     </div>
                     <div class="col-6 text-end">
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chiqimModal">
-                            <i class="bi bi-plus-circle me-1"></i> Balansdan chiqim
+                            <i class="bi bi-plus-circle me-1"></i> Расход с баланса
                         </button>
                     </div>
                 </div>
@@ -123,11 +97,11 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th>Status</th>
-                            <th>Summa</th>
-                            <th>Izoh</th>
-                            <th>Tasdiqladi</th>
-                            <th>Vaqt</th>
+                            <th>Статус</th>
+                            <th>Сумма</th>
+                            <th>Комментарий</th>
+                            <th>Подтвердил</th>
+                            <th>Время</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -136,43 +110,41 @@
                                 <td>{{ $loop->index+1 }}</td>
                                 <td style="text-align:left">
                                     @if($item['status'] == 'naqt_chiqim')
-                                        <span class="badge text-info">Kassadan chiqim (Naqt)</span>
+                                        <span class="badge text-info">Расход из кассы (наличные)</span>
                                     @elseif($item['status'] == 'plastik_chiqim')
-                                        <span class="badge text-info">Kassadan chiqim (Plastik)</span>
+                                        <span class="badge text-info">Расход из кассы (карта)</span>
                                     @elseif($item['status'] == 'plastik_xarajat')
-                                        <span class="badge text-danger">Kassadan Xarajat (Plastik)</span>
+                                        <span class="badge text-danger">Затраты из кассы (карта)</span>
                                     @elseif($item['status'] == 'balans_naqt_xarajat')
-                                        <span class="badge text-danger">Balansdan Xarajat (Naqt)</span>
+                                        <span class="badge text-danger">Затраты с баланса (наличные)</span>
                                     @elseif($item['status'] == 'balans_plastik_xarajat')
-                                        <span class="badge text-danger">Balansdan Xarajat (Plastik)</span>
+                                        <span class="badge text-danger">Затраты с баланса (карта)</span>
                                     @elseif($item['status'] == 'naqt_xarajat')
-                                        <span class="badge text-danger">Kassadan Xarajat (Naqt)</span>
+                                        <span class="badge text-danger">Затраты из кассы (наличные)</span>
                                     @elseif($item['status'] == 'plastik_qaytar')
-                                        <span class="badge text-secondary">Qaytarilgan to'lov (Plastik)</span>
+                                        <span class="badge text-secondary">Возврат платежа (карта)</span>
                                     @elseif($item['status'] == 'naqt_qaytar')
-                                        <span class="badge text-secondary">Qaytarilgan to'lov (Naqt)</span>
+                                        <span class="badge text-secondary">Возврат платежа (наличные)</span>
                                     @elseif($item['status'] == 'plastik_ish_haqi')
-                                        <span class="badge text-primary">To'langan ish haqi (Plastik)</span>
+                                        <span class="badge text-primary">Выплата зарплаты (карта)</span>
                                     @elseif($item['status'] == 'naqt_ish_haqi')
-                                        <span class="badge text-primary">To'langan ish haqi (Naqt)</span>
+                                        <span class="badge text-primary">Выплата зарплаты (наличные)</span>
                                     @elseif($item['status'] == 'balans_naqt_daromad')
-                                        <span class="badge text-success">Daromad (Naqt)</span>
+                                        <span class="badge text-success">Доход (наличные)</span>
                                     @elseif($item['status'] == 'balans_plastik_daromad')
-                                        <span class="badge text-success">Daromad (Plastik)</span>
+                                        <span class="badge text-success">Доход (карта)</span>
                                     @else
-                                    <span class="badge bg-success">{{ $item['status'] }}</span>
+                                        <span class="badge bg-success">{{ $item['status'] }}</span>
                                     @endif
                                 </td>
-                                <td>
-                                    {{ number_format($item['amount'], 0, '.', ' ') }} so'm
-                                </td>
+                                <td>{{ number_format($item['amount'], 0, '.', ' ') }} сум</td>
                                 <td style="text-align:left">{{ $item['start_comment'] }}</td>
                                 <td>{{ $item['start_user_id'] }}</td>
                                 <td style="text-align:right">{{ $item['created_at'] }}</td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center">Balans tarixi oxirgi 45 kun ichida hech qanday amalyot bajarilmadi.</td>
+                                <td colspan="6" class="text-center">За последние 45 дней финансовых операций не проводилось.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -186,36 +158,32 @@
                     <form action="{{ route('moliya_chiqim') }}" method="POST">
                         @csrf
                         <div class="modal-header">
-                            <h5 class="modal-title" id="chiqimModalLabel">Balansdan chiqim qilish</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                            <h5 class="modal-title" id="chiqimModalLabel">Списание с баланса</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="amount" class="form-label">Chiqim summasi</label>
+                                <label for="amount" class="form-label">Сумма списания</label>
                                 <input type="text" class="form-control" name="amount" id="amount" required>
                             </div>
                             <div class="mb-3">
-                                <label for="status" class="form-label">Chiqim turi</label>
+                                <label for="status" class="form-label">Тип списания</label>
                                 <select class="form-select" name="status" id="status" required>
-                                    <option value="">Tanlang...</option>
-                                    <option value="balans_naqt_xarajat">Xarajat (Naqt)</option>
-                                    <option value="balans_plastik_xarajat">Xarajat (Plastik)</option>
-                                    <!--
-                                    <option value="balans_naqt_exson">Exson (Naqt)</option>
-                                    <option value="balans_plastik_exson">Exson (Plastik)</option>
-                                    -->
-                                    <option value="balans_naqt_daromad">Daromad (Naqt)</option>
-                                    <option value="balans_plastik_daromad">Daromad (Plastik)</option>
+                                    <option value="">Выберите...</option>
+                                    <option value="balans_naqt_xarajat">Затраты (наличные)</option>
+                                    <option value="balans_plastik_xarajat">Затраты (карта)</option>
+                                    <option value="balans_naqt_daromad">Доход (наличные)</option>
+                                    <option value="balans_plastik_daromad">Доход (карта)</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="start_comment" class="form-label">Izoh</label>
-                                <textarea class="form-control" name="start_comment" id="start_comment" rows="2" placeholder="Masalan: Kommunal to‘lovlar..." required></textarea>
+                                <label for="start_comment" class="form-label">Комментарий</label>
+                                <textarea class="form-control" name="start_comment" id="start_comment" rows="2" placeholder="Например: Коммунальные платежи..." required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-danger">Chiqim qilish</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+                            <button type="submit" class="btn btn-danger">Списать</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
                         </div>
                     </form>
                 </div>
@@ -223,13 +191,14 @@
         </div>
     </div>
 </div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const amountInput = document.getElementById("amount");
         amountInput.addEventListener("input", function (e) {
             let value = amountInput.value.replace(/\D/g, '');
             if (value.length > 0) {
-                amountInput.value = Number(value).toLocaleString('uz-UZ');
+                amountInput.value = Number(value).toLocaleString('ru-RU');
             } else {
                 amountInput.value = '';
             }

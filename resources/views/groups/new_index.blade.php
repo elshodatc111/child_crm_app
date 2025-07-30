@@ -1,5 +1,5 @@
 @extends('layout.cdn1')
-@section('title','Yangi Guruh')
+@section('title','Новая группа')
 @section('content')
 
 <style>
@@ -48,13 +48,13 @@
             <div class="page-title">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        <h3>Yangi Guruh</h3>
+                        <h3>Новая группа</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Yangi Guruh</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Главная</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Новая группа</li>
                             </ol>
                         </nav>
                     </div>
@@ -65,40 +65,46 @@
         <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="list-group list-group-horizontal mb-4" id="inbox-menu">
-                    <a href="{{ route('groups') }}" class="list-group-item list-group-item-action ">Aktiv guruhlar</a>
-                    <a href="{{ route('groups_arxiv') }}" class="list-group-item list-group-item-action">Arxiv guruhlar</a>
-                    <a href="{{ route('groups_new') }}" class="list-group-item list-group-item-action active">Yangi guruh</a>
+                    <a href="{{ route('groups') }}" class="list-group-item list-group-item-action ">Активные группы</a>
+                    <a href="{{ route('groups_arxiv') }}" class="list-group-item list-group-item-action">Архив групп</a>
+                    <a href="{{ route('groups_new') }}" class="list-group-item list-group-item-action active">Новая группа</a>
                 </div>
                 <form action="{{ route('groups_create') }}" method="post">
                     @csrf
-                    <label for="group_name">Guruh nomi</label>
+                    <label for="group_name">Название группы</label>
                     <input type="text" class="form-control my-2" name="group_name" required>
-                    <label for="group_type">Guruh turi</label>
+
+                    <label for="group_type">Тип группы</label>
                     <select name="group_type" id="" class="form-select my-2" required>
-                        <option value="">Tanlang</option>
-                        <option value="besh">Haftasiga besh ish kuni</option>
-                        <option value="olti">Haftasiga olti ish kuni</option>
+                        <option value="">Выберите</option>
+                        <option value="besh">Пятидневная рабочая неделя</option>
+                        <option value="olti">Шестидневная рабочая неделя</option>
                     </select>
-                    <label for="price_month">Guruh uchun oylik to'lov</label>
+
+                    <label for="price_month">Месячная оплата за группу</label>
                     <input type="text" class="form-control my-2 price-format" name="price_month" required>
-                    <label for="price_day">Guruh uchun kunlik to'lov</label>
+
+                    <label for="price_day">Дневная оплата за группу</label>
                     <input type="text" class="form-control my-2 price-format" name="price_day" required>
-                    <label for="user_id1">Katta tarbiyachi</label>
+
+                    <label for="user_id1">Старший воспитатель</label>
                     <select name="user_id1" id="" class="form-select my-2" required>
-                        <option value="">Tanlang</option>
+                        <option value="">Выберите</option>
                         @foreach ($katta as $item)
                             <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
                         @endforeach
                     </select>
-                    <label for="user_id2">Kichik tarbiyachi</label>
+
+                    <label for="user_id2">Младший воспитатель</label>
                     <select name="user_id2" id="" class="form-select my-2" required>
-                        <option value="">Tanlang</option>
+                        <option value="">Выберите</option>
                         @foreach ($kichik as $item)
                             <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
                         @endforeach
                     </select>
+
                     <div class="w-100 text-center mt-2">
-                        <button type="submit" class="btn btn-primary">Saqlash</button>
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
                     </div>
                 </form>
             </div>

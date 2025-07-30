@@ -80,14 +80,14 @@ class KassaController extends Controller{
         $payment_type = $request->payment_type;
         $note = $request->note;
         if($this->checkAmount($payment_type, $amount)){
-            return redirect()->back()->with('success', 'Kassada yetarmi mablag\' mavjud emas!');
+            return redirect()->back()->with('success', 'В кассе недостаточно средств!');
         }
         $this->kassdanChiqim($expense_type, $amount, $payment_type, $note);
         if($expense_type=="chiqim"){
-            return redirect()->back()->with('success', 'Kassada chiqim tashdiqlash kutilmoqda!');
+            return redirect()->back()->with('success', 'Ожидаем подтверждения оплаты!');
         }
         if($expense_type=="xarajat"){
-            return redirect()->back()->with('success', 'Kassada xarajat tashdiqlash kutilmoqda!');
+            return redirect()->back()->with('success', 'Жду подтверждения стоимости при оформлении заказа!');
         }
     }
 
@@ -117,7 +117,7 @@ class KassaController extends Controller{
             $Kassa->plastik = $Kassa->plastik+$amount;
         }
         $Kassa->save();
-        return redirect()->back()->with('success', 'Chiqim bekor qilindi!');
+        return redirect()->back()->with('success', 'Мой выезд отменён!');
     }
 
     public function kassa_chiqim_success(Request $request){
@@ -144,7 +144,7 @@ class KassaController extends Controller{
         }
         $Kassa->save();
         $Balans->save();
-        return redirect()->back()->with('success', 'Tasdiqlandi!');
+        return redirect()->back()->with('success', 'Подтвержденный!');
     }
 
 }

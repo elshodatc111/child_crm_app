@@ -1,5 +1,5 @@
 @extends('layout.cdn2')
-@section('title','Davomad')
+@section('title','Посещаемость')
 
 @section('content')
 <div id="app">
@@ -14,13 +14,13 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Davomad</h3>
+                        <h3>Посещаемость</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Davomad</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Панель управления</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Посещаемость</li>
                             </ol>
                         </nav>
                     </div>
@@ -33,22 +33,22 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="list-group">
-                            <a href="{{ route('hodim_davomad_meneger') }}" class="list-group-item list-group-item-action text-center ">Menegerlar</a>
+                            <a href="{{ route('hodim_davomad_meneger') }}" class="list-group-item list-group-item-action text-center ">Менеджеры</a>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="list-group">
-                            <a href="{{ route('hodim_davomad_tarbiyachi') }}" class="list-group-item list-group-item-action text-center ">Tarbiyachilar</a>
+                            <a href="{{ route('hodim_davomad_tarbiyachi') }}" class="list-group-item list-group-item-action text-center ">Воспитатели</a>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="list-group">
-                            <a href="{{ route('hodim_davomad_hodim') }}" class="list-group-item list-group-item-action text-center active">Hodimlar</a>
+                            <a href="{{ route('hodim_davomad_hodim') }}" class="list-group-item list-group-item-action text-center active">Сотрудники</a>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="list-group">
-                            <a href="{{ route('hodim_davomad_techer') }}" class="list-group-item list-group-item-action text-center ">Oshpazlar</a>
+                            <a href="{{ route('hodim_davomad_techer') }}" class="list-group-item list-group-item-action text-center ">Поварa</a>
                         </div>
                     </div>
                 </div>
@@ -59,13 +59,13 @@
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
                     </div>
                 @endif
                 <h5 class="card-title d-flex justify-content-between align-items-center">
-                    Menejerlar davomadi
+                    Посещаемость менеджеров
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#davomadModal">
-                        <i class="bi bi-plus-circle me-1"></i> Davomad olish
+                        <i class="bi bi-plus-circle me-1"></i> Отметить посещаемость
                     </button>
                 </h5>
 
@@ -74,7 +74,7 @@
                         <thead class="table-primary text-center">
                             <tr>
                                 <th>#</th>
-                                <th>FIO</th>
+                                <th>Ф.И.О.</th>
                                 @foreach ($ishString as $item)
                                     <th class="text-center">
                                         <p class="vertical-text"
@@ -137,22 +137,22 @@
                 </div>
                 <div class="text-center mt-3">
                     <span class="badge bg-success badge-status">
-                        <i class="bi bi-check-circle"></i> Keldi
+                        <i class="bi bi-check-circle"></i> Пришел
                     </span>
                     <span class="badge bg-danger badge-status">
-                        <i class="bi bi-x-circle"></i> Ishga kelmadi
+                        <i class="bi bi-x-circle"></i> Не пришел
                     </span>
                     <span class="badge bg-warning text-dark badge-status">
-                        <i class="bi bi-clock"></i> Kechikdi
+                        <i class="bi bi-clock"></i> Опоздал
                     </span>
                     <span class="badge bg-info text-dark badge-status">
-                        <i class="bi bi-person-x"></i> Forma yo'q
+                        <i class="bi bi-person-x"></i> Нет формы
                     </span>
                     <span class="badge bg-secondary badge-status">
-                        <i class="bi bi-calendar-x"></i> Ish kuni emas
+                        <i class="bi bi-calendar-x"></i> Выходной
                     </span>
                     <span class="badge bg-light text-dark border badge-status">
-                        <i class="bi bi-question-circle"></i> Davomad olinmadi
+                        <i class="bi bi-question-circle"></i> Не отмечено
                     </span>
                 </div>
                 <div class="modal fade" id="davomadModal" tabindex="-1" aria-labelledby="davomadModalLabel" aria-hidden="true">
@@ -161,8 +161,8 @@
                             @csrf
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="davomadModalLabel">Davomad olish</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                                    <h5 class="modal-title" id="davomadModalLabel">Отметить посещаемость</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="table-responsive">
@@ -170,8 +170,8 @@
                                             <thead class="table-light text-center">
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>F.I.O</th>
-                                                    <th>Holat</th>
+                                                    <th>Ф.И.О.</th>
+                                                    <th>Статус</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -181,12 +181,12 @@
                                                         <td>{{ $item['fio'] }}</td>
                                                         <td>
                                                             <select name="statuses[{{ $item['id'] }}]" class="form-select" required>
-                                                                <option value="">Tanlang</option>
-                                                                <option value="present" {{ $item['status'] === 'present' ? 'selected' : '' }}>Keldi</option>
-                                                                <option value="absent" {{ $item['status'] === 'absent' ? 'selected' : '' }}>Kelmadi</option>
-                                                                <option value="late" {{ $item['status'] === 'late' ? 'selected' : '' }}>Kechikdi</option>
-                                                                <option value="no_uniform" {{ $item['status'] === 'no_uniform' ? 'selected' : '' }}>Forma yo‘q</option>
-                                                                <option value="off_day" {{ $item['status'] === 'off_day' ? 'selected' : '' }}>Ish kuni emas</option>
+                                                                <option value="">Выберите</option>
+                                                                <option value="present" {{ $item['status'] === 'present' ? 'selected' : '' }}>Пришел</option>
+                                                                <option value="absent" {{ $item['status'] === 'absent' ? 'selected' : '' }}>Не пришел</option>
+                                                                <option value="late" {{ $item['status'] === 'late' ? 'selected' : '' }}>Опоздал</option>
+                                                                <option value="no_uniform" {{ $item['status'] === 'no_uniform' ? 'selected' : '' }}>Нет формы</option>
+                                                                <option value="off_day" {{ $item['status'] === 'off_day' ? 'selected' : '' }}>Выходной</option>
                                                             </select>
                                                         </td>
                                                     </tr>
@@ -197,9 +197,9 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">
-                                        <i class="bi bi-check2-circle me-1"></i> Saqlash
+                                        <i class="bi bi-check2-circle me-1"></i> Сохранить
                                     </button>
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
                                 </div>
                             </div>
                         </form>
@@ -208,7 +208,6 @@
 
             </div>
         </div>
-
 
         </section>
     </div>

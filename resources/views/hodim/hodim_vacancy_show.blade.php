@@ -1,5 +1,5 @@
 @extends('layout.cdn2')
-@section('title','Vakansiya haqida')
+@section('title','О вакансии')
 @section('content')
 <div id="app">
     @php
@@ -17,14 +17,14 @@
             <div class="page-title">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        <h3>Vakansiya haqida</h3>
+                        <h3>О вакансии</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('hodim_vacancy') }}">Vakansiyalar</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Vakansiya haqida</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Главная</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('hodim_vacancy') }}">Вакансии</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">О вакансии</li>
                             </ol>
                         </nav>
                     </div>
@@ -44,7 +44,7 @@
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Yopish"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Закрыть"></button>
             </div>
         @endif
 
@@ -55,69 +55,69 @@
                         <h5 class="card-title mb-3">{{ $about['name'] }}</h5>
                         <table class="table table-borderless small text-start">
                             <tr>
-                                <th>Telefon raqam:</th>
+                                <th>Телефон:</th>
                                 <td class="text-end">{{ $about['phone'] }}</td>
                             </tr>
                             <tr>
-                                <th>Yashash manzili:</th>
+                                <th>Адрес проживания:</th>
                                 <td class="text-end">{{ $about['address'] }}</td>
                             </tr>
                             <tr>
-                                <th>Tug'ilgan kuni:</th>
+                                <th>Дата рождения:</th>
                                 <td class="text-end">{{ $about['tkun'] }}</td>
                             </tr>
                             <tr>
-                                <th>Lavozim:</th>
+                                <th>Должность:</th>
                                 <td class="text-end">
                                     @if ($about['type']=='bogbon')
-                                        Bog'bon
+                                        Садовник
                                     @elseif ($about['type']=='oshpaz')
-                                        Oshpaz
+                                        Повар
                                     @elseif ($about['type']=='qarovul')
-                                        Qarovul
+                                        Охранник
                                     @elseif ($about['type']=='farrosh')
-                                        Farrosh
+                                        Уборщик
                                     @elseif ($about['type']=='techer')
-                                        O'qituvchi
+                                        Учитель
                                     @elseif ($about['type']=='tarbiyachi')
-                                        Tarbiyachi
+                                        Воспитатель
                                     @else
-                                        Menejer
+                                        Менеджер
                                     @endif
                                 </td>
                             </tr>
                             <tr>
-                                <th>Holati:</th>
+                                <th>Статус:</th>
                                 <td class="text-end">
                                     @if ($about['status']=='new')
-                                        Yangi
+                                        Новый
                                     @elseif ($about['status']=='pending')
-                                        Jaroyonda
+                                        В процессе
                                     @elseif ($about['status']=='cancel')
-                                        Bekor qilindi
+                                        Отменён
                                     @else
-                                        Qabul qilindi
+                                        Принят
                                     @endif
                                 </td>
                             </tr>
                             <tr>
-                                <th>Vakansiya haqida:</th>
+                                <th>О вакансии:</th>
                                 <td class="text-end">{{ $about['description'] }}</td>
                             </tr>
                             <tr>
-                                <th>Meneger:</th>
+                                <th>Менеджер:</th>
                                 <td class="text-end">{{ $about['menejer'] }}</td>
                             </tr>
                         </table>
                         <div class="row" style="display: {{ ($about['status'] == 'cancel' || $about['status'] == 'success') ? 'none' : 'flex' }};">
                             <div class="col-6">
                                 <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#blockModal">
-                                    Bekor qilish
+                                    Отменить
                                 </button>
                             </div>
                             <div class="col-6">
                                 <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#acceptModal">
-                                    Qabul qilish
+                                    Принять
                                 </button>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
             <div class="col-12 col-md-8">
                 <div class="card shadow-sm">
                     <div class="card-header">
-                        <h5 class="mb-0">Vakansiya eslatmalari</h5>
+                        <h5 class="mb-0">Заметки по вакансии</h5>
                     </div>
                     <div class="card-body pt-4 bg-light notes-area mx-4">
                         @foreach ($comment as $item)
@@ -145,9 +145,9 @@
                             <div class="message-form d-flex align-items-center">
                                 <input type="hidden" name="vacancy_id" value="{{ $about['id'] }}">
                                 <div class="d-flex flex-grow-1 ms-3">
-                                    <input type="text" name="description" class="form-control rounded-pill px-4 py-2" placeholder="Yangi eslatma yozing...">
+                                    <input type="text" name="description" class="form-control rounded-pill px-4 py-2" placeholder="Напишите новую заметку...">
                                 </div>
-                                <button type="submit" class="btn btn-success ms-3 rounded-pill px-4">Saqlash</button>
+                                <button type="submit" class="btn btn-success ms-3 rounded-pill px-4">Сохранить</button>
                             </div>
                         </form>
                     </div>
@@ -156,62 +156,65 @@
         </div>
     </div>
 
+    <!-- Модальное окно отмены -->
     <div class="modal fade" id="blockModal" tabindex="-1" aria-labelledby="blockModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <form action="{{ route('vacancy_story_cancel') }}" method="POST">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="blockModalLabel">Vakansiyani bekor qilish</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                        <h5 class="modal-title" id="blockModalLabel">Отменить вакансию</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="vacancy_id" value="{{ $about['id'] }}">
-                        <label for="description">Bekor qilish uchun izoh qoldiring</label>
+                        <label for="description">Оставьте комментарий для отмены</label>
                         <textarea name="description" class="form-control mt-2" required></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
-                        <button type="submit" class="btn btn-danger">Saqlash</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отменить</button>
+                        <button type="submit" class="btn btn-danger">Сохранить</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
+    <!-- Модальное окно принятия -->
     <div class="modal fade" id="acceptModal" tabindex="-1" aria-labelledby="acceptModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <form action="{{ route('vacancy_story_success') }}" method="POST">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="acceptModalLabel">Vakansiyani qabul qilish</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                        <h5 class="modal-title" id="acceptModalLabel">Принять вакансию</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="vacancy_id" value="{{ $about['id'] }}">
-                        <label for="type" class="my-2">Lavozimni tanlang</label>
+                        <label for="type" class="my-2">Выберите должность</label>
                         <select name="type" class="form-select" required>
-                            <option value="">Tanlang</option>
-                            <option value="direktor">Drektor</option>
-                            <option value="menejer">Meneger</option>
-                            <option value="tarbiyachi">Tarbiyachi</option>
-                            <option value="kichik_tarbiyachi">Yordamchi tarbiyachi</option>
-                            <option value="oshpaz">Oshpaz</option>
-                            <option value="techer">O'qituvchi</option>
-                            <option value="hodim">Hodim</option>
+                            <option value="">Выберите</option>
+                            <option value="direktor">Директор</option>
+                            <option value="menejer">Менеджер</option>
+                            <option value="tarbiyachi">Воспитатель</option>
+                            <option value="kichik_tarbiyachi">Помощник воспитателя</option>
+                            <option value="oshpaz">Повар</option>
+                            <option value="techer">Учитель</option>
+                            <option value="hodim">Сотрудник</option>
                         </select>
-                        <label for="description" class="my-2">Qabul qilish uchun izoh</label>
+                        <label for="description" class="my-2">Комментарий к принятию</label>
                         <textarea name="description" class="form-control" required></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
-                        <button type="submit" class="btn btn-success">Qabul qilish</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отменить</button>
+                        <button type="submit" class="btn btn-success">Принять</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
     <style>
         .notes-area {padding: 1rem;max-height: 400px;overflow-y: auto;background-color: #f8f9fa;border-radius: 1rem;}
         .note-box {padding: 12px 15px;background-color: #fff;border-left: 5px solid #0d6efd;border-radius: 8px;box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);}

@@ -179,7 +179,7 @@ class HodimController extends Controller{
     public function hodim_create_paymarts(Request $request){
         $amount = str_replace(" ","",$request->amount);
         if($this->checkPrice($request->payment_type, $request->naqt, $request->plastik, $amount)){
-            return back()->with('error', 'Balansda yetarli mablag\' mavjud emas.');
+            return back()->with('error', 'На балансе недостаточно средств.');
         }
         $this->balansChiqim($request->payment_type, $amount, $request->note);
         UserSalary::create([
@@ -189,7 +189,7 @@ class HodimController extends Controller{
             'type' => $request->payment_type,
             'comment' => $request->note,
         ]);
-        return back()->with('success', 'Ish haqi to\'lovi amalga oshirildi.');
+        return back()->with('success', 'Выплата заработной платы произведена.');
     }
 
     public function meneger_show($id){

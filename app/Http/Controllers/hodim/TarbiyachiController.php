@@ -133,10 +133,10 @@ class TarbiyachiController extends Controller{
         $User->save();
         UserComment::create([
             'user_id' => $request->id,
-            'comment' => "Malumotlar taxrirlandi",
+            'comment' => "Информация была отредактирована.",
             'meneger' => auth()->user()->fio,
         ]);
-        return back()->with('success', 'Malumotlar yangilandi.');
+        return back()->with('success', 'Информация обновлена.');
     }
 
     public function tarix($id){

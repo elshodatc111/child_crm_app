@@ -35,7 +35,7 @@ class VacancyChildController extends Controller{
             'description' => "Ro'yhatga olindi",
             'meneger' => auth()->user()->fio,
         ]);
-        return redirect()->back()->with('success', 'Tashrif muvaffaqiyatli saqlandi!');
+        return redirect()->back()->with('success', 'Визит успешно сохранён!');
     }
 
     public function show($id){
@@ -96,7 +96,7 @@ class VacancyChildController extends Controller{
         $VacancyChild->save();
         $VacancyChildComment = VacancyChildComment::create([
             'vacancy_child_id' => $child_id,
-            'description' => $start_comment." (Guruhga qo\'shildi)",
+            'description' => $start_comment." (Присоединился к группе)",
             'meneger' => auth()->user()->fio,
         ]);
         $GroupChild = GroupChild::create([
@@ -108,7 +108,7 @@ class VacancyChildController extends Controller{
             'status' => 'true',
             'start_manager_id' => auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Tashrif muvaffaqiyatli saqlandi!');
+        return redirect()->back()->with('success', 'Визит успешно сохранён!');
     }
 
 }

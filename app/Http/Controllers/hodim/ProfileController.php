@@ -22,10 +22,10 @@ class ProfileController extends Controller{
         ]);
         $user = Auth::user();
         if (!Hash::check($request->password, $user->password)) {
-            return back()->withErrors(['password' => 'Joriy parol noto‘g‘ri.']);
+            return back()->withErrors(['password' => 'Текущий пароль неверный.']);
         }
         $user->password = Hash::make($request->new_password);
         $user->save();
-        return back()->with('success', 'Parol muvaffaqiyatli yangilandi.');
+        return back()->with('success', 'Пароль успешно обновлен.');
     }
 }

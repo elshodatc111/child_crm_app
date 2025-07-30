@@ -20,28 +20,28 @@
             <ul class="menu list-unstyled">
                 <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a href="{{ route('dashboard') }}" class="sidebar-link">
-                        <i class="bi bi-speedometer2"></i> <span>Dashboard</span>
+                        <i class="bi bi-speedometer2"></i> <span>Панель управления</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs([
                     'child','child_debit','child_end','child_show','child_show_group','child_show_davomad'
                 ]) ? 'active' : '' }}">
                     <a href="{{ route('child') }}" class="sidebar-link">
-                        <i class="bi bi-emoji-smile-fill"></i> <span>Bolalar</span>
+                        <i class="bi bi-emoji-smile-fill"></i> <span>Дети</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs([
                     'child_vakancy','child_vakancy_show','child_vakancy_create'
                 ]) ? 'active' : '' }}">
                     <a href="{{ route('child_vakancy') }}" class="sidebar-link">
-                        <i class="bi bi-door-open-fill"></i> <span>Tashriflar</span>
+                        <i class="bi bi-door-open-fill"></i> <span>Посещения</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->routeIs([
                     'groups','groups_arxiv','groups_show_child','child_show_darslar','groups_show_child_update','groups_show_davomad','groups_new','groups_show'
                 ]) ? 'active' : '' }}">
                     <a href="{{ route('groups') }}" class="sidebar-link">
-                        <i class="bi bi-diagram-3-fill"></i> <span>Guruhlar</span>
+                        <i class="bi bi-diagram-3-fill"></i> <span>Группы</span>
                     </a>
                 </li>
                 @if(auth()->user()->type == 'direktor' OR auth()->user()->type == 'menejer')
@@ -49,31 +49,31 @@
                         'hodim_davomad_meneger','hodim_davomad_tarbiyachi','hodim_davomad_techer','hodim_davomad_hodim'
                     ]) ? 'active' : '' }}">
                         <a href="{{ route('hodim_davomad_meneger') }}" class="sidebar-link">
-                            <i class="bi bi-calendar-check"></i> <span>Hodimlar Davomadi</span>
+                            <i class="bi bi-calendar-check"></i> <span>Посещаемость сотрудников</span>
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('kassa') ? 'active' : '' }}">
                         <a href="{{ route('kassa') }}" class="sidebar-link">
-                            <i class="bi bi-cash-stack"></i> <span>Kassa</span>
+                            <i class="bi bi-cash-stack"></i> <span>Касса</span>
                         </a>
                     </li>
                 @endif
                 @if(auth()->user()->type == 'direktor')
                     <li class="sidebar-item {{ request()->routeIs('moliya') ? 'active' : '' }}">
                         <a href="{{ route('moliya') }}" class="sidebar-link">
-                            <i class="bi bi-bar-chart-fill"></i> <span>Moliya</span>
+                            <i class="bi bi-bar-chart-fill"></i> <span>Финансы</span>
                         </a>
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('chart') ? 'active' : '' }}">
                         <a href="{{ route('chart') }}" class="sidebar-link">
-                            <i class="bi bi-pie-chart-fill"></i> <span>Statistika (Jarayonda)</span>
+                            <i class="bi bi-pie-chart-fill"></i> <span>Статистика (Jarayonda)</span>
                         </a>
                     </li>
                 @endif
                 @if(auth()->user()->type == 'direktor' OR auth()->user()->type == 'menejer')
                     <li class="sidebar-item {{ request()->routeIs('report') ? 'active' : '' }}">
                         <a href="{{ route('report') }}" class="sidebar-link">
-                            <i class="bi bi-file-earmark-text-fill"></i> <span>Hisobot (Jarayonda)</span>
+                            <i class="bi bi-file-earmark-text-fill"></i> <span>Отчет (Jarayonda)</span>
                         </a>
                     </li>
 
@@ -85,20 +85,20 @@
                         'hodim_vacancy','hodim_vacancy_create'
                     ]) ? 'active' : '' }}">
                         <a href="{{ route('hodim') }}" class="sidebar-link">
-                            <i class="bi bi-person-badge"></i> <span>Hodimlar</span>
+                            <i class="bi bi-person-badge"></i> <span>Сотрудники</span>
                         </a>
                     </li>
                 @endif
 
                 <li class="sidebar-item {{ request()->routeIs('profile') ? 'active' : '' }}">
                     <a href="{{ route('profile') }}" class="sidebar-link">
-                        <i class="bi bi-person-circle"></i> <span>Profil</span>
+                        <i class="bi bi-person-circle"></i> <span>Профиль</span>
                     </a>
                 </li>
                 @if(auth()->user()->type == 'direktor')
                     <li class="sidebar-item {{ request()->routeIs('setting') ? 'active' : '' }}">
                         <a href="{{ route('setting') }}" class="sidebar-link">
-                            <i class="bi bi-gear-fill"></i> <span>Sozlamalar</span>
+                            <i class="bi bi-gear-fill"></i> <span>Настройки</span>
                         </a>
                     </li>
                 @endif
@@ -106,7 +106,7 @@
                     <a href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                     class="sidebar-link text-danger">
-                        <i class="bi bi-box-arrow-right"></i> <span>Chiqish</span>
+                        <i class="bi bi-box-arrow-right"></i> <span>Выход</span>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf

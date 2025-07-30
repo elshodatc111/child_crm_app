@@ -48,14 +48,14 @@
             <div class="page-title">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        <h3>Guruh haqida</h3>
+                        <h3>О группе</h3>
                     </div>
                     <div class="col-12 col-md-6 order-md-2 order-first">
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('groups') }}">Aktiv Guruhlar</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Guruh haqida</li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Панель управления</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('groups') }}">Активные группы</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">О группе</li>
                             </ol>
                         </nav>
                     </div>
@@ -67,20 +67,21 @@
             <div class="card-body">
                 <div class="row text-center">
                     <div class="col-lg-3 list-group mt-lg-0 mt-2">
-                        <a href="{{ route('groups_show',$id) }}" class="list-group-item list-group-item-action active">Guruh haqida</a>
+                        <a href="{{ route('groups_show',$id) }}" class="list-group-item list-group-item-action active">О группе</a>
                     </div>
                     <div class="col-lg-3 list-group mt-lg-0 mt-2">
-                        <a href="{{ route('groups_show_child',$id) }}" class="list-group-item list-group-item-action ">Bolalar && Tarbiyachilar</a>
+                        <a href="{{ route('groups_show_child',$id) }}" class="list-group-item list-group-item-action">Дети и Воспитатели</a>
                     </div>
                     <div class="col-lg-3 list-group mt-lg-0 mt-2">
-                        <a href="{{ route('groups_show_davomad',$id) }}" class="list-group-item list-group-item-action ">Guruh davomadi</a>
+                        <a href="{{ route('groups_show_davomad',$id) }}" class="list-group-item list-group-item-action">Посещаемость группы</a>
                     </div>
                     <div class="col-lg-3 list-group mt-lg-0 mt-2">
-                        <a href="{{ route('child_show_darslar',$id) }}" class="list-group-item list-group-item-action ">Qo'shimcha darslar</a>
+                        <a href="{{ route('child_show_darslar',$id) }}" class="list-group-item list-group-item-action">Дополнительные занятия</a>
                     </div>
                 </div>
             </div>
         </div>
+
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -91,57 +92,57 @@
             <div class="col-lg-6 mx-auto">
                 <div class="card shadow-sm border-0 rounded-4">
                     <div class="card-header text-center rounded-top-4">
-                        <h5 class="mb-0"><i class="bi bi-info-circle-fill me-2"></i>Guruh haqida</h5>
+                        <h5 class="mb-0"><i class="bi bi-info-circle-fill me-2"></i>О группе</h5>
                     </div>
                     <div class="card-body">
                         <table class="table table-borderless table-hover align-middle">
                             <tbody>
                                 <tr>
-                                    <th class="text-muted">Guruh nomi</th>
+                                    <th class="text-muted">Название группы</th>
                                     <td class="text-end fw-semibold">{{ $about['group_name'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-muted">Narxi (oy)</th>
-                                    <td class="text-end fw-semibold">{{ number_format($about['price_month'], 0, '.', ' ') }} so‘m</td>
+                                    <th class="text-muted">Цена (месяц)</th>
+                                    <td class="text-end fw-semibold">{{ number_format($about['price_month'], 0, '.', ' ') }} сум</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-muted">Narxi (kun)</th>
-                                    <td class="text-end fw-semibold">{{ number_format($about['price_day'], 0, '.', ' ') }} so‘m</td>
+                                    <th class="text-muted">Цена (день)</th>
+                                    <td class="text-end fw-semibold">{{ number_format($about['price_day'], 0, '.', ' ') }} сум</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-muted">Tarbiyachi</th>
+                                    <th class="text-muted">Воспитатель</th>
                                     <td class="text-end">{{ $about['tarbiyachi'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-muted">Yordamchi tarbiyachi</th>
+                                    <th class="text-muted">Помощник воспитателя</th>
                                     <td class="text-end">{{ $about['yordamchi'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-muted">Guruh holati</th>
+                                    <th class="text-muted">Статус группы</th>
                                     <td class="text-end">
                                         @if($about['status']=='true')
-                                            <span class="badge bg-success">Aktiv</span>
+                                            <span class="badge bg-success">Активна</span>
                                         @else
-                                            <span class="badge bg-danger">Yakunlangan</span>
+                                            <span class="badge bg-danger">Завершена</span>
                                         @endif
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th class="text-muted">Ish kunlari</th>
+                                    <th class="text-muted">Рабочие дни</th>
                                     <td class="text-end">
                                         @if($about['group_type']=='olti')
-                                            Haftasiga 6 kunlik
+                                            6 дней в неделю
                                         @else
-                                            Haftasiga 5 kunlik
+                                            5 дней в неделю
                                         @endif
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th class="text-muted">Meneger</th>
+                                    <th class="text-muted">Менеджер</th>
                                     <td class="text-end">{{ $about['meneger'] }}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-muted">Yaratilgan sana</th>
+                                    <th class="text-muted">Дата создания</th>
                                     <td class="text-end">{{ $about['created_at'] }}</td>
                                 </tr>
                             </tbody>
@@ -149,40 +150,41 @@
                         <div class="row g-3">
                             <div class="col-6">
                                 <button class="btn btn-outline-primary w-100 py-3 rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#editGroupModal">
-                                    <i class="bi bi-pencil-square me-1"></i> Guruhni tahrirlash
+                                    <i class="bi bi-pencil-square me-1"></i> Редактировать группу
                                 </button>
                             </div>
                             <div class="col-6">
                                 <button class="btn btn-outline-success w-100 py-3 rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#takeAttendanceModal">
-                                    <i class="bi bi-check2-square me-1"></i> Davomad olish
+                                    <i class="bi bi-check2-square me-1"></i> Отметить посещаемость
                                 </button>
                             </div>
                             <div class="col-6">
                                 <button class="btn btn-outline-warning w-100 py-3 rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#changeMainModal">
-                                    <i class="bi bi-person-gear me-1"></i> Tarbiyachini almashtirish
+                                    <i class="bi bi-person-gear me-1"></i> Сменить воспитателя
                                 </button>
                             </div>
                             <div class="col-6">
                                 <button class="btn btn-outline-secondary w-100 py-3 rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#changeHelperModal">
-                                    <i class="bi bi-person-gear me-1"></i> Yordamchini almashtirish
+                                    <i class="bi bi-person-gear me-1"></i> Сменить помощника
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-6 mx-auto">
                 <div class="card shadow-sm border-0 rounded-4">
                     <div class="card-header text-center rounded-top-4">
-                        <h5 class="mb-0">Joriy oy ish kunlari ({{ $ishKunlarSoni }} kun)</h5>
+                        <h5 class="mb-0">Рабочие дни текущего месяца ({{ $ishKunlarSoni }} дней)</h5>
                     </div>
                     <div class="card-body">
                         <table class="table text-center table-bordered" style="font-size:12px">
                             <thead>
                                 <tr>
                                     <th class="text-center px-3">#</th>
-                                    <th class="text-center px-3">Hafta kuni</th>
-                                    <th class="text-center px-3">Sana</th>
+                                    <th class="text-center px-3">День недели</th>
+                                    <th class="text-center px-3">Дата</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -194,11 +196,11 @@
                                         $sana = \Carbon\Carbon::parse($item['sanasi']);
                                         $badgeClass = '';
                                         if ($sana->isToday()) {
-                                            $badgeClass = 'text-warning'; // bugungi kun: sariq
+                                            $badgeClass = 'text-warning'; // сегодня — желтый
                                         } elseif ($sana->isPast()) {
-                                            $badgeClass = 'text-success'; // o‘tib ketgan: qizil
+                                            $badgeClass = 'text-success'; // прошедшее — зеленый
                                         } else {
-                                            $badgeClass = 'text-secondary'; // kelajak: ko‘k
+                                            $badgeClass = 'text-secondary'; // будущее — серый
                                         }
                                     @endphp
                                     <tr class="p-0 m-0">
@@ -221,46 +223,46 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
     </div>
 </div>
-    <!-- Guruhni tahrirlash -->
+    <!-- Редактировать группу -->
     <div class="modal fade" id="editGroupModal" tabindex="-1" aria-labelledby="editGroupModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow rounded-4">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editGroupModalLabel">
-                        Guruhni tahrirlash
+                        Редактировать группу
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body p-4">
                     <form action="{{ route('groups_updates') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id" value="{{ $id }}">
                         <div class="mb-3">
-                            <label for="group_name" class="form-label">Guruh nomi</label>
+                            <label for="group_name" class="form-label">Название группы</label>
                             <input type="text" name="group_name" id="group_name" value="{{ $about['group_name'] }}" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="price_month" class="form-label">Guruh narxi (Oy)</label>
+                            <label for="price_month" class="form-label">Цена группы (месяц)</label>
                             <input type="text" name="price_month" id="price_month" class="form-control price-format" value="{{ number_format($about['price_month'], 0, '.', ' ') }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="price_day" class="form-label">Guruh narxi (Kun)</label>
+                            <label for="price_day" class="form-label">Цена группы (день)</label>
                             <input type="text" name="price_day" id="price_day" value="{{ number_format($about['price_day'], 0, '.', ' ') }}" class="form-control price-format" required>
                         </div>
                         <div class="mb-3">
-                            <label for="status" class="form-label">Guruh holati</label>
+                            <label for="status" class="form-label">Статус группы</label>
                             <select name="status" id="status" class="form-select" required>
-                                <option value="true" {{ $about['status'] == 'true' ? 'selected' : '' }}>Aktiv</option>
-                                <option value="false" {{ $about['status'] == 'false' ? 'selected' : '' }}>Yakunlangan</option>
+                                <option value="true" {{ $about['status'] == 'true' ? 'selected' : '' }}>Активна</option>
+                                <option value="false" {{ $about['status'] == 'false' ? 'selected' : '' }}>Завершена</option>
                             </select>
                         </div>
                         <div class="text-end mt-4">
                             <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-save me-1"></i> O'zgarishlarni saqlash
+                                <i class="bi bi-save me-1"></i> Сохранить изменения
                             </button>
                         </div>
                     </form>
@@ -269,30 +271,29 @@
         </div>
     </div>
 
-
-<!-- Davomad olish -->
+<!-- Отметка посещаемости -->
     <div class="modal fade" id="takeAttendanceModal" tabindex="-1" aria-labelledby="takeAttendanceModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 shadow rounded-4">
                 <div class="modal-header">
                     <h5 class="modal-title" id="takeAttendanceModalLabel">
-                        Davomad olish
+                        Отметка посещаемости
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <form action="{{ route('groups_create_davomat') }}" method="POST">
                     @csrf
                     <input type="hidden" name="group_id" value="{{ $id }}">
                     <div class="modal-body">
                         @if($davomadDay=='false')
-                        <p class="text-danger m-0 p-0 w-100 text-center">Davomad 1 ish kunida faqat 1 marta olish mumkun.</p>
+                        <p class="text-danger m-0 p-0 w-100 text-center">Посещаемость можно отмечать только один раз в день.</p>
                         <div class="table-responsive">
                             <table class="table table-bordered align-middle text-center">
                                 <thead class="table-light">
                                     <tr>
                                         <th>#</th>
-                                        <th>Bola ismi</th>
-                                        <th>Davomad holati</th>
+                                        <th>Имя ребёнка</th>
+                                        <th>Статус посещаемости</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -303,17 +304,17 @@
                                                 {{ $item['child_name'] }}
                                                 (
                                                     @if($item['paymart_type'] == 'monch')
-                                                        Oylik to'lov
+                                                        Месячная оплата
                                                     @else
-                                                        Kunlik to'lov
+                                                        Дневная оплата
                                                     @endif
                                                 )
                                             </td>
                                             <td>
                                                 <select name="attendance[{{ $item['child_id'] }}]" class="form-select" required>
-                                                    <option value="">Tanlang</option>
-                                                    <option value="keldi">✅ Keldi</option>
-                                                    <option value="kelmadi">❌ Kelmadi</option>
+                                                    <option value="">Выбрать</option>
+                                                    <option value="keldi">✅ Пришел</option>
+                                                    <option value="kelmadi">❌ Не пришел</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -322,13 +323,13 @@
                             </table>
                         </div>
                         @else
-                            <p class="text-success m-0 p-0 w-100 text-center">Bugungi kun uchun davomad olingan.</p>
+                            <p class="text-success m-0 p-0 w-100 text-center">Посещаемость уже отмечена на сегодня.</p>
                         @endif
                     </div>
                     <div class="modal-footer">
                         @if($davomadDay=='false')
                             <button type="submit" class="btn btn-success w-100">
-                                <i class="bi bi-save me-1"></i> Davomadni saqlash
+                                <i class="bi bi-save me-1"></i> Сохранить посещаемость
                             </button>
                         @endif
                     </div>
@@ -337,53 +338,52 @@
         </div>
     </div>
 
-
-<!-- Tarbiyachini almashtirish -->
+<!-- Сменить воспитателя -->
     <div class="modal fade" id="changeMainModal" tabindex="-1" aria-labelledby="changeMainModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow rounded-4">
             <div class="modal-header">
-                <h5 class="modal-title" id="changeMainModalLabel">Tarbiyachini almashtirish</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                <h5 class="modal-title" id="changeMainModalLabel">Сменить воспитателя</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
                 <form action="{{ route('groups_updates_tarbiyachi') }}" method="post">
                     @csrf
-                    <label for="user_id">Yangi tarbiyachini tanlang</label>
+                    <label for="user_id">Выберите нового воспитателя</label>
                     <input type="hidden" name="id" value="{{ $id }}">
                     <select name="user_id" class="form-select my-2" required>
-                        <option value="">Tanlang...</option>
+                        <option value="">Выбрать...</option>
                         @foreach ($tarbiyachilar as $item)
                             <option value="{{ $item['user_id'] }}">{{ $item['user_name'] }}</option>
                         @endforeach
                     </select>
-                    <button class="btn btn-primary w-100 mt-2" type="submit">Saqlash</button>
+                    <button class="btn btn-primary w-100 mt-2" type="submit">Сохранить</button>
                 </form>
             </div>
             </div>
         </div>
     </div>
 
-<!-- Yordamchini almashtirish -->
+<!-- Сменить помощника -->
     <div class="modal fade" id="changeHelperModal" tabindex="-1" aria-labelledby="changeHelperModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow rounded-4">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="changeHelperModalLabel">Yordamchini almashtirish</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+                    <h5 class="modal-title" id="changeHelperModalLabel">Сменить помощника</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('groups_updates_yordamchi') }}" method="post">
                         @csrf
-                        <label for="user_id">Yangi yordamchi tarbiyachini tanlang</label>
+                        <label for="user_id">Выберите нового помощника</label>
                         <input type="hidden" name="id" value="{{ $id }}">
                         <select name="user_id" class="form-select my-2" required>
-                            <option value="">Tanlang...</option>
+                            <option value="">Выбрать...</option>
                             @foreach ($yordamchilar as $item)
                                 <option value="{{ $item['user_id'] }}">{{ $item['user_name'] }}</option>
                             @endforeach
                         </select>
-                        <button class="btn btn-primary w-100 mt-2" type="submit">Saqlash</button>
+                        <button class="btn btn-primary w-100 mt-2" type="submit">Сохранить</button>
                     </form>
                 </div>
             </div>

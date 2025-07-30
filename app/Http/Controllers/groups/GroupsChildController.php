@@ -89,7 +89,7 @@ class GroupsChildController extends Controller{
             'description' => $comments,
             'user_id' => auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Guruhdan o\'chirildi!');
+        return redirect()->back()->with('success', 'Удалено из группы!');
     }
 
     public function groups_show_child_paymart_update(Request $request){
@@ -99,13 +99,13 @@ class GroupsChildController extends Controller{
         $group_id = $request->group_id;
         ChildComment::create([
             'child_id' => $child_id,
-            'description' => "To'lov turi o'zgartirildi: ".$comments,
+            'description' => "Тип оплаты изменен!: ".$comments,
             'user_id' => auth()->user()->id,
         ]);
         $GroupChild = GroupChild::where('child_id',$child_id)->where('group_id',$group_id)->where('status','true')->first();
         $GroupChild->paymart_type = $paymart_type;
         $GroupChild->save();
-        return redirect()->back()->with('success', "to'lov turi o'zgartirildi!");
+        return redirect()->back()->with('success', "Тип оплаты изменен!");
     }
 
 
