@@ -1,4 +1,4 @@
-@extends('layout.cdn2')
+@extends('layout.cdn1')
 @section('title','Поварa')
 @section('content')
 
