@@ -143,4 +143,6 @@ Route::get('/new-groups', [GroupsController::class, 'new_index'])->name('groups_
 
 
 Route::get('/report', [ReportController::class, 'index'])->name('report')->middleware(['auth']);
+
 Route::get('/chart', [ChartController::class, 'index'])->name('chart')->middleware(['auth']);
+Route::get('/chart-month', [ChartController::class, 'oylik'])->name('chart_oylik')->middleware(['auth']);

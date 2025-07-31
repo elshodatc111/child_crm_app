@@ -26,7 +26,6 @@
                     </div>
                 </div>
             </div>
-
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
@@ -45,8 +44,8 @@
             <div class="card shadow-sm rounded">
                 <div class="card-body">
                     <div class="list-group list-group-horizontal text-center" id="inbox-menu">
-                        <a href="{{ route('chart') }}" class="list-group-item list-group-item-action active">Kunlik</a>
-                        <a href="{{ route('chart_oylik') }}" class="list-group-item list-group-item-action">Oylik</a>
+                        <a href="{{ route('chart') }}" class="list-group-item list-group-item-action ">Kunlik</a>
+                        <a href="{{ route('chart_oylik') }}" class="list-group-item list-group-item-action active">Oylik</a>
                     </div>
                 </div>
             </div>
@@ -55,7 +54,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Bolalar haqida(Kunlik)</h4>
+                                <h4>Bolalar haqida(Oylik)</h4>
                             </div>
                             <div class="card-body">
                                 <div id="bolalar_bolalar"></div>
@@ -100,8 +99,8 @@
                                             },
                                             xaxis: {
                                                 categories:  [
-                                                    @foreach ($days as $item)
-                                                        "{{ $item['short'] }}",
+                                                    @foreach ($monch as $item)
+                                                        "{{ $item }}",
                                                     @endforeach
                                                 ],
                                             },
@@ -129,7 +128,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>To'lovlar(Kunlik)</h4>
+                                <h4>To'lovlar(Oylik)</h4>
                             </div>
                             <div class="card-body">
                                 <div id="kunliklar_tolovlar"></div>
@@ -174,8 +173,8 @@
                                             },
                                             xaxis: {
                                                 categories:  [
-                                                    @foreach ($days as $item)
-                                                        "{{ $item['short'] }}",
+                                                    @foreach ($monch as $item)
+                                                        "{{ $item }}",
                                                     @endforeach
                                                 ],
                                             },
@@ -203,7 +202,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Kassa(Kunlik)</h4>
+                                <h4>Kassa(Oylik)</h4>
                             </div>
                             <div class="card-body">
                                 <div id="kassa_tarih"></div>
@@ -252,8 +251,8 @@
                                             },
                                             xaxis: {
                                                 categories:  [
-                                                    @foreach ($days as $item)
-                                                        "{{ $item['short'] }}",
+                                                    @foreach ($monch as $item)
+                                                        "{{ $item }}",
                                                     @endforeach
                                                 ],
                                             },
@@ -278,11 +277,10 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Moliya(Kunlik)</h4>
+                                <h4>Moliya(Oylik)</h4>
                             </div>
                             <div class="card-body">
                                 <div id="oylik_bolalar"></div>
@@ -327,8 +325,8 @@
                                             },
                                             xaxis: {
                                                 categories:  [
-                                                    @foreach ($days as $item)
-                                                        "{{ $item['short'] }}",
+                                                    @foreach ($monch as $item)
+                                                        "{{ $item }}",
                                                     @endforeach
                                                 ],
                                             },
